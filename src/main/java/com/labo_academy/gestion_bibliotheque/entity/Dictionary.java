@@ -23,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 
-public class Dictionnaire extends Document {
+public class Dictionary extends Document {
 
     @Column(length = 30, nullable = false)  // lanque du dictionnaire
     private String langue;

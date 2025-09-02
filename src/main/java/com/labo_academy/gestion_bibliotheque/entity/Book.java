@@ -28,7 +28,5 @@ public class Book extends Document {
     private String isbn;
     @Column(nullable = false, name = "number_pages")  // nombre de page du livre
     private int numberPages;
-    @Column(nullable = false, length = 50)  // edition du livre
-    private String edition;
 
 }
