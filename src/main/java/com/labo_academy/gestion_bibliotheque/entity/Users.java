@@ -1,4 +1,4 @@
 package com.labo_academy.gestion_bibliotheque.entity;
 
-public class User {
+public class Users {
 }
