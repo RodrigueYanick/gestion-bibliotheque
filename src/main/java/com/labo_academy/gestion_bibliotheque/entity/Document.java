@@ -88,4 +88,8 @@ public abstract class Document {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")  // relation entre un document et plusieur emprunt
     private List<Borrow> borrows;
 
+    //Relation avec Reservation-Document
+    @OneToMany(mappedBy = "documents",fetch = FetchType.LAZY)
+    private List<Reservation> reservations ;
+
 }

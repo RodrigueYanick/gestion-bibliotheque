@@ -53,4 +53,8 @@ public class Borrow {
     @JoinColumn(name = "facture_id", nullable = true)  // relation entre un emprunt et une facture
     private Facture facture;
 
+    @ManyToOne
+    @JoinColumn(name = "suscriber_id",nullable = false)  // relation entre emprunt et abonne
+    private Suscriber suscriber;
+
 }
