@@ -28,6 +28,6 @@ public class Magazine extends Document {
     @Column(nullable = false, length = 20, unique = true)  // code ISSN du magazine
     private String issn;
     @Column(nullable = false)  // frequence de publication
-    private int periodicity;
+    private int validationPeriod;
 
 }
