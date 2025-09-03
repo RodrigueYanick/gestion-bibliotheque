@@ -58,9 +58,10 @@ public abstract class Document {
     private boolean isDeleted;
     @Lob  // perment de stocker des donnee binaire volumineuses(image)
     @Column(nullable = true)
+    @ToString.Exclude
     private byte[] image;
     @Column(nullable = false, length = 50)
-    private String maisonProduction;
+    private String publisher;
 
     // methode appele automatiquement avant la persistance initiale
     @PrePersist
@@ -83,6 +84,7 @@ public abstract class Document {
     @JoinColumn(name = "author_id")  // relation entre plusieurs documents et un auteur
     private Author author;
 
+    @ToString.Exclude
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")  // relation entre un document et plusieur emprunt
     private List<Borrow> borrows;
 

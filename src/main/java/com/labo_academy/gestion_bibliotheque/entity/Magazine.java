@@ -25,7 +25,7 @@ import lombok.ToString;
 
 public class Magazine extends Document {
 
-    @Column(nullable = false, length = 20, unique = false)  // code ISSN du magazine
+    @Column(nullable = false, length = 20, unique = true)  // code ISSN du magazine
     private String issn;
     @Column(nullable = false)  // frequence de publication
     private int periodicity;

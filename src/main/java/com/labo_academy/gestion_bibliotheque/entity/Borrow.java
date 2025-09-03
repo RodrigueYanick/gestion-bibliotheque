@@ -6,7 +6,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -43,7 +42,7 @@ public class Borrow {
     private BorrowedStatus status;
 
     @OneToOne
-    @JoinColumn(name = "sanction_id", nullable = false)  // relation entre un emprunt et une sanction
+    @JoinColumn(name = "sanction_id", nullable = true)  // relation entre un emprunt et une sanction
     private Sanction sanction;
     
     @ManyToOne
@@ -51,7 +50,7 @@ public class Borrow {
     private Document document;
 
     @OneToOne
-    @JoinColumn(name = "facture_id", nullable = false)  // relation entre un emprunt et une facture
+    @JoinColumn(name = "facture_id", nullable = true)  // relation entre un emprunt et une facture
     private Facture facture;
 
 }

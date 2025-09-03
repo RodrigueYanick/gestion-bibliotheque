@@ -32,11 +32,11 @@ public class Author {
     @Column(nullable = false, length = 50)  // nom de l'auteur
     private String name;
     @Column(nullable = false, length = 50)  // prenom de l'auteur
-    private String prename;
+    private String firstName;
     @Column(nullable = false, unique = true, length = 50)  // immatricution de l'auteur
     private String immatriculation;
     @Column(nullable = false, length = 50)  // nationalite de l'auteur
-    private String nationalite;
+    private String nationality;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")  // mappage de author a document
     private List<Document> documents;
