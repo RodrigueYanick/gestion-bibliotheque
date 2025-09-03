@@ -12,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "agent")
-public class Agent extends User {
+public class Agent extends Users {
 
     // Definition des attributs Propres
 

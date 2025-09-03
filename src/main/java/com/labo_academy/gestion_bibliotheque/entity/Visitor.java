@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "visitor")
-public class Visitor extends User{
+public class Visitor extends Users {
 
     @Column(name = "statut",nullable = false)
     private boolean statut;

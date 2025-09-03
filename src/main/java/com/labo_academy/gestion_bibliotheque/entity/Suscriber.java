@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "suscriber")
-public class Suscriber extends User{
+public class Suscriber extends Users {
 
     //Attributs propres a la classe
 

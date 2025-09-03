@@ -12,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "librarian")
-public class Librarian extends User{
+public class Librarian extends Users {
 
     // Attributs Propres
 
