@@ -26,7 +26,7 @@ import lombok.ToString;
 public class Dictionary extends Document {
 
     @Column(length = 30, nullable = false)  // lanque du dictionnaire
-    private String langue;
+    private String language;
     @Column(name = "number_words", nullable = false)  // nombre de mots contenus
     private int numberWords;
 

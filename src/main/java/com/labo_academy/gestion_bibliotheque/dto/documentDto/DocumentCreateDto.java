@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DocumetCreateDto {
+public class DocumentCreateDto {
 
     @NotBlank(message = "le titre est obligatoire")
     @Size(max = 100, message = "la taille du titre doit etre inferieur a 100 caractere")
