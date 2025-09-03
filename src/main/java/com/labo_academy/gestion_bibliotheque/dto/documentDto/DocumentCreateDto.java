@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+// @AllArgsConstructor
 @NoArgsConstructor
 public class DocumentCreateDto {
 
@@ -27,5 +27,65 @@ public class DocumentCreateDto {
     private boolean isDeleted;
     private byte[] image;
     private String publisher;
+
+    // Constructeur
+
+    public DocumentCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher) {
+        this.title = title;
+        this.quantity = quantity;
+        this.publicationDate = publicationDate;
+        this.isDeleted = isDeleted;
+        this.image = image;
+        this.publisher = publisher;
+    }
+
+    // Getters and Setters
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public LocalDate getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(LocalDate publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
 
 }
