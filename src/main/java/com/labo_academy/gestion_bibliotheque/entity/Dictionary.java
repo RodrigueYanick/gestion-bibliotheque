@@ -23,11 +23,28 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 
-public class Dictionnaire extends Document {
+public class Dictionary extends Document {
 
     @Column(length = 30, nullable = false)  // lanque du dictionnaire
-    private String langue;
+    private String language;
     @Column(name = "number_words", nullable = false)  // nombre de mots contenus
     private int numberWords;
 
+    // Getters and Setters
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public int getNumberWords() {
+        return numberWords;
+    }
+
+    public void setNumberWords(int numberWords) {
+        this.numberWords = numberWords;
+    }
 }

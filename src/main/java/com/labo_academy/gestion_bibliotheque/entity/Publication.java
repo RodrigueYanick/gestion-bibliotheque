@@ -28,4 +28,12 @@ public class Publication extends Document {
     @Column(length = 100, nullable = false)  // universite d'origine de la publication
     private String university;
 
+    // constructeur
+    public String getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(String university) {
+        this.university = university;
+    }
 }
