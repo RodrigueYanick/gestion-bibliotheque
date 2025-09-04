@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -16,5 +18,33 @@ public class DictionaryCreateDto extends DocumentCreateDto {
 
     private String language;
     private int numberWords;
+
+    // Contructeur
+    public DictionaryCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher,String language,int numberWords) {
+        super(title, quantity, publicationDate, isDeleted, image, publisher);
+        this.language = language;
+        this.numberWords = numberWords;
+    }
+
+    // Getters and Setters
+
+    
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public int getNumberWords() {
+        return numberWords;
+    }
+
+    public void setNumberWords(int numberWords) {
+        this.numberWords = numberWords;
+    }
+
+
 
 }

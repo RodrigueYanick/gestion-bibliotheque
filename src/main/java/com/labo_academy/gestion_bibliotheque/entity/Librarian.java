@@ -19,4 +19,12 @@ public class Librarian extends Users {
     @Column(name = "idNumber",nullable = false,length = 255)
     private String idNumber;
 
+    // Getters and Setters
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
 }

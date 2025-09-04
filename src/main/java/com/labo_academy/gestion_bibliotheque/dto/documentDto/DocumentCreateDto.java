@@ -70,7 +70,7 @@ public class DocumentCreateDto {
         this.publicationDate = publicationDate;
     }
 
-    public boolean isDeleted() {
+    public boolean getIsDeleted() {
         return isDeleted;
     }
 

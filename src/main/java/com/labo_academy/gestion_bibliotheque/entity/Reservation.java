@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+// @NoArgsConstructor
 @Table(name = "reservation")
 public class Reservation {
 
@@ -28,6 +28,39 @@ public class Reservation {
     @PrePersist
     private void prepersist(){
         reservationDate = LocalDate.now();
+    }
+
+    public Reservation() {
+    }
+
+    public Reservation(Long reservationId, LocalDate reservationDate, boolean statut) {
+        this.reservationId = reservationId;
+        this.reservationDate = reservationDate;
+        this.statut = statut;
+    }
+
+    public Long getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(Long reservationId) {
+        this.reservationId = reservationId;
+    }
+
+    public LocalDate getReservationDate() {
+        return reservationDate;
+    }
+
+    public void setReservationDate(LocalDate reservationDate) {
+        this.reservationDate = reservationDate;
+    }
+
+    public boolean isStatut() {
+        return statut;
+    }
+
+    public void setStatut(boolean statut) {
+        this.statut = statut;
     }
 
     // Relations avec Abonne-reservation

@@ -23,4 +23,22 @@ public class MagazineResponseDto extends DocumentResponseDto {
         this.issn = issn;
         this.validationPeriod = validationPeriod;
     }
+
+    //  Getter and Setters
+
+    public String getIssn() {
+        return issn;
+    }
+
+    public void setIssn(String issn) {
+        this.issn = issn;
+    }
+
+    public int getValidationPeriod() {
+        return validationPeriod;
+    }
+
+    public void setValidationPeriod(int validationPeriod) {
+        this.validationPeriod = validationPeriod;
+    }
 }

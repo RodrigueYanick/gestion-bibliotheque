@@ -40,4 +40,5 @@ public class MagazineCreateDto extends DocumentCreateDto {
     public void setValidationPeriod(int validationPeriod) {
         this.validationPeriod = validationPeriod;
     }
+
 }

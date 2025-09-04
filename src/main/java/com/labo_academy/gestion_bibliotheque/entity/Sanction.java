@@ -19,7 +19,7 @@ import lombok.Setter;
 // creation de la table sanction
 @Entity
 @Table(name = "sanction")
-@NoArgsConstructor
+// @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -34,6 +34,42 @@ public class Sanction {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)  // les differents et de la sanction se trouvant dans la classe sanctionStatus
     private SanctionStatus statut;
+    // Construtor
+
+
+    public Sanction() {
+
+    }
+
+    public Sanction(Long sanctionedId, double amount, SanctionStatus statut) {
+        this.sanctionedId = sanctionedId;
+        this.amount = amount;
+        this.statut = statut;
+    }
+// Getters and Setters
+    public Long getSanctionedId() {
+        return sanctionedId;
+    }
+
+    public void setSanctionedId(Long sanctionedId) {
+        this.sanctionedId = sanctionedId;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public SanctionStatus getStatut() {
+        return statut;
+    }
+
+    public void setStatut(SanctionStatus statut) {
+        this.statut = statut;
+    }
 
     @OneToOne
     @JoinColumn(name = "returned_id", nullable = true)  // relation entre une sanction et un emprunt
