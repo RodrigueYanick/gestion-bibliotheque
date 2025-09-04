@@ -8,6 +8,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -34,7 +35,8 @@ public class Sanction {
     @Enumerated(EnumType.STRING)  // les differents et de la sanction se trouvant dans la classe sanctionStatus
     private SanctionStatus statut;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "sanction")  // relation entre une sanction et un emprunt
-    private Borrow borrow;
+    @OneToOne
+    @JoinColumn(name = "returned_id", nullable = true)  // relation entre une sanction et un emprunt
+    private Returned returned;
 
 }

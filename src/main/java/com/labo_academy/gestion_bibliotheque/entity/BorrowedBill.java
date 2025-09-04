@@ -1,10 +1,10 @@
 package com.labo_academy.gestion_bibliotheque.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -19,13 +19,14 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class Facture {
+public class BorrowedBill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // identifiant unique de la facture
-    private Long numeroFacture;
+    private Long billNumber;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "facture")  // relation entre une facture et un emprunt
+    @OneToOne
+    @JoinColumn(name = "borrow_id", nullable = true)  // relation entre une facture et un emprunt
     private Borrow borrow;
 
 }

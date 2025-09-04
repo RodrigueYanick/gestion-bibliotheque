@@ -23,7 +23,7 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long authorId;
     @Column(nullable = false, length = 50)  // nom de l'auteur
-    private String name;
+    private String lastName;
     @Column(nullable = false, length = 50)  // prenom de l'auteur
     private String firstName;
     @Column(nullable = false, unique = true, length = 50)  // immatricution de l'auteur

@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+// @AllArgsConstructor
 @NoArgsConstructor
 public class DocumentCreateDto {
 

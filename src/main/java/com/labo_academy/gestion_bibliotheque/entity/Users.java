@@ -29,8 +29,8 @@ public abstract class Users {
     @Column(name = "firstName", nullable = false, length = 255)
     private String firstName;
 
-    @Column(name = "dateBirth", nullable = false, length = 255)
-    private LocalDate dateBirth;
+    @Column(name = "birthDate", nullable = false, length = 255)
+    private LocalDate birthDate;
 
     @Column(name = "password", nullable = false, length = 255)
     private String password;
@@ -39,7 +39,11 @@ public abstract class Users {
     private String email;
 
     @Column(name = "adress", length = 255)
-    private String adress;
+    private String address;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private Role role;
 
     //@Column(name = "image",nullable = false)
     //private Image image;
