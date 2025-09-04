@@ -18,4 +18,12 @@ public class Agent extends Users {
 
     @Column(name = "idNumber", nullable = false, unique = true, length = 50)
     private String idNumber;
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
 }

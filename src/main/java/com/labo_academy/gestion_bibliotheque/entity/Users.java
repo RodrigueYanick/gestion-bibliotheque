@@ -45,8 +45,10 @@ public abstract class Users {
     @Column(name = "role", nullable = false)
     private Role role;
 
-    //@Column(name = "image",nullable = false)
-    //private Image image;
+    @Lob  // perment de stocker des donnee binaire volumineuses(image)
+    @Column(nullable = true)
+    @ToString.Exclude
+    private byte[] image;
 
     @Column(name = "creationDate", nullable = false, length = 255)
     private LocalDate creationDate;
@@ -56,4 +58,121 @@ public abstract class Users {
 
     @Column(name = "isDeleted", nullable = false, length = 255)
     private boolean isDelete;
+
+    // Constructeur
+    public Users(Long id, String lastName, String firstName, LocalDate birthDate, String password, String email, String address, Role role, byte[] image, LocalDate creationDate, Date lastUpdate, boolean isDelete) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.birthDate = birthDate;
+        this.password = password;
+        this.email = email;
+        this.address = address;
+        this.role = role;
+        this.image = image;
+        this.creationDate = creationDate;
+        this.lastUpdate = lastUpdate;
+        this.isDelete = isDelete;
+    }
+
+    public Users() {
+
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
 }

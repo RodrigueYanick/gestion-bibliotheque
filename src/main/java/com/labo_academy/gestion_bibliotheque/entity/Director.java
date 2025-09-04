@@ -18,4 +18,14 @@ public class Director extends Users {
 
     @Column(name = "idNumber", nullable = false, length = 255)
     private String idNumber;
+
+    // gETTERS AND sETTERS
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
 }

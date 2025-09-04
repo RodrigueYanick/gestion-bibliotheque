@@ -23,6 +23,22 @@ public class Suscriber extends Users {
     @Column(name = "statut",nullable = false)
     private boolean statut;
 
+    public Long getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(Long accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public boolean isStatut() {
+        return statut;
+    }
+
+    public void setStatut(boolean statut) {
+        this.statut = statut;
+    }
+
     // Relation avec Reservation
     @OneToMany(mappedBy = "abonne",fetch = FetchType.LAZY)
     private List<Reservation> reservations ;

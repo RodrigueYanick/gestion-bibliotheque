@@ -41,7 +41,51 @@ public class Borrow {
     @Enumerated(EnumType.STRING)  // le statut de l'emprunt
     private BorrowedStatus status;
 
-    
+    // Constructeur
+
+    public Borrow() {
+    }
+
+    public Borrow(Long borrowedId, LocalDate borrowedDate, LocalDate returnDate, BorrowedStatus status) {
+        this.borrowedId = borrowedId;
+        this.borrowedDate = borrowedDate;
+        this.returnDate = returnDate;
+        this.status = status;
+    }
+
+    // Getters and Setters
+    public Long getBorrowedId() {
+        return borrowedId;
+    }
+
+    public void setBorrowedId(Long borrowedId) {
+        this.borrowedId = borrowedId;
+    }
+
+    public LocalDate getBorrowedDate() {
+        return borrowedDate;
+    }
+
+    public void setBorrowedDate(LocalDate borrowedDate) {
+        this.borrowedDate = borrowedDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public BorrowedStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(BorrowedStatus status) {
+        this.status = status;
+    }
+
     @ManyToOne
     @JoinColumn(name = "document_id", nullable = false)  // relation entre plusieur emprunt et un document
     private Document document;

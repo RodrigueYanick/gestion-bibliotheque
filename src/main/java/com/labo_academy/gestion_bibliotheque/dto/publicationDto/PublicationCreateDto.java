@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -15,4 +17,8 @@ public class PublicationCreateDto extends DocumentCreateDto {
 
     private String universite;
 
+    public PublicationCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher,String universite) {
+        super(title, quantity, publicationDate, isDeleted, image, publisher);
+        this.universite = universite;
+    }
 }
