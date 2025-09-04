@@ -1,5 +1,4 @@
-
-package com.labo_academy.gestion_bibliotheque.reservationDto;
+package com.labo_academy.gestion_bibliotheque.dto.reservationDto;
 
 import java.time.LocalDate;
 
@@ -8,13 +7,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
-public class ReservationCreateDto {
+public class ReservationResponseDto {
 
+    private Long reservationId;
     private LocalDate reservationDate;
     private boolean statut;
 

@@ -2,7 +2,10 @@ package com.labo_academy.gestion_bibliotheque.dto.documentDto;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,14 +21,17 @@ public class DocumentCreateDto {
     @NotBlank(message = "le titre est obligatoire")
     @Size(max = 100, message = "la taille du titre doit etre inferieur a 100 caractere")
     private String title;
-    @NotBlank(message = "la quantite est obligatoire")
-    @Size(min = 1, message = "valeur minimale c'est 1")
+    @Min(value = 1, message = "valeur minimale c'est 1")
     private int quantity;
     @NotBlank(message = "la date de publication est obligatoire")
-    
+    @PastOrPresent(message = "la date de publication est obligatoire")
     private LocalDate publicationDate;
+    @NotBlank(message = "ce statut est obligatoire")
     private boolean isDeleted;
+    // @NotNull(message = "l'image est obligatoire")
     private byte[] image;
+    
+    @NotBlank(message = "la maison de publication est obligatoire")
     private String publisher;
 
     // Constructeur

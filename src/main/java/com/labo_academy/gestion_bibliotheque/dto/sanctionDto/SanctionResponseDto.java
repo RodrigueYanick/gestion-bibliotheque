@@ -1,4 +1,4 @@
-package com.labo_academy.gestion_bibliotheque.sanctionDto;
+package com.labo_academy.gestion_bibliotheque.dto.sanctionDto;
 
 import com.labo_academy.gestion_bibliotheque.entity.SanctionStatus;
 

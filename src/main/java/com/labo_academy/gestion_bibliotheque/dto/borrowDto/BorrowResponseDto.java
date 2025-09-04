@@ -1,4 +1,4 @@
-package com.labo_academy.gestion_bibliotheque.borrowDto;
+package com.labo_academy.gestion_bibliotheque.dto.borrowDto;
 
 import java.time.LocalDate;
 
