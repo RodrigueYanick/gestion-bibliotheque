@@ -31,6 +31,27 @@ public class Returned {
     private Long Id;
     private LocalDate returndeDate;
 
+    public Returned(Long id, LocalDate returndeDate) {
+        Id = id;
+        this.returndeDate = returndeDate;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public LocalDate getReturndeDate() {
+        return returndeDate;
+    }
+
+    public void setReturndeDate(LocalDate returndeDate) {
+        this.returndeDate = returndeDate;
+    }
+
     @PrePersist
     public void returnDate(){
         returndeDate = LocalDate.now();
