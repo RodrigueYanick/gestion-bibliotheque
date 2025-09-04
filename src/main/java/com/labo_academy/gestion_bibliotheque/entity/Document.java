@@ -79,6 +79,10 @@ public abstract class Document {
         this.reservations = reservations;
     }
 
+    public Document() {
+
+    }
+
     // Getters and Setters
     public Long getId() {
         return id;
@@ -128,12 +132,12 @@ public abstract class Document {
         this.lastUpdateDate = lastUpdateDate;
     }
 
-    public boolean isDeleted() {
+    public boolean getisDeleted() {
         return isDeleted;
     }
 
     public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
+        this.isDeleted = isDeleted;
     }
 
     public byte[] getImage() {

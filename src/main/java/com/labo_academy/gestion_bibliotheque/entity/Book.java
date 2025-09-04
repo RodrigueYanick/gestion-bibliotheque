@@ -29,4 +29,23 @@ public class Book extends Document {
     @Column(nullable = false, name = "number_pages")  // nombre de page du livre
     private int numberPages;
 
+    // Getters and Setters
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public int getNumberPages() {
+        return numberPages;
+    }
+
+    public void setNumberPages(int numberPages) {
+        this.numberPages = numberPages;
+    }
+
+
 }

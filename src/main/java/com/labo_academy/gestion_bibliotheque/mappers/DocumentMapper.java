@@ -19,7 +19,7 @@ public class DocumentMapper {
                 document.getPublicationDate(),
                 document.getCreationDate(),
                 document.getLastUpdateDate(),
-                document.isDeleted(),
+                document.getisDeleted(),
                 document.getImage(),
                 document.getPublisher()
         );
