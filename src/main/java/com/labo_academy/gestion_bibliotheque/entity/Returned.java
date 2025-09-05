@@ -29,7 +29,7 @@ public class Returned {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private LocalDate effectiveReturnDate;
-    private LocalDate effectiveReturnDateNumber;
+    private LocalDate returnNumber;
     
     @PrePersist
     public void returnDate(){
