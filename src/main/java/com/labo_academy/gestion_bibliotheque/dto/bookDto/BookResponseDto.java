@@ -1,9 +1,9 @@
 package com.labo_academy.gestion_bibliotheque.dto.bookDto;
 
 import com.labo_academy.gestion_bibliotheque.dto.documentDto.DocumentResponseDto;
+import lombok.Getter;
 
 import java.time.LocalDate;
-
 public class BookResponseDto extends DocumentResponseDto {
 
     private String isbn;

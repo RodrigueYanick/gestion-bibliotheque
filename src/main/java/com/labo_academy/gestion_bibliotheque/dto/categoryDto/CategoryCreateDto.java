@@ -1,5 +1,9 @@
 package com.labo_academy.gestion_bibliotheque.dto.categoryDto;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 public class CategoryCreateDto {
 
     private String description;

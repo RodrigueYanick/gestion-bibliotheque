@@ -1,6 +1,5 @@
 package com.labo_academy.gestion_bibliotheque.dto.returnedDto;
 
-
 import java.time.LocalDate;
 
 public class ReturnedResponseDto {

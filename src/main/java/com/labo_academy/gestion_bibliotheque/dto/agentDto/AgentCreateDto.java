@@ -11,10 +11,12 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 public class AgentCreateDto extends UsersCreateDto {
-
+@Getter
+@Setter
     private String idNumber;
 
-    public AgentCreateDto(String lastName, String firstName, LocalDate birthDate, String password, String email, String address, Role role) {
+    public AgentCreateDto(String lastName, String firstName, LocalDate birthDate, String password, String email, String address, Role role,String idNumber) {
         super(lastName, firstName, birthDate, password, email, address, role);
+        this.idNumber = idNumber;
     }
 }

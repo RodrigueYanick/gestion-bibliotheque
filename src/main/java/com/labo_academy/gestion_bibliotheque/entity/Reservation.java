@@ -19,9 +19,19 @@ public class Reservation {
 
     @Column(name = "reservationDate", nullable = false,length = 50)
     private LocalDate reservationDate;
-
+    
     @Column(name = "statut", nullable = false,length = 50)
     private boolean statut;
+    
+    // Relations avec Abonne-reservation
+    @ManyToOne
+    @JoinColumn(name = "abonne_id",nullable = false)
+    private Subscribers abonne;
+
+    // Relation avec Document-reservation
+    @ManyToOne
+    @JoinColumn(name = "document_id",nullable = false)
+    private Document documents;
 
     @PrePersist
     private void prepersist(){
@@ -61,13 +71,4 @@ public class Reservation {
         this.statut = statut;
     }
 
-    // Relations avec Abonne-reservation
-    @ManyToOne
-    @JoinColumn(name = "abonne_id",nullable = false)
-    private Suscriber abonne;
-
-    // Relation avec Document-reservation
-    @ManyToOne
-    @JoinColumn(name = "document_id",nullable = false)
-    private Document documents;
 }

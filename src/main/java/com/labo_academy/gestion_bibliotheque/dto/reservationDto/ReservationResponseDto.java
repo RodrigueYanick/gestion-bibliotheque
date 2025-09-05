@@ -1,6 +1,5 @@
 package com.labo_academy.gestion_bibliotheque.dto.reservationDto;
 
-
 import java.time.LocalDate;
 
 public class ReservationResponseDto {
@@ -8,7 +7,18 @@ public class ReservationResponseDto {
     private Long reservationId;
     private LocalDate reservationDate;
     private boolean statut;
+    private String subscribersEmail;
+    private String documentTitle;
 
+    public ReservationResponseDto(Long reservationId, LocalDate reservationDate, boolean statut,String subscribersEmail,String documentTitle) {
+        this.reservationId = reservationId;
+        this.reservationDate = reservationDate;
+        this.statut = statut;
+        this.subscribersEmail = subscribersEmail;
+        this.documentTitle = documentTitle;
+
+
+    }
     public Long getReservationId() {
         return reservationId;
     }
@@ -33,11 +43,4 @@ public class ReservationResponseDto {
         this.statut = statut;
     }
 
-    public ReservationResponseDto(Long reservationId, LocalDate reservationDate, boolean statut) {
-        this.reservationId = reservationId;
-        this.reservationDate = reservationDate;
-        this.statut = statut;
-
-
-    }
 }

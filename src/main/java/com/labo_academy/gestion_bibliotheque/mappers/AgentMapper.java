@@ -31,6 +31,7 @@ public class AgentMapper {
         agent.setEmail(agentCreateDto.getEmail());
         agent.setAddress(agentCreateDto.getAddress());
         agent.setRole(agentCreateDto.getRole());
+        agent.setIdNumber(agentCreateDto.getIdNumber());
         return agent;
     }
 }

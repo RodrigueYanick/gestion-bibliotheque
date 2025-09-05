@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.Date;
 
 
+
+
 @Entity
 @Getter
 @Setter
@@ -33,7 +35,7 @@ public abstract class Users {
     @Column(name = "password", nullable = false, length = 255)
     private String password;
 
-    @Column(name = "email", nullable = false, length = 255)
+    @Column(name = "email", nullable = false, length = 255, unique = true)
     private String email;
 
     @Column(name = "adress", length = 255)
@@ -173,4 +175,6 @@ public abstract class Users {
     public void setDelete(boolean delete) {
         isDelete = delete;
     }
+
+
 }

@@ -9,11 +9,12 @@ public class MagazineCreateDto extends DocumentCreateDto {
     private String issn;
     private int validationPeriod;
 
-    public MagazineCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher, String issn, int validationPeriod) {
-        super(title, quantity, publicationDate, isDeleted, image, publisher);
+    public MagazineCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher, String categoryName, String authorName,String issn,int validationPeriod) {
+        super(title, quantity, publicationDate, isDeleted, image, publisher, categoryName, authorName);
         this.issn = issn;
         this.validationPeriod = validationPeriod;
     }
+
 
     //Getters and Setters
     public String getIssn() {

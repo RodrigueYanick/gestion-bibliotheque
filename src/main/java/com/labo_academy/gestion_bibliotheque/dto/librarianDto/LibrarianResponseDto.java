@@ -8,7 +8,10 @@ import java.time.LocalDate;
 
 public class LibrarianResponseDto extends UsersResponseDto {
 
-    public LibrarianResponseDto(Long id, String lastName, String firstName, LocalDate birthDate, String email, String address, Role role) {
+    private String idNumber;
+
+    public LibrarianResponseDto(Long id, String lastName, String firstName, LocalDate birthDate, String email, String address, Role role,String idNumber) {
         super(id, lastName, firstName, birthDate, email, address, role);
+        this.idNumber = idNumber;
     }
 }

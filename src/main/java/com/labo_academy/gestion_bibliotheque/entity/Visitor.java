@@ -12,7 +12,7 @@ import java.util.Date;
 @ToString(callSuper = true)
 @Getter
 @Setter
-@Table(name = "visitor")
+
 public class Visitor extends Users {
 
     @Column(name = "statut",nullable = false)

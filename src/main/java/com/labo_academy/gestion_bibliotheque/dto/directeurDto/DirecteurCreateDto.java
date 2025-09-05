@@ -3,8 +3,12 @@ package com.labo_academy.gestion_bibliotheque.dto.directeurDto;
 import com.labo_academy.gestion_bibliotheque.dto.usersDto.UsersCreateDto;
 import com.labo_academy.gestion_bibliotheque.entity.Role;
 
-import java.time.LocalDate;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.time.LocalDate;
+@Getter
+@Setter
 public class DirecteurCreateDto extends UsersCreateDto {
 
     private String idNumber;

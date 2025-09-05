@@ -1,5 +1,7 @@
 package com.labo_academy.gestion_bibliotheque.dto.borrowDto;
 
+import java.time.LocalDate;
+
 import com.labo_academy.gestion_bibliotheque.entity.BorrowedStatus;
 
 import java.time.LocalDate;

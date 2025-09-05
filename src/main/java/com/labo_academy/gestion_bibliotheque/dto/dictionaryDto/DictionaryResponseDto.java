@@ -9,11 +9,12 @@ public class DictionaryResponseDto extends DocumentResponseDto {
     private String language;
     private int numberWords;
 
-    public DictionaryResponseDto(Long id, String title, int quantity, LocalDate publicationDate, LocalDate creationDate, LocalDate lastUpdateDate, boolean isDeleted, byte[] image, String publisher, String language, int numberWords) {
-        super(id, title, quantity, publicationDate, creationDate, lastUpdateDate, isDeleted, image, publisher);
+    public DictionaryResponseDto(Long id, String title, int quantity, LocalDate publicationDate, LocalDate creationDate, LocalDate lastUpdateDate, boolean isDeleted, byte[] image, String publisher, String categoryName, String authorName,String language,int numberWords) {
+        super(id, title, quantity, publicationDate, creationDate, lastUpdateDate, isDeleted, image, publisher, categoryName, authorName);
         this.language = language;
         this.numberWords = numberWords;
     }
+
 
     // Constructeur
 
@@ -35,4 +36,6 @@ public class DictionaryResponseDto extends DocumentResponseDto {
     public void setNumberWords(int numberWords) {
         this.numberWords = numberWords;
     }
+
+
 }

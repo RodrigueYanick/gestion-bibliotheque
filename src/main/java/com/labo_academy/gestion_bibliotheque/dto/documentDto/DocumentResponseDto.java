@@ -14,10 +14,13 @@ public class DocumentResponseDto {
     private byte[] image;
     private String publisher;
 
+    private String categoryName;
+    private String authorName;
+
     // Constructeur
 
 
-    public DocumentResponseDto(Long id, String title, int quantity, LocalDate publicationDate, LocalDate creationDate, LocalDate lastUpdateDate, boolean isDeleted, byte[] image, String publisher) {
+    public DocumentResponseDto(Long id, String title, int quantity, LocalDate publicationDate, LocalDate creationDate, LocalDate lastUpdateDate, boolean isDeleted, byte[] image, String publisher,String categoryName,String authorName) {
         this.id = id;
         this.title = title;
         this.quantity = quantity;
@@ -27,6 +30,24 @@ public class DocumentResponseDto {
         this.isDeleted = isDeleted;
         this.image = image;
         this.publisher = publisher;
+        this.categoryName = categoryName;
+        this.authorName = authorName;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
     public Long getId() {

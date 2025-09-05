@@ -9,8 +9,9 @@ public class PublicationCreateDto extends DocumentCreateDto {
 
     private String universite;
 
-    public PublicationCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher, String universite) {
-        super(title, quantity, publicationDate, isDeleted, image, publisher);
+
+    public PublicationCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher, String categoryName, String authorName,String universite) {
+        super(title, quantity, publicationDate, isDeleted, image, publisher, categoryName, authorName);
         this.universite = universite;
     }
 }

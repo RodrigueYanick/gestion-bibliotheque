@@ -2,7 +2,9 @@ package com.labo_academy.gestion_bibliotheque.dto.documentDto;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 
 public class DocumentCreateDto {
@@ -10,28 +12,58 @@ public class DocumentCreateDto {
     @NotBlank(message = "le titre est obligatoire")
     @Size(max = 100, message = "la taille du titre doit etre inferieur a 100 caractere")
     private String title;
-    @NotBlank(message = "la quantite est obligatoire")
-    @Size(min = 1, message = "valeur minimale c'est 1")
+    @Min(value = 1, message = "valeur minimale c'est 1")
     private int quantity;
     @NotBlank(message = "la date de publication est obligatoire")
-    
+    @PastOrPresent(message = "la date de publication est obligatoire")
     private LocalDate publicationDate;
+    @NotBlank(message = "ce statut est obligatoire")
     private boolean isDeleted;
+    // @NotNull(message = "l'image est obligatoire")
     private byte[] image;
+    
+    @NotBlank(message = "la maison de publication est obligatoire")
     private String publisher;
+
+    private String categoryName;
+    private String authorName;
 
     // Constructeur
 
-    public DocumentCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher) {
+    public DocumentCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher,String categoryName,String authorName) {
         this.title = title;
         this.quantity = quantity;
         this.publicationDate = publicationDate;
         this.isDeleted = isDeleted;
         this.image = image;
         this.publisher = publisher;
+        this.categoryName = categoryName;
+        this.authorName = authorName;
     }
 
     // Getters and Setters
+
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
     public String getTitle() {
         return title;
     }

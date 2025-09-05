@@ -20,7 +20,6 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -58,6 +57,35 @@ public abstract class Document {
     private byte[] image;
     @Column(nullable = false, length = 50)
     private String publisher;
+    
+    // methode appele automatiquement avant la persistance initiale
+    @PrePersist
+    protected void onCreate(){
+        this.creationDate = LocalDate.now();
+        this.lastUpdateDate = LocalDate.now();
+    }
+
+    // methode appele automatiqument avant chaque mise a jour
+    @PreUpdate
+    protected void onUpdate(){
+        this.lastUpdateDate = LocalDate.now();
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")  // relation entre plusieurs document et une category
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")  // relation entre plusieurs documents et un auteur
+    private Author author;
+
+    @ToString.Exclude
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")  // relation entre un document et plusieur emprunt
+    private List<Borrow> borrows;
+
+    //Relation avec Reservation-Document
+    @OneToMany(mappedBy = "documents",fetch = FetchType.LAZY)
+    private List<Reservation> reservations ;
 
     // Constructeurs
     public Document(Long id, String title, int quantity, LocalDate publicationDate, LocalDate creationDate, LocalDate lastUpdateDate, boolean isDeleted, byte[] image, String publisher, Category category, Author author, List<Borrow> borrows, List<Reservation> reservations) {
@@ -185,33 +213,5 @@ public abstract class Document {
         this.reservations = reservations;
     }
 
-    // methode appele automatiquement avant la persistance initiale
-    @PrePersist
-    protected void onCreate(){
-        this.creationDate = LocalDate.now();
-        this.lastUpdateDate = LocalDate.now();
-    }
-
-    // methode appele automatiqument avant chaque mise a jour
-    @PreUpdate
-    protected void onUpdate(){
-        this.lastUpdateDate = LocalDate.now();
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")  // relation entre plusieurs document et une category
-    private Category category;
-
-    @ManyToOne
-    @JoinColumn(name = "author_id")  // relation entre plusieurs documents et un auteur
-    private Author author;
-
-    @ToString.Exclude
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")  // relation entre un document et plusieur emprunt
-    private List<Borrow> borrows;
-
-    //Relation avec Reservation-Document
-    @OneToMany(mappedBy = "documents",fetch = FetchType.LAZY)
-    private List<Reservation> reservations ;
 
 }

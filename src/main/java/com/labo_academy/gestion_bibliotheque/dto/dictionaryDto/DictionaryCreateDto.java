@@ -9,12 +9,14 @@ public class DictionaryCreateDto extends DocumentCreateDto {
     private String language;
     private int numberWords;
 
-    // Contructeur
-    public DictionaryCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher, String language, int numberWords) {
-        super(title, quantity, publicationDate, isDeleted, image, publisher);
+    public DictionaryCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher, String categoryName, String authorName,String language,int numberWords) {
+        super(title, quantity, publicationDate, isDeleted, image, publisher, categoryName, authorName);
         this.language = language;
         this.numberWords = numberWords;
     }
+
+    // Contructeur
+
 
     // Getters and Setters
 

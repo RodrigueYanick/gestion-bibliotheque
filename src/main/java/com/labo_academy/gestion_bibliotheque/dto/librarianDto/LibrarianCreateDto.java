@@ -14,4 +14,12 @@ public class LibrarianCreateDto extends UsersCreateDto {
         super(lastName, firstName, birthDate, password, email, address, role);
         this.idNumber = idNumber;
     }
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
 }

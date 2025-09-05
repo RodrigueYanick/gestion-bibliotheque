@@ -3,8 +3,10 @@ package com.labo_academy.gestion_bibliotheque.mappers;
 import com.labo_academy.gestion_bibliotheque.dto.librarianDto.LibrarianCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.librarianDto.LibrarianResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Librarian;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class LibrarianMapper {
 
@@ -17,7 +19,8 @@ public class LibrarianMapper {
                 librarian.getBirthDate(),
                 librarian.getEmail(),
                 librarian.getAddress(),
-                librarian.getRole()
+                librarian.getRole(),
+                librarian.getIdNumber()
         );
     }
 
@@ -31,6 +34,7 @@ public class LibrarianMapper {
         librarian.setEmail(librarian.getEmail());
         librarian.setAddress(librarian.getEmail());
         librarian.setRole(librarianCreateDto.getRole());
+        librarian.setIdNumber(librarianCreateDto.getIdNumber());
         return librarian;
     }
 }
