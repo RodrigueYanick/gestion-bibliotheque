@@ -1,18 +1,16 @@
 package com.labo_academy.gestion_bibliotheque.mappers;
 
-import com.labo_academy.gestion_bibliotheque.dto.subscriberDto.SubscriberCreateDto;
-import com.labo_academy.gestion_bibliotheque.dto.subscriberDto.SubscriberResponseDto;
-import com.labo_academy.gestion_bibliotheque.entity.Suscriber;
+import com.labo_academy.gestion_bibliotheque.dto.subscribersDto.SubscribersCreateDto;
+import com.labo_academy.gestion_bibliotheque.dto.subscribersDto.SubscribersResponseDto;
+import com.labo_academy.gestion_bibliotheque.entity.Subscribers;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.Flow;
 
 @Component
 public class SubscriberMapper {
 
     // Conversion Entity To Dto
-    public SubscriberResponseDto fromEntityToDto(Suscriber suscriber){
-        return new SubscriberResponseDto(
+    public SubscribersResponseDto fromEntityToDto(Subscribers suscriber){
+        return new SubscribersResponseDto(
                 suscriber.getId(),
                 suscriber.getLastName(),
                 suscriber.getFirstName(),
@@ -24,8 +22,8 @@ public class SubscriberMapper {
     }
 
     // Conversion Dto To Entity
-    public Suscriber fromDtoToEntity(SubscriberCreateDto subscriberCreateDto){
-        Suscriber suscriber = new Suscriber();
+    public Subscribers fromDtoToEntity(SubscribersCreateDto subscriberCreateDto){
+        Subscribers suscriber = new Subscribers();
         suscriber.setLastName(subscriberCreateDto.getLastName());
         suscriber.setFirstName(subscriberCreateDto.getFirstName());
         suscriber.setBirthDate(subscriberCreateDto.getBirthDate());

@@ -1,8 +1,6 @@
 
 package com.labo_academy.gestion_bibliotheque.dto.reservationDto;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +15,8 @@ public class ReservationCreateDto {
 
     private LocalDate reservationDate;
     private boolean statut;
+    private String subscribersEmail;
+    private String documentTitle;
 
     public ReservationCreateDto(LocalDate reservationDate, boolean statut) {
         this.reservationDate = reservationDate;

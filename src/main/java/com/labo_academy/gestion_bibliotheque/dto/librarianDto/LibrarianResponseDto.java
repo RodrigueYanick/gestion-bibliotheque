@@ -12,6 +12,8 @@ import java.time.LocalDate;
 @Setter
 public class LibrarianResponseDto extends UsersResponseDto {
 
+    private String idNumber;
+
     public LibrarianResponseDto(Long id, String lastName, String firstName, LocalDate birthDate, String email, String address, Role role) {
         super(id, lastName, firstName, birthDate, email, address, role);
     }

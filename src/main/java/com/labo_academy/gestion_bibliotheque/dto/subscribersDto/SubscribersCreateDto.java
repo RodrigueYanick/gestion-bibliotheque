@@ -1,4 +1,4 @@
-package com.labo_academy.gestion_bibliotheque.dto.subscriberDto;
+package com.labo_academy.gestion_bibliotheque.dto.subscribersDto;
 
 import com.labo_academy.gestion_bibliotheque.dto.usersDto.UsersCreateDto;
 
@@ -15,12 +15,12 @@ import java.time.LocalDate;
 @Getter
 @Setter
 
-public class SubscriberCreateDto extends UsersCreateDto {
+public class SubscribersCreateDto extends UsersCreateDto {
 
     private String idNumber;
     private boolean statut;
 
-    public SubscriberCreateDto(String lastName, String firstName, LocalDate birthDate, String password, String email, String address, Role role,String idNumber,boolean statut) {
+    public SubscribersCreateDto(String lastName, String firstName, LocalDate birthDate, String password, String email, String address, Role role,String idNumber,boolean statut) {
         super(lastName, firstName, birthDate, password, email, address, role);
         this.idNumber = idNumber;
         this.statut = statut;

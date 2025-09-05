@@ -3,7 +3,6 @@ package com.labo_academy.gestion_bibliotheque.mappers;
 import com.labo_academy.gestion_bibliotheque.dto.reservationDto.ReservationCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.reservationDto.ReservationResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Reservation;
-import com.labo_academy.gestion_bibliotheque.entity.Returned;
 import org.springframework.stereotype.Component;
 
 @Component

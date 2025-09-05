@@ -1,7 +1,5 @@
 package com.labo_academy.gestion_bibliotheque.dto.bookDto;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import com.labo_academy.gestion_bibliotheque.dto.documentDto.DocumentCreateDto;
 
 import jakarta.validation.constraints.Min;

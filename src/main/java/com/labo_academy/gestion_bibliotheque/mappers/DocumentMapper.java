@@ -1,10 +1,8 @@
 package com.labo_academy.gestion_bibliotheque.mappers;
 
-import com.labo_academy.gestion_bibliotheque.dto.documentDto.DocumentCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.documentDto.DocumentResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Document;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component
 public class DocumentMapper {

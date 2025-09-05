@@ -1,0 +1,12 @@
+package com.labo_academy.gestion_bibliotheque.repository;
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.labo_academy.gestion_bibliotheque.entity.Subscribers;
+
+public interface SubscribersRepository extends JpaRepository<Subscribers, Long> {
+
+    Subscribers findByEmail(String email);
+
+}

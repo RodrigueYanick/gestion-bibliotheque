@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,7 +12,6 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 // creation de la table sanction
@@ -34,13 +32,16 @@ public class Sanction {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)  // les differents et de la sanction se trouvant dans la classe sanctionStatus
     private SanctionStatus statut;
+    
+    @OneToOne
+    @JoinColumn(name = "returned_id", nullable = true)  // relation entre une sanction et un emprunt
+    private Returned returned;
+    
     // Construtor
-
-
     public Sanction() {
 
     }
-
+    
     public Sanction(Long sanctionedId, double amount, SanctionStatus statut) {
         this.sanctionedId = sanctionedId;
         this.amount = amount;
@@ -71,8 +72,5 @@ public class Sanction {
         this.statut = statut;
     }
 
-    @OneToOne
-    @JoinColumn(name = "returned_id", nullable = true)  // relation entre une sanction et un emprunt
-    private Returned returned;
 
 }

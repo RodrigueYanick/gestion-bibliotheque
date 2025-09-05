@@ -1,12 +1,7 @@
 package com.labo_academy.gestion_bibliotheque.dto.borrowDto;
 
-import java.time.LocalDate;
-
 import com.labo_academy.gestion_bibliotheque.entity.BorrowedStatus;
 
-
-import com.labo_academy.gestion_bibliotheque.entity.BorrowedStatus;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +13,8 @@ import lombok.Setter;
 public class BorrowCreateDto {
 
     private BorrowedStatus status;
+    private String borrowTitle;
+    private String suscribersEmail;
 
     // CONSTRUCTEUR
     public BorrowCreateDto(BorrowedStatus status) {

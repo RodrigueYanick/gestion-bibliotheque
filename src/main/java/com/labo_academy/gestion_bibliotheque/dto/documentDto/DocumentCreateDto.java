@@ -4,10 +4,8 @@ import java.time.LocalDate;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,6 +31,9 @@ public class DocumentCreateDto {
     
     @NotBlank(message = "la maison de publication est obligatoire")
     private String publisher;
+
+    private String categoryName;
+    private String AuthorName;
 
     // Constructeur
 

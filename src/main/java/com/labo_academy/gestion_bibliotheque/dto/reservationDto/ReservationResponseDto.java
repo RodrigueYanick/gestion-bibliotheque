@@ -1,7 +1,5 @@
 package com.labo_academy.gestion_bibliotheque.dto.reservationDto;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +15,8 @@ public class ReservationResponseDto {
     private Long reservationId;
     private LocalDate reservationDate;
     private boolean statut;
+    private String subscribersEmail;
+    private String documentTitle;
 
     public Long getReservationId() {
         return reservationId;

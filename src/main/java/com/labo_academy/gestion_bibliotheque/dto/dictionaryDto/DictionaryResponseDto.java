@@ -1,7 +1,6 @@
 package com.labo_academy.gestion_bibliotheque.dto.dictionaryDto;
 
 import com.labo_academy.gestion_bibliotheque.dto.documentDto.DocumentResponseDto;
-import com.labo_academy.gestion_bibliotheque.entity.Document;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

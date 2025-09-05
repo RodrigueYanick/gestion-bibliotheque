@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
@@ -25,11 +24,26 @@ import lombok.Setter;
 @Setter
 
 public class Returned {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private LocalDate returndeDate;
+    
+    @PrePersist
+    public void returnDate(){
+        returndeDate = LocalDate.now();
+    }
+    
+    @OneToOne
+    @JoinColumn(name = "borrow_id", nullable = false)
+    private Borrow borrow;
+    
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "returned")  // relation entre un emprunt et une sanction
+    private Sanction sanction;
+    
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "returned")
+    private ReturnedBill returnedBill;
 
     public Returned(Long id, LocalDate returndeDate) {
         Id = id;
@@ -52,19 +66,5 @@ public class Returned {
         this.returndeDate = returndeDate;
     }
 
-    @PrePersist
-    public void returnDate(){
-        returndeDate = LocalDate.now();
-    }
-
-    @OneToOne
-    @JoinColumn(name = "borrow_id", nullable = false)
-    private Borrow borrow;
-
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "returned")  // relation entre un emprunt et une sanction
-    private Sanction sanction;
-
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "returned")
-    private ReturnedBill returnedBill;
 
 }

@@ -2,7 +2,6 @@ package com.labo_academy.gestion_bibliotheque.dto.documentDto;
 
 import java.time.LocalDate;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +21,9 @@ public class DocumentResponseDto {
     private boolean isDeleted;
     private byte[] image;
     private String publisher;
+
+    private String categoryName;
+    private String authorName;
 
     // Constructeur
 
