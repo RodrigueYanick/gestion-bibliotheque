@@ -21,7 +21,9 @@ public class BorrowMapper {
                 borrow.getBorrowedId(),
                 borrow.getStatus(),
                 borrow.getBorrowedDate(),
-                borrow.getReturnDate()
+                borrow.getReturnDate(),
+                borrow.getDocument().getMatricule(),
+                borrow.getSuscriber().getEmail()
         );
     }
 
@@ -29,7 +31,8 @@ public class BorrowMapper {
     public Borrow fromDtoToEntity(BorrowCreateDto borrowCreateDto){
         Borrow borrow = new Borrow();
         borrow.setStatus(borrowCreateDto.getStatus());
-        Document document = documentRepository.findByTitle(borrowCreateDto.getDocumentTitle());
+        Document documents = documentRepository.findByTitle(borrowCreateDto.getDocumentTitle());
+        Document document = documentRepository.findByMatricule(borrowCreateDto.getDocumentTitle());
         Subscribers subscribers = subscribersRepository.findByEmail(borrowCreateDto.getSuscribersEmail());
 
         return borrow;

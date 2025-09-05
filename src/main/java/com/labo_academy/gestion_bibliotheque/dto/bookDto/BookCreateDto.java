@@ -17,11 +17,12 @@ public class BookCreateDto extends DocumentCreateDto {
     @Min(value = 1, message = "le nombre de page doit etre superieur a 0")
     private int numberPages;
 
-    public BookCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher, String isbn, int numberPages) {
-        super(title, quantity, publicationDate, isDeleted, image, publisher);
+    public BookCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher, String categoryName, String authorName,String isbn,int numberPages) {
+        super(title, quantity, publicationDate, isDeleted, image, publisher, categoryName, authorName);
         this.isbn = isbn;
         this.numberPages = numberPages;
     }
+
 
     public String getIsbn() {
         return isbn;

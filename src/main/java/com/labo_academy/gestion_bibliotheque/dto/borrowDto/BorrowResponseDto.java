@@ -12,16 +12,38 @@ public class BorrowResponseDto {
     private BorrowedStatus status;
     private LocalDate borrowedDate;
     private LocalDate returnDate;
+    private String documentMatricule;
+    private String suscribersEmail;
 
     // Constructor
-    public BorrowResponseDto(Long borrowedId, BorrowedStatus status, LocalDate borrowedDate, LocalDate returnDate) {
+    public BorrowResponseDto(Long borrowedId, BorrowedStatus status, LocalDate borrowedDate, LocalDate returnDate,String documentMatricule,String suscribersEmail) {
         this.borrowedId = borrowedId;
         this.status = status;
         this.borrowedDate = borrowedDate;
         this.returnDate = returnDate;
+        this.documentMatricule = documentMatricule;
+        this.suscribersEmail = suscribersEmail;
     }
 
     // Getters and Setters
+
+
+    public String getDocumentMatricule() {
+        return documentMatricule;
+    }
+
+    public void setDocumentMatricule(String documentMatricule) {
+        this.documentMatricule = documentMatricule;
+    }
+
+    public String getSuscribersEmail() {
+        return suscribersEmail;
+    }
+
+    public void setSuscribersEmail(String suscribersEmail) {
+        this.suscribersEmail = suscribersEmail;
+    }
+
     public Long getBorrowedId() {
         return borrowedId;
     }

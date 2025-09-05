@@ -24,17 +24,23 @@ public class Returned {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+<<<<<<< HEAD
     private LocalDate returndeDate;
 
     public Returned() {
 
     }
 
+=======
+    private LocalDate effectiveReturnDate;
+    private LocalDate effectiveReturnDateNumber;
+    
+>>>>>>> c370fe270ccc74c9919908f14f97eb25e2ee92b7
     @PrePersist
     public void returnDate(){
-        returndeDate = LocalDate.now();
+        effectiveReturnDate = LocalDate.now();
     }
-    
+           
     @OneToOne
     @JoinColumn(name = "borrow_id", nullable = false)
     private Borrow borrow;
@@ -45,9 +51,9 @@ public class Returned {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "returned")
     private ReturnedBill returnedBill;
 
-    public Returned(Long id, LocalDate returndeDate) {
+    public Returned(Long id, LocalDate effectiveReturnDate) {
         Id = id;
-        this.returndeDate = returndeDate;
+        this.effectiveReturnDate = effectiveReturnDate;
     }
 
     public Long getId() {
@@ -58,12 +64,12 @@ public class Returned {
         Id = id;
     }
 
-    public LocalDate getReturndeDate() {
-        return returndeDate;
+    public LocalDate getEffectiveReturnDate() {
+        return effectiveReturnDate;
     }
 
-    public void setReturndeDate(LocalDate returndeDate) {
-        this.returndeDate = returndeDate;
+    public void setReturndeDate(LocalDate effectiveReturnDate) {
+        this.effectiveReturnDate = effectiveReturnDate;
     }
 
 

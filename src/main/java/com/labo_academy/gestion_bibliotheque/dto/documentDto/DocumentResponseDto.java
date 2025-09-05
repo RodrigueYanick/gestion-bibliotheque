@@ -34,22 +34,6 @@ public class DocumentResponseDto {
         this.authorName = authorName;
     }
 
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
-    }
-
     public Long getId() {
         return id;
     }
@@ -122,7 +106,22 @@ public class DocumentResponseDto {
         this.publisher = publisher;
     }
 
-    // Getters and Setters
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+// Getters and Setters
 
 
 }

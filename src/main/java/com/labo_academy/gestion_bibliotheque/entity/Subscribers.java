@@ -14,7 +14,7 @@ public class Subscribers extends Users {
     
     //Attributs propres a la classe
     
-    @Column(name = "accountNumber", nullable = false,length = 2255)
+    @Column(name = "accountNumber", nullable = false,length = 225)
     private Long accountNumber;
     
     @Column(name = "statut",nullable = false)
@@ -27,7 +27,7 @@ public class Subscribers extends Users {
     //Relation avec Emprunt-abonnee
     @OneToMany(mappedBy = "suscriber",fetch = FetchType.LAZY)
     private List<Borrow> borrows ;
-    
+
     public Long getAccountNumber() {
         return accountNumber;
     }

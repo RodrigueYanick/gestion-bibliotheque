@@ -31,6 +31,8 @@ public class Borrow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long borrowedId;
+    @Column(unique = true, nullable = false, length = 100)
+    private String borrowedNumber;
     @Column(nullable = false)
     private LocalDate borrowedDate;  // date de l'emprunt
     @Column(nullable = false)
@@ -63,7 +65,7 @@ public class Borrow {
         returnDate = LocalDate.now();
         returnDate = returnDate.plusDays(10);
     }
-    
+
     // Constructeur
     public Borrow() {
     }

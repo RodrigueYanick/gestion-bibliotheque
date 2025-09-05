@@ -41,6 +41,8 @@ public abstract class Document {
     private Long id;
     @Column(nullable = false, length = 100)  // titre du document obligatoire
     private String title;
+    @Column(length = 100, unique = true, nullable = false)
+    private String matricule;
     @Column(nullable = false)  // quantite disponible en stock
     private int quantity;
     @Column(nullable = false, name = "publication_date")  // date de publication du document
@@ -57,7 +59,7 @@ public abstract class Document {
     private byte[] image;
     @Column(nullable = false, length = 50)
     private String publisher;
-    
+
     // methode appele automatiquement avant la persistance initiale
     @PrePersist
     protected void onCreate(){

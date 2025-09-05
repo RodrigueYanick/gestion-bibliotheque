@@ -11,14 +11,24 @@ public class BorrowCreateDto {
 
     private BorrowedStatus status;
     private String documentTitle;
+    private String documentMatricule;
     private String suscribersEmail;
 
     // CONSTRUCTEUR
 
-    public BorrowCreateDto(BorrowedStatus status, String documentTitle, String suscribersEmail) {
+    public BorrowCreateDto(BorrowedStatus status, String documentTitle,String documentMatricule, String suscribersEmail) {
         this.status = status;
         this.documentTitle = documentTitle;
+        this.documentMatricule = documentMatricule;
         this.suscribersEmail = suscribersEmail;
+    }
+
+    public String getDocumentMatricule() {
+        return documentMatricule;
+    }
+
+    public void setDocumentMatricule(String documentMatricule) {
+        this.documentMatricule = documentMatricule;
     }
 
     public BorrowedStatus getStatus() {
