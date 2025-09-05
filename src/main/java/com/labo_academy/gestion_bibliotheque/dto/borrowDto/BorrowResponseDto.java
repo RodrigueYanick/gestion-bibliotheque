@@ -18,6 +18,8 @@ public class BorrowResponseDto {
     private BorrowedStatus status;
     private LocalDate borrowedDate;
     private LocalDate returnDate;
+    private String documentMatricule;
+    private String suscribersEmail;
 
     // Constructor
     public BorrowResponseDto(Long borrowedId, BorrowedStatus status, LocalDate borrowedDate, LocalDate returnDate) {

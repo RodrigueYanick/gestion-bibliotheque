@@ -13,7 +13,7 @@ import lombok.Setter;
 public class BorrowCreateDto {
 
     private BorrowedStatus status;
-    private String borrowTitle;
+    private String documentMatricule;
     private String suscribersEmail;
 
     // CONSTRUCTEUR

@@ -6,4 +6,6 @@ import com.labo_academy.gestion_bibliotheque.entity.Borrow;
 
 public interface BorrowRepository extends JpaRepository<Borrow, Long> {
 
+    Borrow findByBorrowedNumber(String matricule);
+
 }

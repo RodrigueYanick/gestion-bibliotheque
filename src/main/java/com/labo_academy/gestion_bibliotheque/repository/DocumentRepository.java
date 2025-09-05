@@ -6,6 +6,6 @@ import com.labo_academy.gestion_bibliotheque.entity.Document;
 
 public interface DocumentRepository extends JpaRepository<Document, Long> {
 
-    Document findByTitle(String title);
+    Document findByMatricule(String matricule);
 
 }

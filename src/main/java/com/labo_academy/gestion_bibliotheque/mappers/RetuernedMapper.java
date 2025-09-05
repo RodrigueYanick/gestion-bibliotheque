@@ -11,7 +11,7 @@ public class RetuernedMapper {
     public ReturnedResponseDto fromEntityToDto(Returned returned){
         return new ReturnedResponseDto(
                returned.getId(),
-               returned.getReturndeDate()
+               returned.getEffectiveReturnDate()
         );
     }
 }
