@@ -15,8 +15,6 @@ import lombok.ToString;
 // contient des informations specifique a une publication en plus des info du document
 @Entity
 @Table(name = "publication")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @DiscriminatorValue("publication")

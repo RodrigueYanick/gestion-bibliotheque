@@ -12,8 +12,6 @@ import java.util.Date;
 @ToString(callSuper = true)
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "visitor")
 public class Visitor extends Users {
 

@@ -19,10 +19,6 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "rendre")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 
 public class Returned {
 

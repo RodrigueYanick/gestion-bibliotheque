@@ -14,8 +14,6 @@ import lombok.Setter;
 // creation de la table facture
 @Entity
 @Table(name = "facture")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 

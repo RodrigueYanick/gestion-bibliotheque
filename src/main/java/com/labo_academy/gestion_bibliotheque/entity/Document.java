@@ -32,8 +32,6 @@ import lombok.ToString;
 @DiscriminatorColumn(name = "document_type", length = 50)  // aide a l'dentification du type de document dans la base de donnee
 @Getter
 @Setter
-@NoArgsConstructor
-// @AllArgsConstructor
 @ToString
 @Table(name = "document")
 

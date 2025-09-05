@@ -22,8 +22,6 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "document_id")  // lie la cle primaire a celle de document
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString(callSuper = true)
 
 public class Magazine extends Document {

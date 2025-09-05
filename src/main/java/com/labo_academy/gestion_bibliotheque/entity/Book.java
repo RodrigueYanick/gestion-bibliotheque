@@ -19,8 +19,6 @@ import lombok.ToString;
 @PrimaryKeyJoinColumn(name = "document_id")  // lie la cle primaire a celle de document
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString(callSuper = true)
 
 public class Book extends Document {

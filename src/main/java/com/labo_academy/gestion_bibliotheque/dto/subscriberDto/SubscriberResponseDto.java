@@ -1,15 +1,11 @@
 package com.labo_academy.gestion_bibliotheque.dto.subscriberDto;
 
-import com.labo_academy.gestion_bibliotheque.dto.usersDto.UsersResponseDto;
 
+import com.labo_academy.gestion_bibliotheque.dto.usersDto.UsersResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Role;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
 public class SubscriberResponseDto extends UsersResponseDto {
 
 

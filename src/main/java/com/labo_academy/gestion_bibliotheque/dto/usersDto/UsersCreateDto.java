@@ -1,18 +1,8 @@
 package com.labo_academy.gestion_bibliotheque.dto.usersDto;
 
-import java.time.LocalDate;
-
 import com.labo_academy.gestion_bibliotheque.entity.Role;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+import java.time.LocalDate;
 
 public class UsersCreateDto {
 

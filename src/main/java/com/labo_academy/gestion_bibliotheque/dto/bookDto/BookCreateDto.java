@@ -1,18 +1,10 @@
 package com.labo_academy.gestion_bibliotheque.dto.bookDto;
 
-import com.labo_academy.gestion_bibliotheque.dto.documentDto.DocumentCreateDto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.labo_academy.gestion_bibliotheque.dto.documentDto.DocumentCreateDto;
 
 import java.time.LocalDate;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class BookCreateDto extends DocumentCreateDto {
 
     private String isbn;

@@ -19,8 +19,6 @@ import lombok.Setter;
 // creation de la table sanction
 @Entity
 @Table(name = "sanction")
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 

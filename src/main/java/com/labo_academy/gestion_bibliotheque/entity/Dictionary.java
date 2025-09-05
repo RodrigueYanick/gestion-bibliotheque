@@ -19,8 +19,6 @@ import lombok.ToString;
 @PrimaryKeyJoinColumn(name = "document_id")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @ToString(callSuper = true)
 
 public class Dictionary extends Document {

@@ -23,13 +23,12 @@ import lombok.Setter;
 //creation de la table borrow
 @Entity
 @Table(name = "borrow")
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 
 public class Borrow {
 
+    // Getters and Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long borrowedId;
@@ -51,11 +50,6 @@ public class Borrow {
         this.borrowedDate = borrowedDate;
         this.returnDate = returnDate;
         this.status = status;
-    }
-
-    // Getters and Setters
-    public Long getBorrowedId() {
-        return borrowedId;
     }
 
     public void setBorrowedId(Long borrowedId) {
@@ -101,7 +95,6 @@ public class Borrow {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "borrow")
     private Returned rendre;
 
-    @PrePersist
     public void PrePersist(){
         borrowedDate = LocalDate.now();
     }

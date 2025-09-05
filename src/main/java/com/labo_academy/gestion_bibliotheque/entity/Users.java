@@ -10,8 +10,6 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @ToString
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)

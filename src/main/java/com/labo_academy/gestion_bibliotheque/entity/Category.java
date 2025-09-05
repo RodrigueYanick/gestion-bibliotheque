@@ -18,8 +18,6 @@ import lombok.Setter;
 //creation de la table category
 @Entity
 @Table(name = "category")
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 

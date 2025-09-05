@@ -8,8 +8,6 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "agent")
 public class Agent extends Users {

@@ -14,8 +14,6 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "return_bill")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class ReturnedBill {
