@@ -15,5 +15,5 @@ public interface BorrowBillRepository extends JpaRepository<BorrowedBill, Long> 
     String findByBorrowDocumentTitle();
     LocalDate findByBorrowedDate();
     LocalDate findByreturnDate();
-
+    String findByBorrowNumber();
 }

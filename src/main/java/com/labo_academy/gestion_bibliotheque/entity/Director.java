@@ -14,7 +14,7 @@ public class Director extends Users {
 
     // Attributs propres
 
-    @Column(name = "idNumber", nullable = false, length = 255)
+    @Column(name = "idNumber", nullable = false, length = 50)
     private String idNumber;
 
     // gETTERS AND sETTERS

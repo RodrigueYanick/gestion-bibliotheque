@@ -6,6 +6,7 @@ import com.labo_academy.gestion_bibliotheque.entity.Borrow;
 import com.labo_academy.gestion_bibliotheque.entity.BorrowedBill;
 import com.labo_academy.gestion_bibliotheque.entity.Document;
 import com.labo_academy.gestion_bibliotheque.entity.Subscribers;
+import com.labo_academy.gestion_bibliotheque.repository.BorrowBillRepository;
 import com.labo_academy.gestion_bibliotheque.repository.BorrowRepository;
 import com.labo_academy.gestion_bibliotheque.repository.DocumentRepository;
 import com.labo_academy.gestion_bibliotheque.repository.SubscribersRepository;
@@ -14,6 +15,7 @@ public class BorrowBillMapper {
     SubscribersRepository subscribersRepository;
     BorrowRepository borrowRepository;
     DocumentRepository documentRepository;
+    BorrowBillRepository borrowBillRepository;
 
     Borrow borrow;
     Document document;
@@ -23,14 +25,14 @@ public class BorrowBillMapper {
     public BorrowedBillResponseDto EntityToDto(BorrowedBill borrowedBill){
         return new BorrowedBillResponseDto(
                 borrowedBill.getBillNumber(),
-                borrowedBill.getBorrow().getBorrowedNumber(),
-                borrowedBill.getBorrow().getSuscriber().getLastName(),
-                borrowedBill.getBorrow().getSuscriber().getFirstName(),
-                borrowedBill.getBorrow().getSuscriber().getAddress(),
-                borrowedBill.getBorrow().getDocument().getMatricule(),
-                borrowedBill.getBorrow().getDocument().getTitle(),
-                borrowedBill.getBorrow().getBorrowedDate(),
-                borrowedBill.getBorrow().getReturnDate()
+                borrowBillRepository.findByBorrowNumber(),
+                borrowBillRepository.findByBorrowSubscriberLastName(),
+                borrowBillRepository.findByBorrowSubscriberFirstName(),
+                borrowBillRepository.findByBorrowSubscriberAddress(),
+                borrowBillRepository.findByBorrowDocumentMatricule(),
+                borrowBillRepository.findByBorrowDocumentTitle(),
+                borrowBillRepository.findByBorrowedDate(),
+                borrowBillRepository.findByreturnDate()
         );
     }
 

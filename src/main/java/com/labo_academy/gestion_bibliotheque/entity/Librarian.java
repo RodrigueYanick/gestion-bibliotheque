@@ -14,7 +14,7 @@ public class Librarian extends Users {
 
     // Attributs Propres
 
-    @Column(name = "idNumber",nullable = false,length = 255)
+    @Column(name = "idNumber",nullable = false,length = 50)
     private String idNumber;
 
     // Getters and Setters

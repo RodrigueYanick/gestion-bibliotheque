@@ -24,18 +24,14 @@ public class Returned {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-<<<<<<< HEAD
     private LocalDate returndeDate;
 
     public Returned() {
 
     }
-
-=======
     private LocalDate effectiveReturnDate;
-    private LocalDate effectiveReturnDateNumber;
+    private LocalDate returnNumber;
     
->>>>>>> c370fe270ccc74c9919908f14f97eb25e2ee92b7
     @PrePersist
     public void returnDate(){
         effectiveReturnDate = LocalDate.now();

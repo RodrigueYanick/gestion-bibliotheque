@@ -32,7 +32,7 @@ public class SubscriberMapper {
         suscriber.setFirstName(subscriberCreateDto.getFirstName());
         suscriber.setBirthDate(subscriberCreateDto.getBirthDate());
         suscriber.setPassword(subscriberCreateDto.getPassword());
-        suscriber.setEmail(subscriberCreateDto.getEmail());
+        subscribersRepository.findByEmail(subscriberCreateDto.getEmail());
         suscriber.setAddress(subscriberCreateDto.getAddress());
         suscriber.setRole(subscriberCreateDto.getRole());
         suscriber.setStatut(subscriberCreateDto.isStatut());

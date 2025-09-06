@@ -26,7 +26,7 @@ public class DictionaryResponseDto extends DocumentResponseDto {
     }
 
     public void setLanguage(String language) {
-        language = language;
+        this.language = language;
     }
 
     public int getNumberWords() {

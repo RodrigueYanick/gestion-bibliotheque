@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 public class ReturnedBillCreateDto {
 
-    private LocalDate effectiveReturnDateNumber;
+    private String effectiveReturnDateNumber;
 
-    public ReturnedBillCreateDto(LocalDate effectiveReturnDateNumber) {
+    public ReturnedBillCreateDto(String effectiveReturnDateNumber) {
         this.effectiveReturnDateNumber = effectiveReturnDateNumber;
     }
 
@@ -14,7 +14,7 @@ public class ReturnedBillCreateDto {
         return effectiveReturnDateNumber;
     }
 
-    public void setEffectiveReturnDateNumber(LocalDate effectiveReturnDateNumber) {
+    public void setEffectiveReturnDateNumber(String effectiveReturnDateNumber) {
         this.effectiveReturnDateNumber = effectiveReturnDateNumber;
     }
 }

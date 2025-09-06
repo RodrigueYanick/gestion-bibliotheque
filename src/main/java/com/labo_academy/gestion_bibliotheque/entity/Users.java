@@ -23,22 +23,22 @@ public abstract class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "lastName", nullable = false, length = 255)
+    @Column(name = "lastName", nullable = false, length = 50)
     private String lastName;
 
-    @Column(name = "firstName", nullable = false, length = 255)
+    @Column(name = "firstName", nullable = false, length = 50)
     private String firstName;
 
-    @Column(name = "birthDate", nullable = false, length = 255)
+    @Column(name = "birthDate", nullable = false)
     private LocalDate birthDate;
 
-    @Column(name = "password", nullable = false, length = 255)
+    @Column(name = "password", nullable = false, length = 50)
     private String password;
 
-    @Column(name = "email", nullable = false, length = 255, unique = true)
+    @Column(name = "email", nullable = false, length = 50, unique = true)
     private String email;
 
-    @Column(name = "adress", length = 255)
+    @Column(name = "adress", length = 50)
     private String address;
 
     @Enumerated(EnumType.STRING)
@@ -50,13 +50,13 @@ public abstract class Users {
     @ToString.Exclude
     private byte[] image;
 
-    @Column(name = "creationDate", nullable = false, length = 255)
+    @Column(name = "creationDate", nullable = false)
     private LocalDate creationDate;
 
-    @Column(name = "lastUpdate", nullable = false, length = 255)
+    @Column(name = "lastUpdate", nullable = false)
     private Date lastUpdate;
 
-    @Column(name = "isDeleted", nullable = false, length = 255)
+    @Column(name = "isDeleted", nullable = false)
     private boolean isDelete;
 
     // Constructeur

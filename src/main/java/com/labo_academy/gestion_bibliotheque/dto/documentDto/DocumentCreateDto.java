@@ -93,7 +93,7 @@ public class DocumentCreateDto {
     }
 
     public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
+        this.isDeleted = deleted;
     }
 
     public byte[] getImage() {
