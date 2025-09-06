@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-@Table(name = "suscriber")
+@Table(name = "subscriber")
 public class Subscribers extends Users {
     
     //Attributs propres a la classe

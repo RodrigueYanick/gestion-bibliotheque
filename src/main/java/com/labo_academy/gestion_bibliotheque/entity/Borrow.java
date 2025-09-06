@@ -57,14 +57,9 @@ public class Borrow {
     private Returned rendre;
 
     @PrePersist
-    public void PrePersist(){
+    public void initializeDates() {
         borrowedDate = LocalDate.now();
-    }
-
-    @PrePersist
-    public void returnDateMethode(){
-        returnDate = LocalDate.now();
-        returnDate = returnDate.plusDays(10);
+        returnDate = borrowedDate.plusDays(10);
     }
 
     // Constructeur

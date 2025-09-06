@@ -14,6 +14,7 @@ public class SanctionResponseDto {
 
     private Long sanctionedId;
     private double amount;
+    private String sanctionNumber;
     private SanctionStatus statut;
 
     public SanctionResponseDto(Long sanctionedId, double amount, SanctionStatus statut) {

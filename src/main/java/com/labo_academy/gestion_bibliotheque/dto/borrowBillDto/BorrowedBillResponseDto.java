@@ -18,7 +18,7 @@ public class BorrowedBillResponseDto {
     private String borrowedNumber;
     private String subscribersLastName;
     private String subscribersFirstname;
-    private String subscribersAdresse;
+    private String subscribersAddresse;
     private String documentMatricule;
     private String documentTitle;
     private LocalDate borrowedDate;

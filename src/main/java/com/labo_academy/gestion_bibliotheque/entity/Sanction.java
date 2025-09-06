@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,10 +33,14 @@ public class Sanction {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)  // les differents et de la sanction se trouvant dans la classe sanctionStatus
     private SanctionStatus statut;
+    private String sanctionNumber;
     
     @OneToOne
     @JoinColumn(name = "returned_id", nullable = true)  // relation entre une sanction et un emprunt
     private Returned returned;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "sanction")
+    private SanctionBill sanctionBill;
     
     // Construtor
     public Sanction() {

@@ -14,7 +14,7 @@ public class BorrowCreateDto {
 
     private BorrowedStatus status;
     private String documentMatricule;
-    private String suscribersEmail;
+    private String subscribersEmail;
 
     // CONSTRUCTEUR
     public BorrowCreateDto(BorrowedStatus status) {

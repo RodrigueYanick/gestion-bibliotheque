@@ -78,6 +78,9 @@ public abstract class Document {
     @JoinColumn(name = "category_id")  // relation entre plusieurs document et une category
     private Category category;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "document")
+    private List<Copy> exemplaires;
+
     @ManyToOne
     @JoinColumn(name = "author_id")  // relation entre plusieurs documents et un auteur
     private Author author;

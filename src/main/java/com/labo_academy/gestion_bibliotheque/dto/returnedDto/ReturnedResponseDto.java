@@ -12,20 +12,20 @@ import java.time.LocalDate;
 
 public class ReturnedResponseDto {
 
-    private Long Id;
+    private Long id;
     private LocalDate returndeDate;
 
     public ReturnedResponseDto(Long id, LocalDate returndeDate) {
-        Id = id;
+        id = id;
         this.returndeDate = returndeDate;
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        id = id;
     }
 
     public LocalDate getReturndeDate() {
