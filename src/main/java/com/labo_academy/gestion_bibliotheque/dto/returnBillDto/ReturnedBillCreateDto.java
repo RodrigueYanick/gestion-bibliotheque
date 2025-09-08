@@ -5,17 +5,17 @@ import jakarta.validation.constraints.NotBlank;
 public class ReturnedBillCreateDto {
 
     @NotBlank(message = "Le numéro de facture est obligatoire")
-    private String billNumber;
+    private String returnedNumber;
 
-    public ReturnedBillCreateDto(String billNumber) {
-        this.billNumber = billNumber;
+    public ReturnedBillCreateDto(String returnedNumber) {
+        this.returnedNumber = returnedNumber;
     }
 
-    public String getBillNumber() {
-        return billNumber;
+    public String getReturnedNumber() {
+        return returnedNumber;
     }
 
-    public void setBillNumber(String billNumber) {
-        this.billNumber = billNumber;
+    public void setReturnedNumber(String returnedNumber) {
+        this.returnedNumber = returnedNumber;
     }
 }

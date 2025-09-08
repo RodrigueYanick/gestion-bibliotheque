@@ -1,11 +1,7 @@
 package com.labo_academy.gestion_bibliotheque.mappers;
 
-import com.labo_academy.gestion_bibliotheque.dto.sanctionDto.SanctionCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.sanctionDto.SanctionResponseDto;
-import com.labo_academy.gestion_bibliotheque.entity.Borrow;
-import com.labo_academy.gestion_bibliotheque.entity.Returned;
-import com.labo_academy.gestion_bibliotheque.entity.Sanction;
-import com.labo_academy.gestion_bibliotheque.entity.SanctionStatus;
+import com.labo_academy.gestion_bibliotheque.entity.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -21,15 +17,25 @@ public class SanctionMapper {
         if (sanction == null) {
             return null;
         }
+
+        // enrichir la réponse avec infos abonne + document
+        Returned returned = sanction.getReturned();
+        Borrow borrow = returned.getBorrow();
+
+        String subscriberName = borrow.getSubscriber().getLastName() + " " + borrow.getSubscriber().getFirstName();
+        String documentTitle = borrow.getDocument().getTitle();
+
         return new SanctionResponseDto(
                 sanction.getId(),
                 sanction.getAmount(),
                 sanction.getSanctionNumber(),
-                sanction.getStatus()
+                sanction.getStatus(),
+                subscriberName,
+                documentTitle
         );
     }
 
-    // ===== Returned -> Sanction (calcul automatique) =====
+    
     public Sanction fromReturned(Returned returned) {
         if (returned == null) {
             return null;
@@ -47,21 +53,9 @@ public class SanctionMapper {
 
         Sanction sanction = new Sanction();
         sanction.setAmount(amount);
-        sanction.setStatus(dateDiff > 0 ? SanctionStatus.UNPAID : SanctionStatus.PAID); // si pas de retard => payé d’office
+        sanction.setStatus(dateDiff > 0 ? SanctionStatus.UNPAID : SanctionStatus.PAID);
         sanction.setReturned(returned);
 
-        return sanction;
-    }
-
-    // ===== CreateDto -> Entity (si besoin manuel) =====
-    public Sanction toEntity(SanctionCreateDto dto, Returned returned) {
-        if (dto == null || returned == null) {
-            return null;
-        }
-        Sanction sanction = new Sanction();
-        sanction.setSanctionNumber(dto.getSanctionNumber());
-        sanction.setStatus(SanctionStatus.UNPAID);
-        sanction.setReturned(returned);
         return sanction;
     }
 }

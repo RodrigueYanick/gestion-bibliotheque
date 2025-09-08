@@ -13,5 +13,6 @@ public interface ServiceBorrow {
     public BorrowResponseDto getBorrowById(long id);
     public boolean existsById (long id);
     public  void deleteById(long id);
+    BorrowResponseDto updateStatus(Long id, String status);
 
 }

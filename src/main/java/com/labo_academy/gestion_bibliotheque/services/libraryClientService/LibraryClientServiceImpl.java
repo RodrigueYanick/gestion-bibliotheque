@@ -1,9 +1,8 @@
-package com.labo_academy.gestion_bibliotheque.services;
+package com.labo_academy.gestion_bibliotheque.services.libraryClientService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.labo_academy.gestion_bibliotheque.services.libraryClientService.LibraryClientService;
 import org.springframework.stereotype.Service;
 
 import com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientCreateDto;

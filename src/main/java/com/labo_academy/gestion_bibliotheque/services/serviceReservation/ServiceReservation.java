@@ -12,4 +12,5 @@ public interface ServiceReservation {
     public ReservationResponseDto getReservationById(long id);
     public boolean existsById (long id);
     public  void deleteById(long id);
+    
 }

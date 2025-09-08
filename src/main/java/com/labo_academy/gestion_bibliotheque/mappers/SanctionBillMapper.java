@@ -9,8 +9,6 @@ import java.time.temporal.ChronoUnit;
 @Component
 public class SanctionBillMapper {
 
-    private static final double SANCTION_PER_DAY = 5000.0;
-
     public SanctionBillResponseDto toDto(SanctionBill sanctionBill) {
         if (sanctionBill == null || sanctionBill.getSanction() == null) {
             return null;
@@ -41,7 +39,7 @@ public class SanctionBillMapper {
                 returned.getEffectiveReturnDate(),
                 dateDiff,
                 sanction.getStatus(),
-                dateDiff * SANCTION_PER_DAY
+                sanction.getAmount() // ✅ on réutilise le montant calculé dans Sanction
         );
     }
 }

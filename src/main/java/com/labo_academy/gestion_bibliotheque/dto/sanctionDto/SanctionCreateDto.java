@@ -2,19 +2,19 @@ package com.labo_academy.gestion_bibliotheque.dto.sanctionDto;
 
 public class SanctionCreateDto {
 
-    private String sanctionNumber;
+    private String returnedNumber;
 
     // Constructeur
-    public SanctionCreateDto(String sanctionNumber) {
-        this.sanctionNumber = sanctionNumber;
+    public SanctionCreateDto(String returnedNumber) {
+        this.returnedNumber = returnedNumber;
     }
 
     // Getter & Setter
-    public String getSanctionNumber() {
-        return sanctionNumber;
+    public String getReturnedNumber() {
+        return returnedNumber;
     }
 
-    public void setSanctionNumber(String sanctionNumber) {
-        this.sanctionNumber = sanctionNumber;
+    public void setReturnedNumber(String returnedNumber) {
+        this.returnedNumber = returnedNumber;
     }
 }
