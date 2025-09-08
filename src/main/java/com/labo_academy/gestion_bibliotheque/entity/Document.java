@@ -36,7 +36,7 @@ import lombok.ToString;
 @Table(name = "document")
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Document {
+public class Document {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -107,7 +107,7 @@ public abstract class Document {
     // Un document peut avoir plusieurs emprunts
     private List<Borrow> borrows;
 
-    @OneToMany(mappedBy = "documents", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "document", fetch = FetchType.LAZY)
     // Relation avec Reservation (plusieurs réservations pour un document)
     private List<Reservation> reservations;
 

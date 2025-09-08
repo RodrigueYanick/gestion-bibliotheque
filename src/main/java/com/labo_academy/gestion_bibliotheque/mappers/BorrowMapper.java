@@ -23,7 +23,7 @@ public class BorrowMapper {
     private LibraryClientRepository subscribersRepository;
 
     // Convertir Entity -> DTO
-    public BorrowResponseDto toDto(Borrow borrow) {
+    public BorrowResponseDto fromEntityToDto(Borrow borrow) {
         if (borrow == null) {
             return null;
         }
@@ -38,7 +38,7 @@ public class BorrowMapper {
     }
 
     // Convertir DTO -> Entity
-    public Borrow toEntity(BorrowCreateDto dto) {
+    public Borrow fromDtoToEntity(BorrowCreateDto dto) {
         if (dto == null) {
             return null;
         }
@@ -67,4 +67,5 @@ public class BorrowMapper {
 
         return borrow;
     }
+
 }
