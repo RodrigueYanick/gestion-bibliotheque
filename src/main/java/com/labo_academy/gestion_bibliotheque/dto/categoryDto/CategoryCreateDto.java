@@ -1,39 +1,22 @@
 package com.labo_academy.gestion_bibliotheque.dto.categoryDto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @Getter
 @Setter
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class CategoryCreateDto {
 
+    @Size(max = 255, message = "La description ne doit pas dépasser 255 caractères")
     private String description;
+
+    @NotBlank(message = "Le nom de la catégorie est obligatoire")
+    @Size(max = 100, message = "Le nom de la catégorie doit contenir au maximum 100 caractères")
     private String name;
-
-    // Constructeur
-
-    public CategoryCreateDto(String description, String name) {
-        this.description = description;
-        this.name = name;
-    }
-
-    // Getters and Setters
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

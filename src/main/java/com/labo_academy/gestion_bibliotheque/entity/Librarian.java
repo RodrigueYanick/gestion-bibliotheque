@@ -8,18 +8,15 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString(callSuper = true)
+@ToString(callSuper = true)   // inclut les champs hérités de Users dans toString()
 @Table(name = "librarian")
 public class Librarian extends Users {
 
-    // Attributs Propres
-
-    @Column(name = "idNumber",nullable = false,length = 255)
+    // Attribut propre au bibliothécaire
+    @Column(name = "idNumber", nullable = false, length = 50)
     private String idNumber;
 
-    // Getters and Setters
+    //getters/setters
     public String getIdNumber() {
         return idNumber;
     }

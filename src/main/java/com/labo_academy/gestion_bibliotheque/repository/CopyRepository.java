@@ -6,7 +6,7 @@ import com.labo_academy.gestion_bibliotheque.entity.Copy;
 
 public interface CopyRepository extends JpaRepository<Copy, Long> {
 
-    String findByDocumentMatricule();
-    String findByDocumentTitle();
+    String findByDocumentMatricule(String matricule);
+    String findByDocumentTitle(String title);
 
 }

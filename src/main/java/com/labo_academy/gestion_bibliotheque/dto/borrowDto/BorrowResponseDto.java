@@ -4,13 +4,6 @@ import java.time.LocalDate;
 
 import com.labo_academy.gestion_bibliotheque.entity.BorrowedStatus;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
 
 public class BorrowResponseDto {
 
@@ -22,14 +15,34 @@ public class BorrowResponseDto {
     private String subscribersEmail;
 
     // Constructor
-    public BorrowResponseDto(Long borrowedId, BorrowedStatus status, LocalDate borrowedDate, LocalDate returnDate) {
+    public BorrowResponseDto(Long borrowedId, BorrowedStatus status, LocalDate borrowedDate, LocalDate returnDate,String documentMatricule,String subscribersEmail) {
         this.borrowedId = borrowedId;
         this.status = status;
         this.borrowedDate = borrowedDate;
         this.returnDate = returnDate;
+        this.documentMatricule = documentMatricule;
+        this.subscribersEmail = subscribersEmail;
     }
 
     // Getters and Setters
+
+
+    public String getDocumentMatricule() {
+        return documentMatricule;
+    }
+
+    public void setDocumentMatricule(String documentMatricule) {
+        this.documentMatricule = documentMatricule;
+    }
+
+    public String getsubscribersEmail() {
+        return subscribersEmail;
+    }
+
+    public void setsubscribersEmail(String subscribersEmail) {
+        this.subscribersEmail = subscribersEmail;
+    }
+
     public Long getBorrowedId() {
         return borrowedId;
     }

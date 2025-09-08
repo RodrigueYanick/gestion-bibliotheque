@@ -7,26 +7,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-// creation de la table facture
+// Création de la table "facture"
 @Entity
 @Table(name = "facture")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-
 public class BorrowedBill {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // identifiant unique de la facture
-    private Long billNumber;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  
+    // Identifiant unique de la facture (clé primaire auto-incrémentée)
+    private Long borrowedId;
 
     @OneToOne
-    @JoinColumn(name = "borrow_id", nullable = true)  // relation entre une facture et un emprunt
+    @JoinColumn(name = "borrow_id", nullable = true)  
+    // Relation 1:1 avec Borrow
+    // - Chaque facture est liée à un seul emprunt
+    // - nullable = true → possibilité d’avoir une facture non reliée immédiatement à un emprunt
     private Borrow borrow;
 
 }

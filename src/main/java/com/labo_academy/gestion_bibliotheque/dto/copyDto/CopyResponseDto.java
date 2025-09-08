@@ -1,4 +1,4 @@
-package com.labo_academy.gestion_bibliotheque.copyDto;
+package com.labo_academy.gestion_bibliotheque.dto.copyDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class CopyResponseDto {
     private Long id;
-    private Boolean borrowed;
+    private Boolean isBorrowed;
     private String documentMatricule;
     private String documentTitle;
 }

@@ -5,32 +5,32 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-// represente un livre dans une bibliotheque
-// herite de Document et augmente des attributs specifique a un livre
 @Entity
-@Table(name = "book")
-@DiscriminatorValue("book")  // la valeur utiliser dans la colonne discriminante pour identifier ce type
-@PrimaryKeyJoinColumn(name = "document_id")  // lie la cle primaire a celle de document
+@Table(name = "book")  
+@DiscriminatorValue("book")  
+// Utilisé dans une stratégie d’héritage avec table unique ou jointure
+// Ici, "book" sera la valeur dans la colonne discriminante
+@PrimaryKeyJoinColumn(name = "document_id")  
+// Associe la clé primaire de Book à la clé primaire de Document
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString(callSuper = true)
+@ToString(callSuper = true) // Inclut aussi les attributs de Document dans le toString
 
 public class Book extends Document {
-    @Column(nullable = false, length = 20, unique = true)  // ISBN identifiant unique d'un livre
+    @Column(nullable = false, length = 20, unique = true)  
+    // Colonne "isbn" : identifiant unique du livre, max 20 caractères
     private String isbn;
-    @Column(nullable = false, name = "number_pages")  // nombre de page du livre
+
+    @Column(nullable = false, name = "number_pages")  
+    // Colonne "number_pages" : nombre total de pages du livre (obligatoire)
     private int numberPages;
 
-    // Getters and Setters
-
+    // Getters et setters explicites (Lombok les génère déjà avec @Getter et @Setter,
+    // donc ils ne sont pas nécessaires, mais tu les as définis pour plus de clarté)
     public String getIsbn() {
         return isbn;
     }
@@ -46,6 +46,5 @@ public class Book extends Document {
     public void setNumberPages(int numberPages) {
         this.numberPages = numberPages;
     }
-
 
 }

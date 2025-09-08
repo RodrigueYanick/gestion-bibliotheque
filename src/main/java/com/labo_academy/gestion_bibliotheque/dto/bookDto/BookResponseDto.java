@@ -1,34 +1,19 @@
 package com.labo_academy.gestion_bibliotheque.dto.bookDto;
 
 import com.labo_academy.gestion_bibliotheque.dto.documentDto.DocumentResponseDto;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDate;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class BookResponseDto extends DocumentResponseDto {
 
     private String isbn;
     private int numberPages;
-
-
-    public BookResponseDto(Long id, String title, int quantity, LocalDate publicationDate, LocalDate creationDate, LocalDate lastUpdateDate, boolean isDeleted, byte[] image, String publisher , String isbn, int numberPages) {
-        super(id, title, quantity, publicationDate, creationDate, lastUpdateDate, isDeleted, image, publisher);
-        this.isbn = isbn;
-        this.numberPages = numberPages;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public int getNumberPages() {
-        return numberPages;
-    }
-
-    public void setNumberPages(int numberPages) {
-        this.numberPages = numberPages;
-    }
 }

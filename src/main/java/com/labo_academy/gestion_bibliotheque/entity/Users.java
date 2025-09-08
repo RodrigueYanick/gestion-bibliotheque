@@ -4,63 +4,61 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 
 @Entity
 @Getter
 @Setter
-// @AllArgsConstructor
-// @NoArgsConstructor
 @ToString
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Users {
 
-    // Definition des attributs
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "lastName", nullable = false, length = 255)
+    @Column(name = "last_name", nullable = false, length = 50)
     private String lastName;
 
-    @Column(name = "firstName", nullable = false, length = 255)
+    @Column(name = "first_name", nullable = false, length = 50)
     private String firstName;
 
-    @Column(name = "birthDate", nullable = false, length = 255)
+    @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
-    @Column(name = "password", nullable = false, length = 255)
+    @Column(name = "password", nullable = false, length = 100)
     private String password;
 
-    @Column(name = "email", nullable = false, length = 255, unique = true)
+    @Column(name = "email", nullable = false, length = 50, unique = true)
     private String email;
 
-    @Column(name = "adress", length = 255)
+    @Column(name = "address", length = 100)
     private String address;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;
 
-    @Lob  // perment de stocker des donnee binaire volumineuses(image)
-    @Column(nullable = true)
-    @ToString.Exclude
-    private byte[] image;
+    
+    // L’URL ou chemin d’accès à l’image de profil.
+    @Column(name = "image_url", length = 255)
+    private String imageUrl;
 
-    @Column(name = "creationDate", nullable = false, length = 255)
+    @Column(name = "creation_date", nullable = false)
     private LocalDate creationDate;
 
-    @Column(name = "lastUpdate", nullable = false, length = 255)
-    private Date lastUpdate;
+    @Column(name = "last_update", nullable = false)
+    private LocalDate lastUpdate;
 
-    @Column(name = "isDeleted", nullable = false, length = 255)
-    private boolean isDelete;
+    @Column(name = "is_deleted", nullable = false)
+    private boolean isDelete = false;
 
-    // Constructeur
-    public Users(Long id, String lastName, String firstName, LocalDate birthDate, String password, String email, String address, Role role, byte[] image, LocalDate creationDate, Date lastUpdate, boolean isDelete) {
+    // Constructeurs
+    public Users() {}
+
+    public Users(Long id, String lastName, String firstName, LocalDate birthDate, String password,
+                 String email, String address, Role role, String imageUrl,
+                 LocalDate creationDate, LocalDate lastUpdate, boolean isDelete) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -69,110 +67,20 @@ public abstract class Users {
         this.email = email;
         this.address = address;
         this.role = role;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.creationDate = creationDate;
         this.lastUpdate = lastUpdate;
         this.isDelete = isDelete;
     }
 
-    public Users() {
-
+    @PrePersist
+    protected void onCreate() {
+        this.creationDate = LocalDate.now();
+        this.lastUpdate = LocalDate.now();
     }
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public boolean isDelete() {
-        return isDelete;
-    }
-
-    public void setDelete(boolean delete) {
-        isDelete = delete;
+    @PreUpdate
+    protected void onUpdate() {
+        this.lastUpdate = LocalDate.now();
     }
 }

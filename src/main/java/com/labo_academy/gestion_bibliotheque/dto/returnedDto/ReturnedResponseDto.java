@@ -1,23 +1,15 @@
 package com.labo_academy.gestion_bibliotheque.dto.returnedDto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.time.LocalDate;
-
-@NoArgsConstructor
-@Getter
-@Setter
 
 public class ReturnedResponseDto {
 
     private Long id;
-    private LocalDate returndeDate;
+    private LocalDate returnedDate;
 
-    public ReturnedResponseDto(Long id, LocalDate returndeDate) {
-        id = id;
-        this.returndeDate = returndeDate;
+    public ReturnedResponseDto(Long id, LocalDate returnedDate) {
+        this.id = id;
+        this.returnedDate = returnedDate;
     }
 
     public Long getId() {
@@ -25,14 +17,14 @@ public class ReturnedResponseDto {
     }
 
     public void setId(Long id) {
-        id = id;
+        this.id = id;
     }
 
-    public LocalDate getReturndeDate() {
-        return returndeDate;
+    public LocalDate getReturnedDate() {
+        return returnedDate;
     }
 
-    public void setReturndeDate(LocalDate returndeDate) {
-        this.returndeDate = returndeDate;
+    public void setReturnedDate(LocalDate returnedDate) {
+        this.returnedDate = returnedDate;
     }
 }

@@ -8,21 +8,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class AgentMapper {
 
-    // Conversion Entity To Dto
-    public AgentResponseDto fromEntityToDto(Agent agent){
-        return  new AgentResponseDto(
+    // Entity -> DTO
+    public AgentResponseDto fromEntityToDto(Agent agent) {
+        if (agent == null) return null;
+
+        return new AgentResponseDto(
                 agent.getId(),
                 agent.getLastName(),
                 agent.getFirstName(),
                 agent.getBirthDate(),
                 agent.getEmail(),
                 agent.getAddress(),
-                agent.getRole()
+                agent.getRole(),
+                agent.getImageUrl(),   // 👉 l’URL de l’image
+                agent.getIdNumber()    // 👉 le numéro d’identité
         );
     }
 
-    // Conversion Dto To Entity
-    public Agent fromDtoToEntity(AgentCreateDto agentCreateDto){
+    // ✅ DTO -> Entity
+    public Agent fromDtoToEntity(AgentCreateDto agentCreateDto) {
+        if (agentCreateDto == null) return null;
+
         Agent agent = new Agent();
         agent.setLastName(agentCreateDto.getLastName());
         agent.setFirstName(agentCreateDto.getFirstName());
@@ -31,6 +37,9 @@ public class AgentMapper {
         agent.setEmail(agentCreateDto.getEmail());
         agent.setAddress(agentCreateDto.getAddress());
         agent.setRole(agentCreateDto.getRole());
+        agent.setImageUrl(agentCreateDto.getImageUrl()); // 👉 récupère l’URL
+        agent.setIdNumber(agentCreateDto.getIdNumber());
+
         return agent;
     }
 }

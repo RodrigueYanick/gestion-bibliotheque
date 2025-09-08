@@ -1,28 +1,23 @@
 package com.labo_academy.gestion_bibliotheque.dto.sanctionDto;
 
-
 import com.labo_academy.gestion_bibliotheque.entity.SanctionStatus;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@NoArgsConstructor
-@Setter
-@Getter
 
 public class SanctionResponseDto {
 
     private Long sanctionedId;
     private double amount;
     private String sanctionNumber;
-    private SanctionStatus statut;
+    private SanctionStatus status;
 
-    public SanctionResponseDto(Long sanctionedId, double amount, SanctionStatus statut) {
+    // Constructeur complet
+    public SanctionResponseDto(Long sanctionedId, double amount, String sanctionNumber, SanctionStatus status) {
         this.sanctionedId = sanctionedId;
         this.amount = amount;
-        this.statut = statut;
+        this.sanctionNumber = sanctionNumber;
+        this.status = status;
     }
 
+    // Getters et Setters
     public Long getSanctionedId() {
         return sanctionedId;
     }
@@ -39,11 +34,19 @@ public class SanctionResponseDto {
         this.amount = amount;
     }
 
-    public SanctionStatus getStatut() {
-        return statut;
+    public String getSanctionNumber() {
+        return sanctionNumber;
     }
 
-    public void setStatut(SanctionStatus statut) {
-        this.statut = statut;
+    public void setSanctionNumber(String sanctionNumber) {
+        this.sanctionNumber = sanctionNumber;
+    }
+
+    public SanctionStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(SanctionStatus status) {
+        this.status = status;
     }
 }

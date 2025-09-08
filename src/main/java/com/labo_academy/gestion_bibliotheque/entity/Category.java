@@ -10,30 +10,31 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-//creation de la table category
+// Représente une catégorie de documents dans la bibliothèque
 @Entity
 @Table(name = "category")
-@AllArgsConstructor
 @Getter
 @Setter
-
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // Clé primaire auto-incrémentée
     private Long categoryId;
-    @Column(nullable = false, length = 50)  // le nom de la category
+
+    @Column(nullable = false, length = 50)  
+    // Nom de la catégorie (ex: "Roman", "Science", "Histoire")
     private String name;
-    @Column(nullable = false, length = 250)  // la description de la category
+
+    @Column(nullable = false, length = 250)  
+    // Brève description de la catégorie
     private String description;
 
-    // Constructeur
-    public Category() {
-    }
+    // Constructeurs
+    public Category() {}
 
     public Category(Long categoryId, String name, String description) {
         this.categoryId = categoryId;
@@ -41,32 +42,11 @@ public class Category {
         this.description = description;
     }
 
-    // Getters and Setters
-    public String getName() {
-        return name;
-    }
+    // donc ceux que tu as écrits manuellement sont redondants.
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")  // la relation entre la category et plusieur documents
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    // Relation 1:N : une catégorie peut contenir plusieurs documents
+    // - fetch = LAZY : les documents ne sont chargés que sur demande
+    // - mappedBy = "category" → fait référence à l’attribut "category" dans l’entité Document
     private List<Document> documents;
-
 }

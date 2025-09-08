@@ -4,73 +4,46 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-// @NoArgsConstructor
 @Table(name = "reservation")
 public class Reservation {
-
-    // Attributs
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reservationId;
 
-    @Column(name = "reservationDate", nullable = false,length = 50)
+    // Date d'enregistrement de la réservation
+    @Column(name = "reservation_date", nullable = false)
     private LocalDate reservationDate;
-    
-    @Column(name = "statut", nullable = false,length = 50)
-    private boolean statut;
-    
-    // Relations avec Abonne-reservation
-    @ManyToOne
-    @JoinColumn(name = "abonne_id",nullable = false)
-    private Subscribers abonne;
 
-    // Relation avec Document-reservation
-    @ManyToOne
-    @JoinColumn(name = "document_id",nullable = false)
-    private Document documents;
+    // Statut de la réservation (status ou annulée)
+    @Column(nullable = false)
+    private boolean active;
 
+    // Relations avec l'abonné (plusieurs réservations possibles pour un abonné)
+    @ManyToOne
+    @JoinColumn(name = "subscriber_id", nullable = false)
+    private LibraryClient subscriber;
+
+    // Relations avec un document (plusieurs réservations possibles pour un document)
+    @ManyToOne
+    @JoinColumn(name = "document_id", nullable = false)
+    private Document document;
+
+    // Initialisation automatique de la date
     @PrePersist
-    private void prepersist(){
+    private void prePersist() {
         reservationDate = LocalDate.now();
     }
 
-    public Reservation() {
-    }
+    // Constructeurs
+    public Reservation() {}
 
-    public Reservation(Long reservationId, LocalDate reservationDate, boolean statut) {
+    public Reservation(Long reservationId, LocalDate reservationDate, boolean active) {
         this.reservationId = reservationId;
         this.reservationDate = reservationDate;
-        this.statut = statut;
+        this.active = active;
     }
-
-    public Long getReservationId() {
-        return reservationId;
-    }
-
-    public void setReservationId(Long reservationId) {
-        this.reservationId = reservationId;
-    }
-
-    public LocalDate getReservationDate() {
-        return reservationDate;
-    }
-
-    public void setReservationDate(LocalDate reservationDate) {
-        this.reservationDate = reservationDate;
-    }
-
-    public boolean isStatut() {
-        return statut;
-    }
-
-    public void setStatut(boolean statut) {
-        this.statut = statut;
-    }
-
 }

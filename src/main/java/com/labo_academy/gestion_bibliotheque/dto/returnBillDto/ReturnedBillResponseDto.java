@@ -1,20 +1,16 @@
 package com.labo_academy.gestion_bibliotheque.dto.returnBillDto;
 
-import java.time.LocalDate;
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
+import java.time.LocalDate;
+
 @Getter
 @Setter
 public class ReturnedBillResponseDto {
 
-    private Long billNumber;
-    private LocalDate effectiveReturnDateNumber;
+    private Long id;
+    private String billNumber;
     private String subscribersLastName;
     private String subscribersFirstname;
     private String subscribersAdresse;
@@ -26,4 +22,29 @@ public class ReturnedBillResponseDto {
     private int dateDiff;
     private double sanction;
 
+    public ReturnedBillResponseDto(Long id,
+                                   String billNumber,
+                                   String subscribersLastName,
+                                   String subscribersFirstname,
+                                   String subscribersAdresse,
+                                   String documentMatricule,
+                                   String documentTitle,
+                                   LocalDate borrowedDate,
+                                   LocalDate borrowedReturnDate,
+                                   LocalDate effectiveReturnedDate,
+                                   int dateDiff,
+                                   double sanction) {
+        this.id = id;
+        this.billNumber = billNumber;
+        this.subscribersLastName = subscribersLastName;
+        this.subscribersFirstname = subscribersFirstname;
+        this.subscribersAdresse = subscribersAdresse;
+        this.documentMatricule = documentMatricule;
+        this.documentTitle = documentTitle;
+        this.borrowedDate = borrowedDate;
+        this.borrowedReturnDate = borrowedReturnDate;
+        this.effectiveReturnedDate = effectiveReturnedDate;
+        this.dateDiff = dateDiff;
+        this.sanction = sanction;
+    }
 }

@@ -1,64 +1,31 @@
 package com.labo_academy.gestion_bibliotheque.dto.authorDto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @Getter
 @Setter
-
+@NoArgsConstructor   // constructeur vide
+@AllArgsConstructor  // constructeur avec tous les champs
 public class AuthorCreateDto {
 
+    @NotBlank(message = "Le nom est obligatoire")
+    @Size(max = 50, message = "Le nom ne doit pas dépasser 50 caractères")
     private String lastName;
+
+    @NotBlank(message = "Le prénom est obligatoire")
+    @Size(max = 50, message = "Le prénom ne doit pas dépasser 50 caractères")
     private String firstName;
+
+    @NotBlank(message = "L'immatriculation est obligatoire")
+    @Size(max = 30, message = "L'immatriculation ne doit pas dépasser 30 caractères")
     private String immatriculation;
-    private String nationalite;
 
-    // Constructor
-    public AuthorCreateDto(String lastName, String firstName, String immatriculation, String nationalite) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.immatriculation = immatriculation;
-        this.nationalite = nationalite;
-    }
-
-    // Getters and Setters
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getImmatriculation() {
-        return immatriculation;
-    }
-
-    public void setImmatriculation(String immatriculation) {
-        this.immatriculation = immatriculation;
-    }
-
-    public String getNationalite() {
-        return nationalite;
-    }
-
-    public void setNationalite(String nationalite) {
-        this.nationalite = nationalite;
-    }
-//
-
-
-
-
-
+    @NotBlank(message = "La nationalité est obligatoire")
+    @Size(max = 50, message = "La nationalité ne doit pas dépasser 50 caractères")
+    private String nationality;
 }
