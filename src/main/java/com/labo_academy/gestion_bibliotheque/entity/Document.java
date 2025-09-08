@@ -36,7 +36,7 @@ import lombok.ToString;
 @Table(name = "document")
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Document {
+public class Document {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

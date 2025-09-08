@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class AgentMapper {
 
     // Entity -> DTO
-    public AgentResponseDto fromEntityToDto(Agent agent) {
+    public AgentResponseDto toDto(Agent agent) {
         if (agent == null) return null;
 
         return new AgentResponseDto(
@@ -26,7 +26,7 @@ public class AgentMapper {
     }
 
     // ✅ DTO -> Entity
-    public Agent fromDtoToEntity(AgentCreateDto agentCreateDto) {
+    public Agent toEntity(AgentCreateDto agentCreateDto) {
         if (agentCreateDto == null) return null;
 
         Agent agent = new Agent();
