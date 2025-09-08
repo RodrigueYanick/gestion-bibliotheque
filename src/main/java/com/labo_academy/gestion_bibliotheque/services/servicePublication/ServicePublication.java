@@ -1,5 +1,7 @@
 package com.labo_academy.gestion_bibliotheque.services.servicePublication;
 
+import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookCreateDto;
+import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookResponseDto;
 import com.labo_academy.gestion_bibliotheque.dto.publicationDto.PublicationCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.publicationDto.PublicationResponseDto;
 
@@ -11,6 +13,7 @@ public interface ServicePublication {
     public PublicationResponseDto createPublication(PublicationCreateDto publicationCreateDto);
     public List<PublicationResponseDto> getAllPublication();
     public PublicationResponseDto getPublicationById(long id);
+    public PublicationResponseDto update(Long id, PublicationCreateDto dto);
     public boolean existsById (long id);
     public  void deleteById(long id);
 }

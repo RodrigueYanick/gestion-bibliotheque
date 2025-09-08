@@ -1,5 +1,7 @@
 package com.labo_academy.gestion_bibliotheque.services.serviceReturned;
 
+import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookCreateDto;
+import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookResponseDto;
 import com.labo_academy.gestion_bibliotheque.dto.returnedDto.ReturnedCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.returnedDto.ReturnedResponseDto;
 
@@ -11,6 +13,7 @@ public interface ServiceReturned {
     public ReturnedResponseDto createReturned(ReturnedCreateDto returnedCreateDto);
     public List<ReturnedResponseDto> getAllReturned();
     public ReturnedResponseDto getReturnedById(long id);
+    public ReturnedResponseDto update(Long id, ReturnedCreateDto dto);
     public boolean existsById (long id);
     public  void deleteById(long id);
 }

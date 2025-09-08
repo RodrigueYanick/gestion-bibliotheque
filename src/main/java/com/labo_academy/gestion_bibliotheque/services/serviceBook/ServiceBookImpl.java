@@ -5,9 +5,11 @@ import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Book;
 import com.labo_academy.gestion_bibliotheque.mappers.BookMapper;
 import com.labo_academy.gestion_bibliotheque.repository.BookRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+@Service
 
 public class ServiceBookImpl implements ServiceBook{
 
@@ -22,13 +24,27 @@ public class ServiceBookImpl implements ServiceBook{
 
     @Override
     public List<BookResponseDto> getAllBookk() {
-        return bookRepository.findAll().stream().map(bookMapper::fromEntityToDto).collect(Collectors.toList());
-    }
+        List<Book> books = bookRepository.findAll();
+        if(books.isEmpty()){throw new RuntimeException("Aucun Auteur trouver.");}
+        List<BookResponseDto> bookResponseDtos = new ArrayList<>();
+        for (Book book : books) {
+            bookResponseDtos.add(bookMapper.fromEntityToDto(book));
+        }
+        return bookResponseDtos;     }
 
     @Override
     public BookResponseDto getBookById(long id) {
         Book book = bookRepository.findById(id).orElseThrow(()-> new RuntimeException("Livre introuvable"));
     return bookMapper.fromEntityToDto(book);    }
+
+    @Override
+    public BookResponseDto update(Long id, BookCreateDto dto) {
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Author non trouvé avec l’ID : " + id));
+        book.setIsbn(dto.getIsbn());
+        book.setNumberPages(dto.getNumberPages());
+        return bookMapper.fromEntityToDto(bookRepository.save(book));
+    }
 
     @Override
     public boolean existsById(long id) {
@@ -41,5 +57,15 @@ public class ServiceBookImpl implements ServiceBook{
             System.out.println("le livre n'existe pas");
         }
         bookRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Book> findBookByAuthor(String nameAuthor) {
+        return bookRepository.findBookByAuthor(nameAuthor);
+    }
+
+    @Override
+    public List<Book> findBookByCategory(String categoryName) {
+        return bookRepository.findBooKByCategory(categoryName);
     }
 }

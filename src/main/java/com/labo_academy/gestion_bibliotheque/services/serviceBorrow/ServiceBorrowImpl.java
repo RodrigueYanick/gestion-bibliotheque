@@ -5,9 +5,12 @@ import com.labo_academy.gestion_bibliotheque.dto.borrowDto.BorrowResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Borrow;
 import com.labo_academy.gestion_bibliotheque.mappers.BorrowMapper;
 import com.labo_academy.gestion_bibliotheque.repository.BorrowRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+@Service
 
 public class ServiceBorrowImpl implements ServiceBorrow{
 

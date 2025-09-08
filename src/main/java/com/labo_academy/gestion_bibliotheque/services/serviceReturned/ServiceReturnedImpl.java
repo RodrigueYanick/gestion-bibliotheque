@@ -5,9 +5,11 @@ import com.labo_academy.gestion_bibliotheque.dto.returnedDto.ReturnedResponseDto
 import com.labo_academy.gestion_bibliotheque.entity.Returned;
 import com.labo_academy.gestion_bibliotheque.mappers.ReturnedMapper;
 import com.labo_academy.gestion_bibliotheque.repository.ReturnedRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+@Service
 
 public class ServiceReturnedImpl implements ServiceReturned{
 
@@ -30,6 +32,13 @@ public class ServiceReturnedImpl implements ServiceReturned{
     public ReturnedResponseDto getReturnedById(long id) {
         Returned returned = returnedRepository.findById(id).orElseThrow(()-> new RuntimeException(" introuvable"));
         return retuernedMapper.toDto(returned);
+    }
+
+    @Override
+    public ReturnedResponseDto update(Long id, ReturnedCreateDto dto) {
+        Returned returned = returnedRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Author non trouvé avec l’ID : " + id));
+        return retuernedMapper.toDto(returnedRepository.save(returned));
     }
 
     @Override

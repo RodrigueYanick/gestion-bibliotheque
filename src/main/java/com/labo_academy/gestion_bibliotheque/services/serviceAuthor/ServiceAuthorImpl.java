@@ -1,13 +1,16 @@
 package com.labo_academy.gestion_bibliotheque.services.serviceAuthor;
 
+import com.labo_academy.gestion_bibliotheque.dto.agentDto.AgentResponseDto;
 import com.labo_academy.gestion_bibliotheque.dto.authorDto.AuthorCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.authorDto.AuthorResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Author;
 import com.labo_academy.gestion_bibliotheque.mappers.AuthorMapper;
 import com.labo_academy.gestion_bibliotheque.repository.AuthorRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+@Service
 
 public class ServiceAuthorImpl implements ServiceAuthor{
 
@@ -23,13 +26,28 @@ public class ServiceAuthorImpl implements ServiceAuthor{
 
     @Override
     public List<AuthorResponseDto> getAllAuthor() {
-        return authorRepository.findAll().stream().map(authorMapper::fromEntityToDto).collect(Collectors.toList());
-    }
+        List<Author> authors = authorRepository.findAll();
+        if(authors.isEmpty()){throw new RuntimeException("Aucun Auteur trouver.");}
+        List<AuthorResponseDto> authorResponseDtoList = new ArrayList<>();
+        for (Author author : authors) {
+            authorResponseDtoList.add(authorMapper.fromEntityToDto(author));
+        }
+        return authorResponseDtoList;    }
 
     @Override
     public AuthorResponseDto getAuthorById(long id) {
         Author author = authorRepository.findById(id).orElseThrow(()-> new RuntimeException("l'auteur introuvable"));
         return authorMapper.fromEntityToDto(author);     }
+
+    @Override
+    public AuthorResponseDto update(Long id, AuthorCreateDto dto) {
+        Author author = authorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Author non trouvé avec l’ID : " + id));
+        author.setLastName(dto.getLastName());
+        author.setFirstName(dto.getFirstName());
+        author.setNationality(dto.getNationality());
+        return authorMapper.fromEntityToDto(authorRepository.save(author));
+    }
 
     @Override
     public boolean existsById(long id) {

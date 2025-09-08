@@ -1,5 +1,7 @@
 package com.labo_academy.gestion_bibliotheque.services.serviceReservation;
 
+import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookCreateDto;
+import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookResponseDto;
 import com.labo_academy.gestion_bibliotheque.dto.reservationDto.ReservationCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.reservationDto.ReservationResponseDto;
 
@@ -10,6 +12,7 @@ public interface ServiceReservation {
     public ReservationResponseDto createReservation(ReservationCreateDto reservationCreateDto);
     public List<ReservationResponseDto> getAllReservation();
     public ReservationResponseDto getReservationById(long id);
+    public ReservationResponseDto update(Long id, ReservationCreateDto dto);
     public boolean existsById (long id);
     public  void deleteById(long id);
 }

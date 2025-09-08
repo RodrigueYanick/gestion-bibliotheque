@@ -2,12 +2,16 @@ package com.labo_academy.gestion_bibliotheque.services.serviceReservation;
 
 import com.labo_academy.gestion_bibliotheque.dto.reservationDto.ReservationCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.reservationDto.ReservationResponseDto;
+import com.labo_academy.gestion_bibliotheque.entity.Book;
 import com.labo_academy.gestion_bibliotheque.entity.Reservation;
 import com.labo_academy.gestion_bibliotheque.mappers.ReservationMapper;
 import com.labo_academy.gestion_bibliotheque.repository.ReservationRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+@Service
 
 public class ServiceReservationImpl implements ServiceReservation{
 
@@ -23,13 +27,26 @@ public class ServiceReservationImpl implements ServiceReservation{
 
     @Override
     public List<ReservationResponseDto> getAllReservation() {
-        return reservationRepository.findAll().stream().map(reservationMapper::toDto).collect(Collectors.toList());
-    }
+        List<Reservation> reservationList = reservationRepository.findAll();
+        if(reservationList.isEmpty()){throw new RuntimeException("Aucune Reservation trouver.");}
+        List<ReservationResponseDto> reservationResponseDtos = new ArrayList<>();
+        for (Reservation reservation : reservationList) {
+            reservationResponseDtos.add(reservationMapper.toDto(reservation));
+        }
+        return reservationResponseDtos;     }
 
     @Override
     public ReservationResponseDto getReservationById(long id) {
         Reservation reservation = reservationRepository.findById(id).orElseThrow(()-> new RuntimeException("reservation introuvable"));
         return reservationMapper.toDto(reservation);
+    }
+
+    @Override
+    public ReservationResponseDto update(Long id, ReservationCreateDto dto) {
+        Reservation reservation = reservationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Reservation non trouvé avec l’ID : " + id));
+        reservation.setReservationDate(dto.getReservationDate());
+        return reservationMapper.toDto(reservationRepository.save(reservation));
     }
 
     @Override

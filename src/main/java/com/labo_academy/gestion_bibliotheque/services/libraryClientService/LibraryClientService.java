@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientResponseDto;
+import com.labo_academy.gestion_bibliotheque.entity.Users;
 
 public interface LibraryClientService {
 
@@ -13,5 +14,7 @@ public interface LibraryClientService {
     public LibraryClientResponseDto update(Long id, LibraryClientCreateDto dto);
     public void delete(Long id);
     public LibraryClientResponseDto upgradeToSubscriber(Long id, String accountNumber);
+    Users findByNom(String nom);
+
 
 }

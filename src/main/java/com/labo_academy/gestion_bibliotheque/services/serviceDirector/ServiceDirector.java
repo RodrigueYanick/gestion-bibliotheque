@@ -10,6 +10,7 @@ public interface ServiceDirector {
     public DirecteurResponseDto createDirecteur(DirecteurCreateDto directeurCreateDto);
     public List<DirecteurResponseDto> getAllDirecteur();
     public DirecteurResponseDto getDirecteurById(long id);
+    public DirecteurResponseDto update(Long id, DirecteurCreateDto dto);
     public boolean existsById (long id);
     public  void deleteById(long id);
 }

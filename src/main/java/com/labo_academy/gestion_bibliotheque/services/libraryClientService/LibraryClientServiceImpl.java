@@ -1,9 +1,9 @@
-package com.labo_academy.gestion_bibliotheque.services;
+package com.labo_academy.gestion_bibliotheque.services.libraryClientService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.labo_academy.gestion_bibliotheque.services.libraryClientService.LibraryClientService;
+import com.labo_academy.gestion_bibliotheque.entity.Users;
 import org.springframework.stereotype.Service;
 
 import com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientCreateDto;
@@ -74,6 +74,11 @@ public class LibraryClientServiceImpl implements LibraryClientService {
 
         client.upgradeToSubscriber(accountNumber);
         return libraryClientMapper.toDto(libraryClientRepository.save(client));
+    }
+
+    @Override
+    public Users findByNom(String nom) {
+       return libraryClientRepository.findByNom(nom);
     }
 
 }

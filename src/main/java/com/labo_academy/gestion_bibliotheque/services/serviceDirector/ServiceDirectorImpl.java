@@ -5,9 +5,11 @@ import com.labo_academy.gestion_bibliotheque.dto.directeurDto.DirecteurResponseD
 import com.labo_academy.gestion_bibliotheque.entity.Director;
 import com.labo_academy.gestion_bibliotheque.mappers.DirectorMapper;
 import com.labo_academy.gestion_bibliotheque.repository.DirectorRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+@Service
 
 public class ServiceDirectorImpl implements ServiceDirector{
 
@@ -23,14 +25,30 @@ public class ServiceDirectorImpl implements ServiceDirector{
 
     @Override
     public List<DirecteurResponseDto> getAllDirecteur() {
-        return directorRepository.findAll().stream().map(directorMapper::toDto).collect(Collectors.toList());
-
+        List<Director> directorList = directorRepository.findAll();
+        if(directorList.isEmpty()){throw new RuntimeException("Aucun Directeur trouver.");}
+        List<DirecteurResponseDto> directeurResponseDtos = new ArrayList<>();
+        for (Director director : directorList) {
+            directeurResponseDtos.add(directorMapper.toDto(director));
+        }
+        return directeurResponseDtos;
     }
 
     @Override
     public DirecteurResponseDto getDirecteurById(long id) {
         Director director = directorRepository.findById(id).orElseThrow(()-> new RuntimeException("directeur introuvable"));
         return directorMapper.toDto(director);
+    }
+
+    @Override
+    public DirecteurResponseDto update(Long id, DirecteurCreateDto dto) {
+        Director director = directorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Author non trouvé avec l’ID : " + id));
+        director.setLastName(dto.getLastName());
+        director.setFirstName(dto.getFirstName());
+        director.setBirthDate(dto.getBirthDate());
+        director.setEmail(dto.getEmail());
+        return directorMapper.toDto(directorRepository.save(director));
     }
 
     @Override

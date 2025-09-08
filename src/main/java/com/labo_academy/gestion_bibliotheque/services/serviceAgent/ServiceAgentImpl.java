@@ -5,9 +5,12 @@ import com.labo_academy.gestion_bibliotheque.dto.agentDto.AgentResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Agent;
 import com.labo_academy.gestion_bibliotheque.mappers.AgentMapper;
 import com.labo_academy.gestion_bibliotheque.repository.AgentRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+@Service
 
 public class ServiceAgentImpl implements ServiceAgent {
 
@@ -25,8 +28,8 @@ public class ServiceAgentImpl implements ServiceAgent {
         List<Agent> agents = agentRepository.findAll();
         if(agents.isEmpty()){throw new RuntimeException("Aucun Agent trouver.");}
         List<AgentResponseDto> agentResponseDtos = new ArrayList<>();
-        for (Agent libraryClient : agents) {
-            agentResponseDtos.add(agentMapper.toDto(libraryClient));
+        for (Agent agent : agents) {
+            agentResponseDtos.add(agentMapper.toDto(agent));
         }
         return agentResponseDtos;
     }
@@ -49,18 +52,14 @@ public class ServiceAgentImpl implements ServiceAgent {
         return agentMapper.toDto(agentRepository.save(agent));
     }
 
-    @Override
-    public boolean existssById(Long id) {
-
-        return agentRepository.existsById(id);
-    }
 
     @Override
-    public void deletesById(Long id) {
+    public ResponseEntity<Void> deleteById(Long id) {
         if (!agentRepository.existsById(id)){
             System.out.println(" l'agent n'existe pas");
         }
         agentRepository.deleteById(id);
+        return null;
     }
 
 }

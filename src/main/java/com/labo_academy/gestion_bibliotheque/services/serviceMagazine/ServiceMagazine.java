@@ -1,5 +1,7 @@
 package com.labo_academy.gestion_bibliotheque.services.serviceMagazine;
 
+import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookCreateDto;
+import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookResponseDto;
 import com.labo_academy.gestion_bibliotheque.dto.magazineDto.MagazineCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.magazineDto.MagazineResponseDto;
 
@@ -11,6 +13,7 @@ public interface ServiceMagazine {
     public MagazineResponseDto createMagazine(MagazineCreateDto magazineCreateDto);
     public List<MagazineResponseDto> getAllMagazine();
     public MagazineResponseDto getMagazineById(long id);
+    public MagazineResponseDto update(Long id, MagazineCreateDto dto);
     public boolean existsById (long id);
     public  void deleteById(long id);
 }
