@@ -11,7 +11,7 @@ public class LibraryClientMapper {
     // Convertit un CreateDto en entité LibraryClient.
     // Par défaut, un client est VISITOR à la création.
     
-    public static LibraryClient toEntity(LibraryClientCreateDto dto) {
+    public LibraryClient toEntity(LibraryClientCreateDto dto) {
         if (dto == null) {
             return null;
         }
@@ -38,7 +38,7 @@ public class LibraryClientMapper {
     
     // Convertit une entité LibraryClient en ResponseDto.
     
-    public static LibraryClientResponseDto toDto(LibraryClient client) {
+    public LibraryClientResponseDto toDto(LibraryClient client) {
         if (client == null) {
             return null;
         }

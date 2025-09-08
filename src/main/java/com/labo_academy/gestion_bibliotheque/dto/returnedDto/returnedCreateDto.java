@@ -13,4 +13,5 @@ public class ReturnedCreateDto {
 
     private String returnedEmail;
     private String documentMatricule;
+    
 }
