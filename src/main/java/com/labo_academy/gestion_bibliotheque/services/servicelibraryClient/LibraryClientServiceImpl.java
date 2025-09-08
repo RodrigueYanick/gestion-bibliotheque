@@ -1,4 +1,4 @@
-package com.labo_academy.gestion_bibliotheque.services.libraryClientService;
+package com.labo_academy.gestion_bibliotheque.services.servicelibraryClient;
 
 import java.util.ArrayList;
 import java.util.List;

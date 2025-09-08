@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.labo_academy.gestion_bibliotheque.dto.sanctionBillDto.SanctionBillResponseDto;
-import com.labo_academy.gestion_bibliotheque.dto.sanctionDto.SanctionResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Sanction;
 import com.labo_academy.gestion_bibliotheque.entity.SanctionBill;
 import com.labo_academy.gestion_bibliotheque.mappers.SanctionBillMapper;

@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "library_client")
 @Getter
 @Setter
-@ToString(callSuper = true, exclude = {"reservations", "borrows"})
+@ToString(callSuper = true, exclude = {"borrows"})
 public class LibraryClient extends Users {
 
     @Enumerated(EnumType.STRING)
@@ -28,10 +28,6 @@ public class LibraryClient extends Users {
     // -------- Champs spwcifiques aux visiteurs --------
     @Column(name = "visitor_status")
     private Boolean visitorStatus = true; // true par défaut a la création
-
-    // -------- Relations avec reservations et emprunts --------
-    @OneToMany(mappedBy = "subscriber", fetch = FetchType.LAZY)
-    private List<Reservation> reservations;
 
     @OneToMany(mappedBy = "subscriber", fetch = FetchType.LAZY)
     private List<Borrow> borrows;
