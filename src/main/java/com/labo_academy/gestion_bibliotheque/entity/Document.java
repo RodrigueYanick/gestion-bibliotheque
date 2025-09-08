@@ -107,9 +107,4 @@ public class Document {
     // Un document peut avoir plusieurs emprunts
     private List<Borrow> borrows;
 
-    @OneToMany(mappedBy = "document", fetch = FetchType.LAZY)
-    // Relation avec Reservation (plusieurs réservations pour un document)
-    private List<Reservation> reservations;
-
-
 }

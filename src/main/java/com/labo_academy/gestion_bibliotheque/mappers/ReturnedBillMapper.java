@@ -65,7 +65,6 @@ public class ReturnedBillMapper {
         }
 
         ReturnedBill returnedBill = new ReturnedBill();
-        returnedBill.setBillNumber(dto.getBillNumber());
         returnedBill.setReturned(returned);
         return returnedBill;
     }

@@ -1,9 +1,16 @@
+<<<<<<< HEAD:src/main/java/com/labo_academy/gestion_bibliotheque/services/libraryClientService/LibraryClientServiceImpl.java
 package com.labo_academy.gestion_bibliotheque.services.libraryClientService;
+=======
+package com.labo_academy.gestion_bibliotheque.services.servicelibraryClient;
+>>>>>>> e6a4eb49e23673d9eab285385c8e5178a10f282b:src/main/java/com/labo_academy/gestion_bibliotheque/services/servicelibraryClient/LibraryClientServiceImpl.java
 
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD:src/main/java/com/labo_academy/gestion_bibliotheque/services/libraryClientService/LibraryClientServiceImpl.java
 import com.labo_academy.gestion_bibliotheque.entity.Users;
+=======
+>>>>>>> e6a4eb49e23673d9eab285385c8e5178a10f282b:src/main/java/com/labo_academy/gestion_bibliotheque/services/servicelibraryClient/LibraryClientServiceImpl.java
 import org.springframework.stereotype.Service;
 
 import com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientCreateDto;

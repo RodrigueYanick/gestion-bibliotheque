@@ -3,6 +3,7 @@ package com.labo_academy.gestion_bibliotheque.mappers;
 import com.labo_academy.gestion_bibliotheque.dto.returnedDto.ReturnedCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.returnedDto.ReturnedResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Borrow;
+import com.labo_academy.gestion_bibliotheque.entity.BorrowedStatus;
 import com.labo_academy.gestion_bibliotheque.entity.Document;
 import com.labo_academy.gestion_bibliotheque.entity.Returned;
 import com.labo_academy.gestion_bibliotheque.entity.LibraryClient;
@@ -54,10 +55,11 @@ public class ReturnedMapper {
         }
 
         // On récupère l’emprunt actif correspondant
-        Borrow borrow = borrowRepository.findBySubscriberAndDocumentAndStatusActive(subscriber, document);
-                if(borrow == null){
-                    throw new RuntimeException("Aucun emprunt actif trouvé pour cet abonné et ce document");
-                }    
+        Borrow borrow = borrowRepository.findBySubscriberAndDocumentAndStatus(subscriber, document, BorrowedStatus.IN_PROGRESS);
+        if (borrow == null) {
+            throw new RuntimeException("Aucun emprunt actif trouvé pour cet abonné et ce document");
+        }
+  
 
         // Création de l’entité Returned
         Returned returned = new Returned();

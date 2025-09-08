@@ -3,33 +3,86 @@ package com.labo_academy.gestion_bibliotheque.services.serviceBorrow;
 import com.labo_academy.gestion_bibliotheque.dto.borrowDto.BorrowCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.borrowDto.BorrowResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Borrow;
+import com.labo_academy.gestion_bibliotheque.entity.BorrowedStatus;
+import com.labo_academy.gestion_bibliotheque.entity.Copy;
 import com.labo_academy.gestion_bibliotheque.mappers.BorrowMapper;
 import com.labo_academy.gestion_bibliotheque.repository.BorrowRepository;
+<<<<<<< HEAD
+=======
+import com.labo_academy.gestion_bibliotheque.repository.CopyRepository;
+import lombok.RequiredArgsConstructor;
+>>>>>>> e6a4eb49e23673d9eab285385c8e5178a10f282b
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+<<<<<<< HEAD
 
 public class ServiceBorrowImpl implements ServiceBorrow{
+=======
+@RequiredArgsConstructor
+public class ServiceBorrowImpl implements ServiceBorrow {
 
-    BorrowRepository borrowRepository;
-    BorrowMapper borrowMapper;
+    private final BorrowRepository borrowRepository;
+    private final BorrowMapper borrowMapper;
+    private final CopyRepository copyRepository;
+>>>>>>> e6a4eb49e23673d9eab285385c8e5178a10f282b
+
     @Override
-    public BorrowResponseDto createBorrow(BorrowCreateDto borrowCreateDto) {
-        Borrow borrow = borrowMapper.fromDtoToEntity(borrowCreateDto);
-        borrowRepository.save(borrow);
-        return borrowMapper.fromEntityToDto(borrow);    }
+public BorrowResponseDto createBorrow(BorrowCreateDto borrowCreateDto) {
+    // 1. Mapper DTO -> Entity
+    Borrow borrow = borrowMapper.fromDtoToEntity(borrowCreateDto);
+
+    // 2. Recuperer le document lie à l’emprunt
+    if (borrow.getDocument() == null) {
+        throw new RuntimeException("Aucun document associé à cet emprunt.");
+    }
+
+    // 3. Chercher une copie disponible
+    Copy availableCopy = null;
+    for (Copy copy : borrow.getDocument().getExemplaires()) {
+        if (!copy.isBorrowed()) {   // si la copie n'est pas empruntée
+            availableCopy = copy;
+            break; // on s'arrête dès qu’on en trouve une
+        }
+    }
+
+    if (availableCopy == null) {
+        throw new RuntimeException("Aucune copie disponible pour ce document.");
+    }
+
+    // 4. Marquer la copie comme empruntée
+    availableCopy.setBorrowed(true);
+    copyRepository.save(availableCopy);
+
+    // 5. Générer un numéro unique pour l’emprunt
+    borrow.setBorrowedNumber("BORR-" + System.currentTimeMillis());
+
+    // ⚠️ Facultatif : lier la copie choisie au borrow si tu veux garder la traçabilité
+    // borrow.setCopy(availableCopy);
+
+    // 6. Sauvegarder l’emprunt
+    Borrow savedBorrow = borrowRepository.save(borrow);
+
+    // 7. Retourner le DTO
+    return borrowMapper.fromEntityToDto(savedBorrow);
+}
+
 
     @Override
     public List<BorrowResponseDto> getAllBorrow() {
-        return borrowRepository.findAll().stream().map(borrowMapper::fromEntityToDto).collect(Collectors.toList());
+        return borrowRepository.findAll()
+                .stream()
+                .map(borrowMapper::fromEntityToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public BorrowResponseDto getBorrowById(long id) {
-        Borrow borrow = borrowRepository.findById(id).orElseThrow(()-> new RuntimeException("Emprunt introuvable"));
+        Borrow borrow = borrowRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Emprunt introuvable"));
         return borrowMapper.fromEntityToDto(borrow);
     }
 
@@ -40,9 +93,23 @@ public class ServiceBorrowImpl implements ServiceBorrow{
 
     @Override
     public void deleteById(long id) {
-        if (!borrowRepository.existsById(id)){
-            System.out.println(" n'existe pas");
+        if (!borrowRepository.existsById(id)) {
+            throw new RuntimeException("Emprunt introuvable avec l’ID : " + id);
         }
         borrowRepository.deleteById(id);
+    }
+
+    @Override
+    public BorrowResponseDto updateStatus(Long id, String status) {
+        Borrow borrow = borrowRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Emprunt non trouvé avec l’ID : " + id));
+
+        try {
+            borrow.setStatus(BorrowedStatus.valueOf(status.toUpperCase()));
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException("Statut invalide : " + status);
+        }
+
+        return borrowMapper.fromEntityToDto(borrowRepository.save(borrow));
     }
 }

@@ -9,24 +9,18 @@ public class ReservationResponseDto {
     private boolean active;
     private String subscribersEmail;
     private String documentTitle;
-    private LocalDate creationDate;
-    private LocalDate lastUpdateDate;
 
     // Constructeur
     public ReservationResponseDto(Long reservationId,
                                   LocalDate reservationDate,
                                   boolean active,
                                   String subscribersEmail,
-                                  String documentTitle,
-                                  LocalDate creationDate,
-                                  LocalDate lastUpdateDate) {
+                                  String documentTitle) {
         this.reservationId = reservationId;
         this.reservationDate = reservationDate;
         this.active = active;
         this.subscribersEmail = subscribersEmail;
         this.documentTitle = documentTitle;
-        this.creationDate = creationDate;
-        this.lastUpdateDate = lastUpdateDate;
     }
 
     // Getters et Setters
@@ -70,19 +64,4 @@ public class ReservationResponseDto {
         this.documentTitle = documentTitle;
     }
 
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public LocalDate getLastUpdateDate() {
-        return lastUpdateDate;
-    }
-
-    public void setLastUpdateDate(LocalDate lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
-    }
 }
