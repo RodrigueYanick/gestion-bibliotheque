@@ -5,10 +5,9 @@ import com.labo_academy.gestion_bibliotheque.dto.agentDto.AgentResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Agent;
 import com.labo_academy.gestion_bibliotheque.mappers.AgentMapper;
 import com.labo_academy.gestion_bibliotheque.repository.AgentRepository;
-import com.labo_academy.gestion_bibliotheque.services.serviceAgent.ServiceAgent;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ServiceAgentImpl implements ServiceAgent {
 
@@ -18,12 +17,18 @@ public class ServiceAgentImpl implements ServiceAgent {
     @Override
     public AgentResponseDto createAgent(AgentCreateDto agentCreateDto) {
         Agent agent = agentMapper.toEntity(agentCreateDto);
-        agentRepository.save(agent);
+            agentRepository.save(agent);
         return agentMapper.toDto(agent);    }
 
     @Override
     public List<AgentResponseDto> getAllAgent() {
-        return agentRepository.findAll().stream().map(agentMapper::toDto).collect(Collectors.toList());
+        List<Agent> agents = agentRepository.findAll();
+        if(agents.isEmpty()){throw new RuntimeException("Aucun Agent trouver.");}
+        List<AgentResponseDto> agentResponseDtos = new ArrayList<>();
+        for (Agent libraryClient : agents) {
+            agentResponseDtos.add(agentMapper.toDto(libraryClient));
+        }
+        return agentResponseDtos;
     }
 
     @Override
@@ -33,7 +38,20 @@ public class ServiceAgentImpl implements ServiceAgent {
            }
 
     @Override
+    public AgentResponseDto update(Long id, AgentCreateDto dto) {
+        Agent agent = agentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Agent non trouvé avec l’ID : " + id));
+        agent.setLastName(dto.getLastName());
+        agent.setFirstName(dto.getFirstName());
+        agent.setBirthDate(dto.getBirthDate());
+        agent.setEmail(dto.getEmail());
+        agent.setAddress(dto.getAddress());
+        return agentMapper.toDto(agentRepository.save(agent));
+    }
+
+    @Override
     public boolean existssById(Long id) {
+
         return agentRepository.existsById(id);
     }
 
