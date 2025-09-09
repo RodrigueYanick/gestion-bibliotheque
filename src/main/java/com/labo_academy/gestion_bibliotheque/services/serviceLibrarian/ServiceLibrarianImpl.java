@@ -49,7 +49,7 @@ public class ServiceLibrarianImpl implements ServiceLibrarian{
     @Override
     public void deleteById(long id) {
         if (!librarianRepository.existsById(id)){
-            System.out.println("le directeur n'existe pas");
+            throw new RuntimeException("le directeur n'existe pas");
         }
         librarianRepository.deleteById(id);
     }

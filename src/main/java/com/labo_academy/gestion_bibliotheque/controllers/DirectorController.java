@@ -2,7 +2,6 @@ package com.labo_academy.gestion_bibliotheque.controllers;
 
 import com.labo_academy.gestion_bibliotheque.dto.directorDto.DirectorCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.directorDto.DirectorResponseDto;
-import com.labo_academy.gestion_bibliotheque.repository.DirectorRepository;
 import com.labo_academy.gestion_bibliotheque.services.serviceDirector.ServiceDirector;
 
 import jakarta.validation.Valid;
@@ -17,9 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("api/director")
 public class DirectorController {
-
-    @Autowired
-    private DirectorRepository DirectorRepository;
 
     @Autowired
     private ServiceDirector serviceDirector;
@@ -48,7 +44,7 @@ public class DirectorController {
         return ResponseEntity.ok(serviceDirector.getDirecteurById(id));
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable long id){
         serviceDirector.deleteById(id);
         return ResponseEntity.noContent().build();

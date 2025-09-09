@@ -55,7 +55,7 @@ public class ServiceMagazineImpl implements ServiceMagazine{
     @Override
     public void deleteById(long id) {
         if (!magazineRepository.existsById(id)){
-            System.out.println("le magazine n'existe pas");
+            throw new RuntimeException("le magazine n'existe pas");
         }
         magazineRepository.deleteById(id);
     }

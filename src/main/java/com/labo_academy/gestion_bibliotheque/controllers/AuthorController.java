@@ -2,7 +2,6 @@ package com.labo_academy.gestion_bibliotheque.controllers;
 
 import com.labo_academy.gestion_bibliotheque.dto.authorDto.AuthorCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.authorDto.AuthorResponseDto;
-import com.labo_academy.gestion_bibliotheque.repository.AuthorRepository;
 import com.labo_academy.gestion_bibliotheque.services.serviceAuthor.ServiceAuthor;
 
 import jakarta.validation.Valid;
@@ -17,9 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("api/author")
 public class AuthorController {
-
-    @Autowired
-    private AuthorRepository authorRepository;
 
     @Autowired
     private ServiceAuthor serviceAuthor;
@@ -48,7 +44,7 @@ public class AuthorController {
         return ResponseEntity.ok(serviceAuthor.getAuthorById(id));
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable long id){
         serviceAuthor.deleteById(id);
         return ResponseEntity.noContent().build();

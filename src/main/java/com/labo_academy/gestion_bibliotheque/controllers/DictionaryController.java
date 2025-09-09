@@ -2,7 +2,6 @@ package com.labo_academy.gestion_bibliotheque.controllers;
 
 import com.labo_academy.gestion_bibliotheque.dto.dictionaryDto.DictionaryCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.dictionaryDto.DictionaryResponseDto;
-import com.labo_academy.gestion_bibliotheque.repository.DictionaryRepository;
 import com.labo_academy.gestion_bibliotheque.services.serviceDictionary.ServiceDictionary;
 
 import jakarta.validation.Valid;
@@ -17,9 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("api/Dictionary")
 public class DictionaryController {
-
-    @Autowired
-    private DictionaryRepository DictionaryRepository;
 
     @Autowired
     private ServiceDictionary serviceDictionary;
@@ -39,7 +35,7 @@ public class DictionaryController {
     @PutMapping("/update/{id}")
     public ResponseEntity<DictionaryResponseDto> update(@PathVariable Long id, @Valid @RequestBody DictionaryCreateDto dto) {
         DictionaryResponseDto updatedDictionary = serviceDictionary.update(id, dto);
-        return ResponseEntity.ok(updatedDictionary); // retourne 200 OK avec l'objet mis à jour
+        return ResponseEntity.ok(updatedDictionary); 
     }
 
 
@@ -48,7 +44,7 @@ public class DictionaryController {
         return ResponseEntity.ok(serviceDictionary.getDictionaryById(id));
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable long id){
         serviceDictionary.deleteById(id);
         return ResponseEntity.noContent().build();

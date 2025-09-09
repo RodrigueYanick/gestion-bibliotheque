@@ -51,7 +51,7 @@ public class ServiceDictionaryImpl implements ServiceDictionary{
     @Override
     public void deleteById(long id) {
         if (!dictionaryRepository.existsById(id)){
-            System.out.println("le dictionnaire n'existe pas");
+            throw new RuntimeException("le dictionnaire n'existe pas");
         }
         dictionaryRepository.deleteById(id);
     }

@@ -2,7 +2,7 @@ package com.labo_academy.gestion_bibliotheque.controllers;
 
 import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookResponseDto;
-import com.labo_academy.gestion_bibliotheque.repository.BookRepository;
+import com.labo_academy.gestion_bibliotheque.entity.Book;
 import com.labo_academy.gestion_bibliotheque.services.serviceBook.ServiceBook;
 
 import jakarta.validation.Valid;
@@ -19,9 +19,6 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    private BookRepository BookRepository;
-
-    @Autowired
     private ServiceBook serviceBook;
 
     @PostMapping("/create")
@@ -29,7 +26,6 @@ public class BookController {
         BookResponseDto createdBook = serviceBook.createBook(BookCreateDto);
         return new ResponseEntity<>(createdBook, HttpStatus.CREATED);
     }
-
 
     @GetMapping("/")
     public ResponseEntity<List<BookResponseDto>> getAllBook(){
@@ -52,6 +48,15 @@ public class BookController {
     public ResponseEntity<Void> deleteById(@PathVariable long id){
         serviceBook.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/search/{nameAuthor}")
+    public List<Book> findBookByAuthor(String nameAuthor){
+        return serviceBook.findBookByAuthor(nameAuthor);
+    }
+
+    @DeleteMapping("/search/categoryName")
+    public List<Book> findBookByCategory(String categoryName){
+        return serviceBook.findBookByCategory(categoryName);
     }
 
 }

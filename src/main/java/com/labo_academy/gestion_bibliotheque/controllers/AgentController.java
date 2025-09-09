@@ -2,7 +2,6 @@ package com.labo_academy.gestion_bibliotheque.controllers;
 
 import com.labo_academy.gestion_bibliotheque.dto.agentDto.AgentCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.agentDto.AgentResponseDto;
-import com.labo_academy.gestion_bibliotheque.repository.AgentRepository;
 import com.labo_academy.gestion_bibliotheque.services.serviceAgent.ServiceAgent;
 
 import jakarta.validation.Valid;
@@ -13,14 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/agent")
 public class AgentController {
-
-    @Autowired
-    private AgentRepository AgentRepository;
 
     @Autowired
     private ServiceAgent serviceAgent;
@@ -49,7 +44,7 @@ public class AgentController {
         return ResponseEntity.ok(serviceAgent.getAgentById(id));
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable long id){
         serviceAgent.deleteById(id);
         return ResponseEntity.noContent().build();

@@ -20,7 +20,8 @@ public class ServiceAgentImpl implements ServiceAgent {
     public AgentResponseDto createAgent(AgentCreateDto agentCreateDto) {
         Agent agent = agentMapper.toEntity(agentCreateDto);
             agentRepository.save(agent);
-        return agentMapper.toDto(agent);    }
+        return agentMapper.toDto(agent);    
+    }
 
     @Override
     public List<AgentResponseDto> getAllAgent() {
@@ -51,11 +52,10 @@ public class ServiceAgentImpl implements ServiceAgent {
         return agentMapper.toDto(agentRepository.save(agent));
     }
 
-
     @Override
     public void deleteById(Long id) {
         if (!agentRepository.existsById(id)){
-            System.out.println(" l'agent n'existe pas");
+            throw new RuntimeException("l(agent non trouvé avec l'ID : " + id);
         }
         agentRepository.deleteById(id);
     }

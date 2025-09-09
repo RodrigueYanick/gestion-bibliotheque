@@ -2,7 +2,6 @@ package com.labo_academy.gestion_bibliotheque.controllers;
 
 import com.labo_academy.gestion_bibliotheque.dto.categoryDto.CategoryCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.categoryDto.CategoryResponseDto;
-import com.labo_academy.gestion_bibliotheque.repository.CategoryRepository;
 import com.labo_academy.gestion_bibliotheque.services.serviceCategory.ServiceCategory;
 
 import jakarta.validation.Valid;
@@ -17,9 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("api/category")
 public class CategoryController {
-
-    @Autowired
-    private CategoryRepository CategoryRepository;
 
     @Autowired
     private ServiceCategory serviceCategory;
@@ -48,7 +44,7 @@ public class CategoryController {
         return ResponseEntity.ok(serviceCategory.getCategoryById(id));
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable long id){
         serviceCategory.deleteById(id);
         return ResponseEntity.noContent().build();

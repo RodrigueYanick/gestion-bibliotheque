@@ -54,7 +54,7 @@ public class ServiceBookImpl implements ServiceBook{
     @Override
     public void deleteById(long id) {
         if (!bookRepository.existsById(id)){
-            System.out.println("le livre n'existe pas");
+            throw new RuntimeException("le livre n'existe pas");
         }
         bookRepository.deleteById(id);
     }

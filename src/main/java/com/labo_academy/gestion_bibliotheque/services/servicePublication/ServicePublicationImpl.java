@@ -55,7 +55,7 @@ public class ServicePublicationImpl implements ServicePublication{
     @Override
     public void deleteById(long id) {
         if (!publicationRepository.existsById(id)){
-            System.out.println("la publication n'existe pas");
+            throw new RuntimeException("la publication n'existe pas");
         }
         publicationRepository.deleteById(id);
     }
