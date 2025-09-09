@@ -51,7 +51,7 @@ public class ServiceCopyImpl implements ServiceCopy{
     @Override
     public void deleteById(long id) {
         if (!copyRepository.existsById(id)){
-            System.out.println("la Cpie n'existe pas");
+            throw new RuntimeException("la Cpie n'existe pas");
         }
         copyRepository.deleteById(id);
     }

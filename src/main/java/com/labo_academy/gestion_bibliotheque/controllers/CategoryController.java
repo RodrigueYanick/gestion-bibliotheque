@@ -32,7 +32,7 @@ public class CategoryController {
         return serviceCategory.getAllCategory();
     }
 
-    @GetMapping("/update/{id}/{category}")
+    @PutMapping("/update/{id}/{category}")
     public CategoryResponseDto update(Long id, CategoryCreateDto dto){
         return serviceCategory.update(id,dto);
     }

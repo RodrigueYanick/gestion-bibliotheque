@@ -57,7 +57,7 @@ public class ServiceAuthorImpl implements ServiceAuthor{
     @Override
     public void deleteById(long id) {
         if (!authorRepository.existsById(id)){
-            System.out.println("l'auteur n'existe pas");
+            throw new RuntimeException("l'auteur non trouvé avec l’ID : " + id);
         }
         authorRepository.deleteById(id);
     }

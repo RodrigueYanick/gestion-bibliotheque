@@ -7,28 +7,20 @@ import com.labo_academy.gestion_bibliotheque.entity.BorrowedStatus;
 import com.labo_academy.gestion_bibliotheque.entity.Copy;
 import com.labo_academy.gestion_bibliotheque.mappers.BorrowMapper;
 import com.labo_academy.gestion_bibliotheque.repository.BorrowRepository;
-<<<<<<< HEAD
-=======
 import com.labo_academy.gestion_bibliotheque.repository.CopyRepository;
 import lombok.RequiredArgsConstructor;
->>>>>>> e6a4eb49e23673d9eab285385c8e5178a10f282b
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-<<<<<<< HEAD
-
-public class ServiceBorrowImpl implements ServiceBorrow{
-=======
 @RequiredArgsConstructor
 public class ServiceBorrowImpl implements ServiceBorrow {
 
     private final BorrowRepository borrowRepository;
     private final BorrowMapper borrowMapper;
     private final CopyRepository copyRepository;
->>>>>>> e6a4eb49e23673d9eab285385c8e5178a10f282b
 
     @Override
 public BorrowResponseDto createBorrow(BorrowCreateDto borrowCreateDto) {

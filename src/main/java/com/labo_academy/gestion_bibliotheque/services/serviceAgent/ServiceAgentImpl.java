@@ -54,9 +54,9 @@ public class ServiceAgentImpl implements ServiceAgent {
 
 
     @Override
-    public ResponseEntity<Void> deleteById(Long id) {
+    public AgentResponseDto deleteById(Long id) {
         if (!agentRepository.existsById(id)){
-            System.out.println(" l'agent n'existe pas");
+            throw new RuntimeException("l(agent non trouvé avec l’ID : " + id);
         }
         agentRepository.deleteById(id);
         return null;

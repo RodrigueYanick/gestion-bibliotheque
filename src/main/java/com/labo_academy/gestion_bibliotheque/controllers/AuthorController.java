@@ -32,7 +32,7 @@ public class AuthorController {
         return serviceAuthor.getAllAuthor();
     }
 
-    @GetMapping("/update/{id}/{author}")
+    @PutMapping("/update/{id}/{author}")
     public AuthorResponseDto update(Long id, AuthorCreateDto dto){
         return serviceAuthor.update(id,dto);
     }

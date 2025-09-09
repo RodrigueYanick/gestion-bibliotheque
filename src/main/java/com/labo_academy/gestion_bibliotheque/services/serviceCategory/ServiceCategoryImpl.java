@@ -56,7 +56,7 @@ public class ServiceCategoryImpl implements ServiceCategory{
     @Override
     public void deleteById(long id) {
         if (!categoryRepository.existsById(id)){
-            System.out.println("la categirie n'existe pas");
+            throw new RuntimeException("la categirie n'existe pas");
         }
         categoryRepository.deleteById(id);
     }

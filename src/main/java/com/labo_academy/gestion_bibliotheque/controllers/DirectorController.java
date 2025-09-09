@@ -31,7 +31,7 @@ public class DirectorController {
         return serviceDirector.getAllDirecteur();
     }
 
-    @GetMapping("/update/{id}/{director}")
+    @PutMapping("/update/{id}/{director}")
     public DirecteurResponseDto update(Long id, DirecteurCreateDto dto){
         return serviceDirector.update(id,dto);
     }

@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/agent")
@@ -32,7 +31,7 @@ public class AgentController {
         return serviceAgent.getAllAgent();
     }
 
-    @GetMapping("/update/{id}/{agent}")
+    @PutMapping("/update/{id}/{agent}")
     public AgentResponseDto update(Long id, AgentCreateDto dto){
         return serviceAgent.update(id,dto);
     }
@@ -43,7 +42,7 @@ public class AgentController {
     }
 
     @GetMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable long id){
+    public AgentResponseDto deleteById(@PathVariable long id){
        return serviceAgent.deleteById(id);
     }
 

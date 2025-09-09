@@ -59,7 +59,7 @@ public class ServiceDirectorImpl implements ServiceDirector{
     @Override
     public void deleteById(long id) {
         if (!directorRepository.existsById(id)){
-            System.out.println("le directeur n'existe pas");
+            throw new RuntimeException("le directeur n'existe pas");
         }
         directorRepository.deleteById(id);
     }

@@ -1,6 +1,5 @@
 package com.labo_academy.gestion_bibliotheque.services.serviceLibrarian;
 
-<<<<<<< HEAD
 import com.labo_academy.gestion_bibliotheque.dto.librarianDto.LibrarianCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.librarianDto.LibrarianResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Librarian;
@@ -11,8 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
-=======
->>>>>>> e6a4eb49e23673d9eab285385c8e5178a10f282b
 
 public class ServiceLibrarianImpl implements ServiceLibrarian{
 
@@ -52,7 +49,7 @@ public class ServiceLibrarianImpl implements ServiceLibrarian{
     @Override
     public void deleteById(long id) {
         if (!librarianRepository.existsById(id)){
-            System.out.println("le directeur n'existe pas");
+            throw new RuntimeException("le directeur n'existe pas");
         }
         librarianRepository.deleteById(id);
     }

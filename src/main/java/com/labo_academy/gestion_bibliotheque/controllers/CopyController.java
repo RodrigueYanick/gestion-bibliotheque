@@ -32,7 +32,7 @@ public class CopyController {
         return serviceCopy.getAllCopy();
     }
 
-    @GetMapping("/update/{id}/{copy}")
+    @PutMapping("/update/{id}/{copy}")
     public CopyResponseDto update(Long id, CopyCreateDto dto){
         return serviceCopy.update(id,dto);
     }

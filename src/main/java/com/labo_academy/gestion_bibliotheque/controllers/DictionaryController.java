@@ -31,7 +31,7 @@ public class DictionaryController {
         return serviceDictionary.getAllDictionary();
     }
 
-    @GetMapping("/update/{id}/{dictionary}")
+    @PutMapping("/update/{id}/{dictionary}")
     public DictionaryResponseDto update(Long id, DictionaryCreateDto dto){
         return serviceDictionary.update(id,dto);
     }
