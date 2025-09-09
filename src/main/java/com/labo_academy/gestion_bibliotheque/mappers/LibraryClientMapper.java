@@ -1,13 +1,15 @@
 package com.labo_academy.gestion_bibliotheque.mappers;
 
-import com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientCreateDto;
+import  com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.LibraryClient;
 import com.labo_academy.gestion_bibliotheque.entity.RoleClient;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LibraryClientMapper {
 
-    
+
     // Convertit un CreateDto en entité LibraryClient.
     // Par défaut, un client est VISITOR à la création.
     

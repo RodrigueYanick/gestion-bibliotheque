@@ -1,16 +1,16 @@
 package com.labo_academy.gestion_bibliotheque.services.serviceDirector;
 
-import com.labo_academy.gestion_bibliotheque.dto.directeurDto.DirecteurCreateDto;
-import com.labo_academy.gestion_bibliotheque.dto.directeurDto.DirecteurResponseDto;
-
 import java.util.List;
+
+import com.labo_academy.gestion_bibliotheque.dto.directorDto.DirectorCreateDto;
+import com.labo_academy.gestion_bibliotheque.dto.directorDto.DirectorResponseDto;
 
 public interface ServiceDirector {
 
-    public DirecteurResponseDto createDirecteur(DirecteurCreateDto directeurCreateDto);
-    public List<DirecteurResponseDto> getAllDirecteur();
-    public DirecteurResponseDto getDirecteurById(long id);
-    public DirecteurResponseDto update(Long id, DirecteurCreateDto dto);
+    public DirectorResponseDto createDirecteur(DirectorCreateDto directeurCreateDto);
+    public List<DirectorResponseDto> getAllDirecteur();
+    public DirectorResponseDto getDirecteurById(long id);
+    public DirectorResponseDto update(Long id, DirectorCreateDto dto);
     public boolean existsById (long id);
     public  void deleteById(long id);
 }

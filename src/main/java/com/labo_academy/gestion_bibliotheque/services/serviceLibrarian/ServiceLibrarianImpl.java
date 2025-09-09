@@ -5,6 +5,7 @@ import com.labo_academy.gestion_bibliotheque.dto.librarianDto.LibrarianResponseD
 import com.labo_academy.gestion_bibliotheque.entity.Librarian;
 import com.labo_academy.gestion_bibliotheque.mappers.LibrarianMapper;
 import com.labo_academy.gestion_bibliotheque.repository.LibrarianRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,9 @@ import java.util.stream.Collectors;
 
 public class ServiceLibrarianImpl implements ServiceLibrarian{
 
+    @Autowired
     private LibrarianMapper librarianMapper;
+    @Autowired
     private LibrarianRepository librarianRepository;
     @Override
     public LibrarianResponseDto createLibrarian(LibrarianCreateDto librarianCreateDto) {

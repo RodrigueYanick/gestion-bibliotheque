@@ -4,6 +4,7 @@ import com.labo_academy.gestion_bibliotheque.dto.returnBillDto.ReturnedBillCreat
 import com.labo_academy.gestion_bibliotheque.dto.returnBillDto.ReturnedBillResponseDto;
 import com.labo_academy.gestion_bibliotheque.services.serviceReturnedBill.ReturnedBillService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,22 +18,25 @@ public class ReturnBillController {
     private ReturnedBillService returnedBillService;
 
     @PostMapping("/create")
-    public ResponseEntity<String> create(@RequestBody ReturnedBillCreateDto returnedBillCreateDto){
-        returnedBillService.create(returnedBillCreateDto);
-        return ResponseEntity.ok(" creer avec succes");
+    public ResponseEntity<ReturnedBillResponseDto> create(@RequestBody ReturnedBillCreateDto returnedBillCreateDto){
+        ReturnedBillResponseDto returnBill = returnedBillService.create(returnedBillCreateDto);
+        return new ResponseEntity<>(returnBill, HttpStatus.CREATED);
     }
 
     @GetMapping("/")
-    public List<ReturnedBillResponseDto> getAll(){
-        return returnedBillService.findAll();
+    public ResponseEntity<List<ReturnedBillResponseDto>> getAll(){
+        return ResponseEntity.ok(returnedBillService.findAll());
     }
 
     @GetMapping("{id}")
-    public ReturnedBillResponseDto getById(@PathVariable Long id){
-        return returnedBillService.findById(id);   }
+    public ResponseEntity<ReturnedBillResponseDto> getById(@PathVariable Long id){
+        return ResponseEntity.ok(returnedBillService.findById(id));   
+    }
 
-    @GetMapping("/delete/{id}")
-    public void deleteById(@PathVariable long id){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable long id){
         returnedBillService.delete(id);
+        return ResponseEntity.noContent().build();
+
     }
 }

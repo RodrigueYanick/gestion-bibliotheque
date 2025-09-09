@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @ToString
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Users {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

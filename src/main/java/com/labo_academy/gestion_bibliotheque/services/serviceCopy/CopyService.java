@@ -5,7 +5,7 @@ import java.util.List;
 import com.labo_academy.gestion_bibliotheque.dto.copyDto.CopyCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.copyDto.CopyResponseDto;
 
-public interface CopyServics {
+public interface CopyService {
 
     CopyResponseDto create(CopyCreateDto dto);
     List<CopyResponseDto> findAll();

@@ -31,7 +31,7 @@ public class BorrowController {
     public BorrowResponseDto getById(@PathVariable Long id){
         return serviceBorrow.getBorrowById(id) ;   }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable long id){
         serviceBorrow.deleteById(id);
     }

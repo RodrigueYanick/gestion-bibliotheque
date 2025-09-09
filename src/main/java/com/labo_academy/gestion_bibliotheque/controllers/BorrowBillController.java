@@ -30,7 +30,7 @@ public class BorrowBillController {
     public BorrowedBillResponseDto getById(@PathVariable Long id){
         return borrowBillService.findById(id) ;   }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable long id){
         borrowBillService.delete(id);
     }

@@ -3,6 +3,7 @@ package com.labo_academy.gestion_bibliotheque.services.servicelibraryClient;
 import java.util.ArrayList;
 import java.util.List;
 import com.labo_academy.gestion_bibliotheque.entity.Users;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientCreateDto;
@@ -18,7 +19,10 @@ import lombok.AllArgsConstructor;
 
 public class LibraryClientServiceImpl implements LibraryClientService {
 
+    @Autowired
     private LibraryClientRepository libraryClientRepository;
+
+    @Autowired
     private LibraryClientMapper libraryClientMapper;
 
     @Override
@@ -76,8 +80,8 @@ public class LibraryClientServiceImpl implements LibraryClientService {
     }
 
     @Override
-    public Users findByNom(String nom) {
-       return libraryClientRepository.findByNom(nom);
+    public Users findByNom(String lastName) {
+       return libraryClientRepository.findByLastName(lastName);
     }
 
 }

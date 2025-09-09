@@ -4,6 +4,7 @@ import com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientC
 import com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientResponseDto;
 import com.labo_academy.gestion_bibliotheque.services.servicelibraryClient.LibraryClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,30 +18,29 @@ public class LibraryClientController {
     private LibraryClientService libraryClientService;
 
     @PostMapping("/create")
-    public ResponseEntity<String> createClient(@RequestBody LibraryClientCreateDto libraryClientCreateDto){
-        libraryClientService.create(libraryClientCreateDto);
-        return ResponseEntity.ok("Client creer avec succes");
+    public ResponseEntity<LibraryClientResponseDto> createClient(@RequestBody LibraryClientCreateDto libraryClientCreateDto){
+        LibraryClientResponseDto libraryClient = libraryClientService.create(libraryClientCreateDto);
+        return new ResponseEntity<>(libraryClient, HttpStatus.CREATED);
     }
 
     @GetMapping("/")
-    public List<LibraryClientResponseDto> getAllClient(){
-
-        return libraryClientService.findAll();
+    public ResponseEntity<List<LibraryClientResponseDto>> getAllClient(){
+        return ResponseEntity.ok(libraryClientService.findAll());
     }
 
     @PutMapping("/update/{id}/{client}")
-    public LibraryClientResponseDto update(Long id, LibraryClientCreateDto dto){
-        return libraryClientService.update(id,dto);
+    public ResponseEntity<LibraryClientResponseDto> update(Long id, LibraryClientCreateDto dto){
+        return ResponseEntity.ok(libraryClientService.update(id,dto));
     }
 
     @GetMapping("{id}")
-    public LibraryClientResponseDto getClientById(@PathVariable Long id){
-        return libraryClientService.findById(id);
+    public ResponseEntity<LibraryClientResponseDto> getClientById(@PathVariable Long id){
+        return ResponseEntity.ok(libraryClientService.findById(id));
     }
 
-    @GetMapping("/delete/{id}")
-    public void deleteById(@PathVariable long id){
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable long id){
         libraryClientService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

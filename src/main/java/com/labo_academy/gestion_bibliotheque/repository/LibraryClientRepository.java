@@ -1,7 +1,5 @@
 package com.labo_academy.gestion_bibliotheque.repository;
 
-
-import com.labo_academy.gestion_bibliotheque.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.labo_academy.gestion_bibliotheque.entity.LibraryClient;
@@ -9,7 +7,7 @@ import com.labo_academy.gestion_bibliotheque.entity.LibraryClient;
 public interface LibraryClientRepository extends JpaRepository<LibraryClient, Long> {
 
     LibraryClient findByEmail(String email);
-    LibraryClient findByNom(String nom);
+    LibraryClient findByLastName(String lastName);
 
 
 }

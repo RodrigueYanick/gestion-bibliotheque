@@ -12,6 +12,6 @@ public interface ServiceAgent {
     public List<AgentResponseDto> getAllAgent();
     public AgentResponseDto getAgentById(Long id);
     public AgentResponseDto update(Long id, AgentCreateDto dto);
-    public AgentResponseDto deleteById(Long id);
+    public void deleteById(Long id);
 
 }

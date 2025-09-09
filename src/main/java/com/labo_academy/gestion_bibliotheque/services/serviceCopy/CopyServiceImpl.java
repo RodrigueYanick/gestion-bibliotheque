@@ -3,6 +3,7 @@ package com.labo_academy.gestion_bibliotheque.services.serviceCopy;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.labo_academy.gestion_bibliotheque.dto.copyDto.CopyCreateDto;
@@ -16,9 +17,11 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Service
 
-public class CopyServiceImpl implements CopyServics {
+public class CopyServiceImpl implements CopyService {
 
+    @Autowired
     private final CopyRepository copyRepository;
+    @Autowired
     private final CopyMapper copyMapper;
 
     @Override

@@ -6,6 +6,6 @@ import com.labo_academy.gestion_bibliotheque.entity.Users;
 
 public interface UsersRepository extends JpaRepository<Users, Long> {
 
-    Users findByNom(String nom);
+    Users findByLastName(String lastName);
 
 }

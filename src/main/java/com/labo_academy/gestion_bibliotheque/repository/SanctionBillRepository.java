@@ -8,6 +8,7 @@ import com.labo_academy.gestion_bibliotheque.entity.SanctionBill;
 
 public interface SanctionBillRepository extends JpaRepository<SanctionBill, Long> {
 
+    /*
 // Récupère le nom de famille de l'abonné ayant effectué l'emprunt retourné sanctionné, à partir du numéro de facture de sanction.
 String findBySanction_Returned_Borrow_Subscriber_LastNameAndSanctionBillNumber(String sanctionBillNumber); 
 
@@ -32,5 +33,7 @@ LocalDate findBySanction_Returned_Borrow_ReturnDateAndSanctionBillNumber(String 
 // Récupère la date effective de retour du document emprunté.
 LocalDate findBySanction_Returned_EffectiveReturnDateAndSanctionBillNumber(String sanctionBillNumber);
 
+
+     */
 
 }

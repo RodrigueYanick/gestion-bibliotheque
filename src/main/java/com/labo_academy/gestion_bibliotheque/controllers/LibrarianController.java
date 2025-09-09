@@ -2,9 +2,12 @@ package com.labo_academy.gestion_bibliotheque.controllers;
 
 import com.labo_academy.gestion_bibliotheque.dto.librarianDto.LibrarianCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.librarianDto.LibrarianResponseDto;
-import com.labo_academy.gestion_bibliotheque.repository.LibrarianRepository;
 import com.labo_academy.gestion_bibliotheque.services.serviceLibrarian.ServiceLibrarian;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,35 +18,36 @@ import java.util.List;
 public class LibrarianController {
 
     @Autowired
-    private LibrarianRepository librarianRepository;
-
-    @Autowired
     private ServiceLibrarian serviceLibrarian;
 
     @PostMapping("/create")
-    public ResponseEntity<String> createLibrarian(@RequestBody LibrarianCreateDto librarianCreateDto){
-        serviceLibrarian.createLibrarian(librarianCreateDto);
-        return ResponseEntity.ok("Librarian creer avec succes");
+    public ResponseEntity<LibrarianResponseDto> createLibrarian(@Valid @RequestBody LibrarianCreateDto LibrarianCreateDto){
+        LibrarianResponseDto createdLibrarian = serviceLibrarian.createLibrarian(LibrarianCreateDto);
+        return new ResponseEntity<>(createdLibrarian, HttpStatus.CREATED);
     }
+
 
     @GetMapping("/")
-    public List<LibrarianResponseDto> getAllLibrarian(){
-       return serviceLibrarian.getAllLibrarian();
+    public ResponseEntity<List<LibrarianResponseDto>> getAllLibrarian(){
+        return ResponseEntity.ok(serviceLibrarian.getAllLibrarian());
     }
 
-    @PutMapping("/update/{id}/{director}")
-    public LibrarianResponseDto update(Long id, LibrarianCreateDto dto){
-        return serviceLibrarian.update(id,dto);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<LibrarianResponseDto> update(@PathVariable Long id, @Valid @RequestBody LibrarianCreateDto dto) {
+        LibrarianResponseDto updatedLibrarian = serviceLibrarian.update(id, dto);
+        return ResponseEntity.ok(updatedLibrarian);
     }
+
 
     @GetMapping("{id}")
-    public LibrarianResponseDto getLibrarianById(@PathVariable Long id){
-        return serviceLibrarian.getLibrarianById(id);
+    public ResponseEntity<LibrarianResponseDto> getLibrarianById(@PathVariable Long id){
+        return ResponseEntity.ok(serviceLibrarian.getLibrarianById(id));
     }
 
-    @GetMapping("/delete/{id}")
-    public void deleteById(@PathVariable long id){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable long id){
         serviceLibrarian.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

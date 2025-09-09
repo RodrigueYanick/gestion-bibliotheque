@@ -2,20 +2,20 @@ package com.labo_academy.gestion_bibliotheque.mappers;
 
 import org.springframework.stereotype.Component;
 
-import com.labo_academy.gestion_bibliotheque.dto.directeurDto.DirecteurCreateDto;
-import com.labo_academy.gestion_bibliotheque.dto.directeurDto.DirecteurResponseDto;
+import com.labo_academy.gestion_bibliotheque.dto.directorDto.DirectorCreateDto;
+import com.labo_academy.gestion_bibliotheque.dto.directorDto.DirectorResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Director;
 
 @Component
 public class DirectorMapper {
 
     // Entity -> ResponseDto
-    public DirecteurResponseDto toDto(Director director) {
+    public DirectorResponseDto toDto(Director director) {
         if (director == null) {
             return null;
         }
 
-        return new DirecteurResponseDto(
+        return new DirectorResponseDto(
             director.getId(),
             director.getLastName(),
             director.getFirstName(),
@@ -29,7 +29,7 @@ public class DirectorMapper {
     }
 
     // CreateDto -> Entity
-    public Director toEntity(DirecteurCreateDto dto) {
+    public Director toEntity(DirectorCreateDto dto) {
         if (dto == null) {
             return null;
         }
