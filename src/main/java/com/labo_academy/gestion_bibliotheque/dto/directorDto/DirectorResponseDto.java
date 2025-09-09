@@ -1,4 +1,4 @@
-package com.labo_academy.gestion_bibliotheque.dto.directeurDto;
+package com.labo_academy.gestion_bibliotheque.dto.directorDto;
 
 import com.labo_academy.gestion_bibliotheque.dto.usersDto.UsersResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Role;
@@ -9,11 +9,11 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class DirecteurResponseDto extends UsersResponseDto {
+public class DirectorResponseDto extends UsersResponseDto {
 
     private String idNumber;
 
-    public DirecteurResponseDto(Long id, String lastName, String firstName,
+    public DirectorResponseDto(Long id, String lastName, String firstName,
                                 LocalDate birthDate, String email, String address,
                                 Role role, String imageUrl, String idNumber) {
         // On appelle bien le constructeur parent avec imageUrl

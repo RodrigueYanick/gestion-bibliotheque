@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Service
 
-public class CopyServiceImpl implements CopyServics {
+public class CopyServiceImpl implements CopyService {
 
     private final CopyRepository copyRepository;
     private final CopyMapper copyMapper;

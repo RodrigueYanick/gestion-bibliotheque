@@ -1,4 +1,4 @@
-package com.labo_academy.gestion_bibliotheque.dto.directeurDto;
+package com.labo_academy.gestion_bibliotheque.dto.directorDto;
 
 import com.labo_academy.gestion_bibliotheque.dto.usersDto.UsersCreateDto;
 import com.labo_academy.gestion_bibliotheque.entity.Role;
@@ -10,11 +10,11 @@ import lombok.Setter;
 import java.time.LocalDate;
 @Getter
 @Setter
-public class DirecteurCreateDto extends UsersCreateDto {
+public class DirectorCreateDto extends UsersCreateDto {
 
     @NotBlank(message = "Le numéro de pièce d'identité est obligatoire")
     private String idNumber;
-    public DirecteurCreateDto(String lastName, String firstName, LocalDate birthDate, String password, String email, String address, Role role, String imageURL, String idNumber) {
+    public DirectorCreateDto(String lastName, String firstName, LocalDate birthDate, String password, String email, String address, Role role, String imageURL, String idNumber) {
         super(lastName, firstName, birthDate, password, email, address, role, imageURL);
         this.idNumber = idNumber;
     }

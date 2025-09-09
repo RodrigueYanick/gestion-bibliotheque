@@ -1,7 +1,7 @@
 package com.labo_academy.gestion_bibliotheque.services.serviceDirector;
 
-import com.labo_academy.gestion_bibliotheque.dto.directeurDto.DirecteurCreateDto;
-import com.labo_academy.gestion_bibliotheque.dto.directeurDto.DirecteurResponseDto;
+import com.labo_academy.gestion_bibliotheque.dto.directorDto.DirectorCreateDto;
+import com.labo_academy.gestion_bibliotheque.dto.directorDto.DirectorResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Director;
 import com.labo_academy.gestion_bibliotheque.mappers.DirectorMapper;
 import com.labo_academy.gestion_bibliotheque.repository.DirectorRepository;
@@ -16,7 +16,7 @@ public class ServiceDirectorImpl implements ServiceDirector{
     private DirectorRepository directorRepository;
     private  DirectorMapper directorMapper;
     @Override
-    public DirecteurResponseDto createDirecteur(DirecteurCreateDto directeurCreateDto) {
+    public DirectorResponseDto createDirecteur(DirectorCreateDto directeurCreateDto) {
         Director director = directorMapper.toEntity(directeurCreateDto);
         directorRepository.save(director);
         return directorMapper.toDto(director);
@@ -24,10 +24,10 @@ public class ServiceDirectorImpl implements ServiceDirector{
     }
 
     @Override
-    public List<DirecteurResponseDto> getAllDirecteur() {
+    public List<DirectorResponseDto> getAllDirecteur() {
         List<Director> directorList = directorRepository.findAll();
         if(directorList.isEmpty()){throw new RuntimeException("Aucun Directeur trouver.");}
-        List<DirecteurResponseDto> directeurResponseDtos = new ArrayList<>();
+        List<DirectorResponseDto> directeurResponseDtos = new ArrayList<>();
         for (Director director : directorList) {
             directeurResponseDtos.add(directorMapper.toDto(director));
         }
@@ -35,13 +35,13 @@ public class ServiceDirectorImpl implements ServiceDirector{
     }
 
     @Override
-    public DirecteurResponseDto getDirecteurById(long id) {
+    public DirectorResponseDto getDirecteurById(long id) {
         Director director = directorRepository.findById(id).orElseThrow(()-> new RuntimeException("directeur introuvable"));
         return directorMapper.toDto(director);
     }
 
     @Override
-    public DirecteurResponseDto update(Long id, DirecteurCreateDto dto) {
+    public DirectorResponseDto update(Long id, DirectorCreateDto dto) {
         Director director = directorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Author non trouvé avec l’ID : " + id));
         director.setLastName(dto.getLastName());

@@ -1,7 +1,5 @@
 package com.labo_academy.gestion_bibliotheque.services.serviceReturned;
 
-import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookCreateDto;
-import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookResponseDto;
 import com.labo_academy.gestion_bibliotheque.dto.returnedDto.ReturnedCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.returnedDto.ReturnedResponseDto;
 

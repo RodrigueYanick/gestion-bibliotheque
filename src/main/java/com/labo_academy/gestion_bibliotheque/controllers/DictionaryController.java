@@ -4,45 +4,54 @@ import com.labo_academy.gestion_bibliotheque.dto.dictionaryDto.DictionaryCreateD
 import com.labo_academy.gestion_bibliotheque.dto.dictionaryDto.DictionaryResponseDto;
 import com.labo_academy.gestion_bibliotheque.repository.DictionaryRepository;
 import com.labo_academy.gestion_bibliotheque.services.serviceDictionary.ServiceDictionary;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/dictionary")
+@RequestMapping("api/Dictionary")
 public class DictionaryController {
 
     @Autowired
-    private DictionaryRepository dictionaryRepository;
+    private DictionaryRepository DictionaryRepository;
 
     @Autowired
     private ServiceDictionary serviceDictionary;
 
     @PostMapping("/create")
-    public ResponseEntity<String> createDictionary(@RequestBody DictionaryCreateDto dictionaryCreateDto){
-        serviceDictionary.createDictionary(dictionaryCreateDto);
-        return ResponseEntity.ok("Dictionary creer avec succes");
+    public ResponseEntity<DictionaryResponseDto> createDictionary(@Valid @RequestBody DictionaryCreateDto DictionaryCreateDto){
+        DictionaryResponseDto createdDictionary = serviceDictionary.createDictionary(DictionaryCreateDto);
+        return new ResponseEntity<>(createdDictionary, HttpStatus.CREATED);
     }
+
 
     @GetMapping("/")
-    public List<DictionaryResponseDto> getAllDictionary(){
-        return serviceDictionary.getAllDictionary();
+    public ResponseEntity<List<DictionaryResponseDto>> getAllDictionary(){
+        return ResponseEntity.ok(serviceDictionary.getAllDictionary());
     }
 
-    @GetMapping("/update/{id}/{dictionary}")
-    public DictionaryResponseDto update(Long id, DictionaryCreateDto dto){
-        return serviceDictionary.update(id,dto);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<DictionaryResponseDto> update(@PathVariable Long id, @Valid @RequestBody DictionaryCreateDto dto) {
+        DictionaryResponseDto updatedDictionary = serviceDictionary.update(id, dto);
+        return ResponseEntity.ok(updatedDictionary); // retourne 200 OK avec l'objet mis à jour
     }
+
 
     @GetMapping("{id}")
-    public DictionaryResponseDto getDictionaryById(@PathVariable Long id){
-        return serviceDictionary.getDictionaryById(id);
+    public ResponseEntity<DictionaryResponseDto> getDictionaryById(@PathVariable Long id){
+        return ResponseEntity.ok(serviceDictionary.getDictionaryById(id));
     }
 
     @GetMapping("/delete/{id}")
-    public void deleteById(@PathVariable long id){
+    public ResponseEntity<Void> deleteById(@PathVariable long id){
         serviceDictionary.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
+
 }

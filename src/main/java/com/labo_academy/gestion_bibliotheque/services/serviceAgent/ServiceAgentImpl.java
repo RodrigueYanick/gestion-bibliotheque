@@ -5,7 +5,6 @@ import com.labo_academy.gestion_bibliotheque.dto.agentDto.AgentResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Agent;
 import com.labo_academy.gestion_bibliotheque.mappers.AgentMapper;
 import com.labo_academy.gestion_bibliotheque.repository.AgentRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -54,12 +53,11 @@ public class ServiceAgentImpl implements ServiceAgent {
 
 
     @Override
-    public ResponseEntity<Void> deleteById(Long id) {
+    public void deleteById(Long id) {
         if (!agentRepository.existsById(id)){
             System.out.println(" l'agent n'existe pas");
         }
         agentRepository.deleteById(id);
-        return null;
     }
 
 }

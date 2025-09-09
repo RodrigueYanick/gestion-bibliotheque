@@ -1,7 +1,5 @@
 package com.labo_academy.gestion_bibliotheque.services.serviceDictionary;
 
-import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookCreateDto;
-import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookResponseDto;
 import com.labo_academy.gestion_bibliotheque.dto.dictionaryDto.DictionaryCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.dictionaryDto.DictionaryResponseDto;
 

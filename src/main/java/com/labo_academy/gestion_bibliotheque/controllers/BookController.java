@@ -4,7 +4,11 @@ import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookResponseDto;
 import com.labo_academy.gestion_bibliotheque.repository.BookRepository;
 import com.labo_academy.gestion_bibliotheque.services.serviceBook.ServiceBook;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,36 +19,39 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    private BookRepository bookRepository;
+    private BookRepository BookRepository;
 
     @Autowired
     private ServiceBook serviceBook;
 
     @PostMapping("/create")
-    public ResponseEntity<String> createBook(@RequestBody BookCreateDto bookCreateDto){
-        serviceBook.createBook(bookCreateDto);
-        return ResponseEntity.ok("Livre creer avec succes");
+    public ResponseEntity<BookResponseDto> createBook(@Valid @RequestBody BookCreateDto BookCreateDto){
+        BookResponseDto createdBook = serviceBook.createBook(BookCreateDto);
+        return new ResponseEntity<>(createdBook, HttpStatus.CREATED);
     }
 
 
     @GetMapping("/")
-    public List<BookResponseDto> getAllBook(){
-        return serviceBook.getAllBookk();
+    public ResponseEntity<List<BookResponseDto>> getAllBook(){
+        return ResponseEntity.ok(serviceBook.getAllBookk());
     }
 
-    @GetMapping("/update/{id}/{book}")
-    public BookResponseDto update(Long id, BookCreateDto dto){
-        return serviceBook.update(id,dto);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<BookResponseDto> update(@PathVariable Long id, @Valid @RequestBody BookCreateDto dto) {
+        BookResponseDto updatedBook = serviceBook.update(id, dto);
+        return ResponseEntity.ok(updatedBook); // retourne 200 OK avec l'objet mis à jour
     }
+
 
     @GetMapping("{id}")
-    public BookResponseDto getBookById(@PathVariable Long id){
-        return serviceBook.getBookById(id);
+    public ResponseEntity<BookResponseDto> getBookById(@PathVariable Long id){
+        return ResponseEntity.ok(serviceBook.getBookById(id));
     }
 
     @GetMapping("/delete/{id}")
-    public void deleteById(@PathVariable long id){
+    public ResponseEntity<Void> deleteById(@PathVariable long id){
         serviceBook.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -4,7 +4,11 @@ import com.labo_academy.gestion_bibliotheque.dto.authorDto.AuthorCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.authorDto.AuthorResponseDto;
 import com.labo_academy.gestion_bibliotheque.repository.AuthorRepository;
 import com.labo_academy.gestion_bibliotheque.services.serviceAuthor.ServiceAuthor;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,30 +25,33 @@ public class AuthorController {
     private ServiceAuthor serviceAuthor;
 
     @PostMapping("/create")
-    public ResponseEntity<String> createAuthor(@RequestBody AuthorCreateDto authorCreateDto){
-        serviceAuthor.createAuthor(authorCreateDto);
-        return ResponseEntity.ok("Auteur creer avec succes");
+    public ResponseEntity<AuthorResponseDto> createAuthor(@Valid @RequestBody AuthorCreateDto authorCreateDto){
+        AuthorResponseDto createdAuthor = serviceAuthor.createAuthor(authorCreateDto);
+        return new ResponseEntity<>(createdAuthor, HttpStatus.CREATED);
     }
 
 
     @GetMapping("/")
-    public List<AuthorResponseDto> getAllAuthor(){
-        return serviceAuthor.getAllAuthor();
+    public ResponseEntity<List<AuthorResponseDto>> getAllAuthor(){
+        return ResponseEntity.ok(serviceAuthor.getAllAuthor());
     }
 
-    @GetMapping("/update/{id}/{author}")
-    public AuthorResponseDto update(Long id, AuthorCreateDto dto){
-        return serviceAuthor.update(id,dto);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<AuthorResponseDto> update(@PathVariable Long id, @Valid @RequestBody AuthorCreateDto dto) {
+        AuthorResponseDto updatedAuthor = serviceAuthor.update(id, dto);
+        return ResponseEntity.ok(updatedAuthor); // retourne 200 OK avec l'objet mis à jour
     }
+
 
     @GetMapping("{id}")
-    public AuthorResponseDto getAuthorById(@PathVariable Long id){
-        return serviceAuthor.getAuthorById(id);
+    public ResponseEntity<AuthorResponseDto> getAuthorById(@PathVariable Long id){
+        return ResponseEntity.ok(serviceAuthor.getAuthorById(id));
     }
 
     @GetMapping("/delete/{id}")
-    public void deleteById(@PathVariable long id){
+    public ResponseEntity<Void> deleteById(@PathVariable long id){
         serviceAuthor.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

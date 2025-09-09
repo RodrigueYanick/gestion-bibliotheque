@@ -1,6 +1,5 @@
 package com.labo_academy.gestion_bibliotheque.services.serviceAuthor;
 
-import com.labo_academy.gestion_bibliotheque.dto.agentDto.AgentResponseDto;
 import com.labo_academy.gestion_bibliotheque.dto.authorDto.AuthorCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.authorDto.AuthorResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Author;

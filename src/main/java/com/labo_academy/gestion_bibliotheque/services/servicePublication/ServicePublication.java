@@ -1,7 +1,5 @@
 package com.labo_academy.gestion_bibliotheque.services.servicePublication;
 
-import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookCreateDto;
-import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookResponseDto;
 import com.labo_academy.gestion_bibliotheque.dto.publicationDto.PublicationCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.publicationDto.PublicationResponseDto;
 
