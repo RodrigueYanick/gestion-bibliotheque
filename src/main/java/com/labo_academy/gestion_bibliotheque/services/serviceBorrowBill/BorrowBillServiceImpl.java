@@ -25,9 +25,9 @@ public class BorrowBillServiceImpl implements BorrowBillService {
 
     @Override
     public BorrowedBillResponseDto create(Long borrowId) {
-        // Vérifier l’existence de l’emprunt
+        // Vérifier l’existence de l'emprunt
         Borrow borrow = borrowRepository.findById(borrowId)
-                .orElseThrow(() -> new RuntimeException("Emprunt non trouvé avec l’ID : " + borrowId));
+                .orElseThrow(() -> new RuntimeException("Emprunt non trouvé avec l'ID : " + borrowId));
 
         // Vérifier si une facture existe déjà pour cet emprunt
         if (borrow.getFacture() != null) {
