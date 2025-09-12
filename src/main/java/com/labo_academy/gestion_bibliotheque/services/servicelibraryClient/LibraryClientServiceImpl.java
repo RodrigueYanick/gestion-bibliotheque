@@ -3,11 +3,14 @@ package com.labo_academy.gestion_bibliotheque.services.servicelibraryClient;
 import java.util.ArrayList;
 import java.util.List;
 import com.labo_academy.gestion_bibliotheque.entity.Users;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.libraryClientDto.LibraryClientResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.LibraryClient;
+import com.labo_academy.gestion_bibliotheque.entity.Role;
 import com.labo_academy.gestion_bibliotheque.mappers.LibraryClientMapper;
 import com.labo_academy.gestion_bibliotheque.repository.LibraryClientRepository;
 
@@ -18,12 +21,20 @@ import lombok.AllArgsConstructor;
 
 public class LibraryClientServiceImpl implements LibraryClientService {
 
+    @Autowired
     private LibraryClientRepository libraryClientRepository;
+
+    @Autowired
     private LibraryClientMapper libraryClientMapper;
+
+    @Autowired 
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public LibraryClientResponseDto create(LibraryClientCreateDto dto) {
         LibraryClient client = libraryClientMapper.toEntity(dto);
+        client.setRole(Role.VISITOR);
+        client.setPassword(passwordEncoder.encode(dto.getPassword()));
         return libraryClientMapper.toDto(libraryClientRepository.save(client));
     }
 
@@ -54,6 +65,7 @@ public class LibraryClientServiceImpl implements LibraryClientService {
         client.setBirthDate(dto.getBirthDate());
         client.setEmail(dto.getEmail());
         client.setAddress(dto.getAddress());
+        client.setPassword(passwordEncoder.encode(dto.getPassword()));
 
         return libraryClientMapper.toDto(libraryClientRepository.save(client));
     }
@@ -61,7 +73,7 @@ public class LibraryClientServiceImpl implements LibraryClientService {
     @Override
     public void delete(Long id) {
         if (!libraryClientRepository.existsById(id)) {
-            throw new RuntimeException("Client non trouvé avec l’ID : " + id);
+            throw new RuntimeException("Client non trouvé avec l'ID : " + id);
         }
         libraryClientRepository.deleteById(id);
     }
@@ -69,15 +81,15 @@ public class LibraryClientServiceImpl implements LibraryClientService {
     @Override
     public LibraryClientResponseDto upgradeToSubscriber(Long id, String accountNumber) {
         LibraryClient client = libraryClientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Client non trouvé avec l’ID : " + id));
+                .orElseThrow(() -> new RuntimeException("Client non trouvé avec l'ID : " + id));
 
         client.upgradeToSubscriber(accountNumber);
         return libraryClientMapper.toDto(libraryClientRepository.save(client));
     }
 
     @Override
-    public Users findByNom(String nom) {
-       return libraryClientRepository.findByNom(nom);
+    public Users findByNom(String lastName) {
+       return libraryClientRepository.findByLastName(lastName);
     }
 
 }

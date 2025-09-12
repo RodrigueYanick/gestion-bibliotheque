@@ -5,6 +5,7 @@ import com.labo_academy.gestion_bibliotheque.dto.bookDto.BookResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Book;
 import com.labo_academy.gestion_bibliotheque.mappers.BookMapper;
 import com.labo_academy.gestion_bibliotheque.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,8 +14,11 @@ import java.util.List;
 
 public class ServiceBookImpl implements ServiceBook{
 
+    @Autowired
     private BookRepository bookRepository;
+    @Autowired
     private BookMapper bookMapper;
+    
     @Override
     public BookResponseDto createBook(BookCreateDto bookCreateDto) {
         Book book = bookMapper.fromDtoToEntity(bookCreateDto);
@@ -60,12 +64,8 @@ public class ServiceBookImpl implements ServiceBook{
     }
 
     @Override
-    public List<Book> findBookByAuthor(String nameAuthor) {
-        return bookRepository.findBookByAuthor(nameAuthor);
+    public Book findBookByTitle(String title) {
+        return bookRepository.findBookByTitle(title);
     }
 
-    @Override
-    public List<Book> findBookByCategory(String categoryName) {
-        return bookRepository.findBooKByCategory(categoryName);
-    }
 }

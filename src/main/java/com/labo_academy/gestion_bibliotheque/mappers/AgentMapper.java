@@ -36,7 +36,6 @@ public class AgentMapper {
         agent.setPassword(agentCreateDto.getPassword());
         agent.setEmail(agentCreateDto.getEmail());
         agent.setAddress(agentCreateDto.getAddress());
-        agent.setRole(agentCreateDto.getRole());
         agent.setImageUrl(agentCreateDto.getImageUrl()); // 👉 récupère l’URL
         agent.setIdNumber(agentCreateDto.getIdNumber());
 

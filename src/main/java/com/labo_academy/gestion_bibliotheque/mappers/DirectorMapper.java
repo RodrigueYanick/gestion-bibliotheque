@@ -6,6 +6,10 @@ import com.labo_academy.gestion_bibliotheque.dto.directorDto.DirectorCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.directorDto.DirectorResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Director;
 
+/**
+ * Mapper simple DTO <-> Entity.
+ * Important : NE PAS setPassword ici — on encode le mot de passe dans le service avant de sauver.
+ */
 @Component
 public class DirectorMapper {
 
@@ -28,7 +32,7 @@ public class DirectorMapper {
         );
     }
 
-    // CreateDto -> Entity
+    // CreateDto -> Entity (ne pas encoder / set password ici)
     public Director toEntity(DirectorCreateDto dto) {
         if (dto == null) {
             return null;
@@ -38,12 +42,12 @@ public class DirectorMapper {
         director.setLastName(dto.getLastName());
         director.setFirstName(dto.getFirstName());
         director.setBirthDate(dto.getBirthDate());
-        director.setPassword(dto.getPassword());
+        // Ne pas appeler director.setPassword(dto.getPassword()) ici.
+        // director.setPassword(dto.getPassword());
         director.setEmail(dto.getEmail());
         director.setAddress(dto.getAddress());
-        director.setRole(dto.getRole());
         director.setImageUrl(dto.getImageUrl());
-        director.setIdNumber(dto.getIdNumber());                     
+        director.setIdNumber(dto.getIdNumber());
 
         return director;
     }

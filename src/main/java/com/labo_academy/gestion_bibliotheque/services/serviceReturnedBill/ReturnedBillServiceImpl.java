@@ -28,12 +28,12 @@ public class ReturnedBillServiceImpl implements ReturnedBillService {
     public ReturnedBillResponseDto create(ReturnedBillCreateDto dto) {
         Returned returned = returnedRepository.findByReturnNumber(dto.getReturnedNumber()).orElseThrow(() -> new RuntimeException("Retour introuvable avec numéro : " + dto.getReturnedNumber()));
 
-    // Generer une facture avec un numero unique
-    ReturnedBill returnedBill = new ReturnedBill();
-    returnedBill.setBillNumber("BILL-" + System.currentTimeMillis());
-    returnedBill.setReturned(returned);
+        // Generer une facture avec un numero unique
+        ReturnedBill returnedBill = new ReturnedBill();
+        returnedBill.setBillNumber("BILL-" + System.currentTimeMillis());
+        returnedBill.setReturned(returned);
 
-    return returnedBillMapper.toDto(returnedBillRepository.save(returnedBill));
+        return returnedBillMapper.toDto(returnedBillRepository.save(returnedBill));
     }
 
     @Override

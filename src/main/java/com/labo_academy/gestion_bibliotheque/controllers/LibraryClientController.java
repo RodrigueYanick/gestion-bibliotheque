@@ -29,7 +29,7 @@ public class LibraryClientController {
     }
 
     @PutMapping("/update/{id}/{client}")
-    public ResponseEntity<LibraryClientResponseDto> update(Long id, LibraryClientCreateDto dto){
+    public ResponseEntity<LibraryClientResponseDto> update(@PathVariable Long id, @RequestBody LibraryClientCreateDto dto){
         return ResponseEntity.ok(libraryClientService.update(id,dto));
     }
 
@@ -43,4 +43,10 @@ public class LibraryClientController {
         libraryClientService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/upgrade/{id}/{account}")
+    public ResponseEntity<LibraryClientResponseDto> upgradeToSubscriber(@PathVariable Long id, @PathVariable String accountNumber){
+        return ResponseEntity.ok(libraryClientService.upgradeToSubscriber(id, accountNumber));
+    }
+
 }

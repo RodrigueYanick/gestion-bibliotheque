@@ -7,12 +7,15 @@ import com.labo_academy.gestion_bibliotheque.entity.Book;
 import com.labo_academy.gestion_bibliotheque.entity.Category;
 import com.labo_academy.gestion_bibliotheque.repository.AuthorRepository;
 import com.labo_academy.gestion_bibliotheque.repository.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BookMapper {
 
+    @Autowired
     private final AuthorRepository authorRepository;
+    @Autowired
     private final CategoryRepository categoryRepository;
 
     public BookMapper(AuthorRepository authorRepository, CategoryRepository categoryRepository) {
@@ -60,7 +63,6 @@ public class BookMapper {
 
         Book book = new Book();
         book.setTitle(dto.getTitle());
-        book.setDocumentNumber(dto.getDocumentNumber());
         book.setPublicationDate(dto.getPublicationDate());
         book.setPublisher(dto.getPublisher());
         book.setIsbn(dto.getIsbn());

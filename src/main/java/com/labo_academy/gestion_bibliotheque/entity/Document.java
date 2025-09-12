@@ -80,6 +80,7 @@ public class Document {
     protected void onCreate() {
         this.creationDate = LocalDate.now();
         this.lastUpdateDate = LocalDate.now();
+        this.documentNumber = "Doc-" + System.currentTimeMillis();
     }
 
     @PreUpdate

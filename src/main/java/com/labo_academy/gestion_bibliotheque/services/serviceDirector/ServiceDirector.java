@@ -7,9 +7,9 @@ import com.labo_academy.gestion_bibliotheque.dto.directorDto.DirectorResponseDto
 
 public interface ServiceDirector {
 
-    public DirectorResponseDto createDirecteur(DirectorCreateDto directeurCreateDto);
-    public List<DirectorResponseDto> getAllDirecteur();
-    public DirectorResponseDto getDirecteurById(long id);
+    public DirectorResponseDto createDirector(DirectorCreateDto dto);
+    public List<DirectorResponseDto> getAllDirector();
+    public DirectorResponseDto getDirectorById(long id);
     public DirectorResponseDto update(Long id, DirectorCreateDto dto);
     public boolean existsById (long id);
     public  void deleteById(long id);

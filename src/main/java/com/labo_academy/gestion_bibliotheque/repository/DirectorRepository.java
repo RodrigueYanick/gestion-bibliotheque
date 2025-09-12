@@ -6,4 +6,6 @@ import com.labo_academy.gestion_bibliotheque.entity.Director;
 
 public interface DirectorRepository extends JpaRepository<Director, Long> {
 
+    Director findByEmail(String email);
+
 }

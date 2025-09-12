@@ -3,58 +3,72 @@ package com.labo_academy.gestion_bibliotheque.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class JWTUtil {
 
-    // Cle secrète pour signer le token (a mettre dans application.properties plus tard)
-    private static final String SECRET = "SecretKey123";
+    // Clé secrète utilisée pour signer et vérifier les tokens JWT
+    // ⚠️ Elle doit faire au moins 32 caractères pour être valide avec HS256
+    private static final String SECRET = "MaCleSuperSecreteDe32CaracteresMin123456";
 
-    // Durée de validité du token (ici 1 jour = 24h)
-    private static final long EXPIRATION_TIME = 864_000_00; 
+    // Durée de validité d’un token en millisecondes (ici environ 1 jour)
+    private static final long EXPIRATION_TIME = 864_000_00;
 
-    // ===============================
-    // 1 Générer un token
-    // ===============================
-    public static String generateToken(String username) {
-        // username = identifiant de l’utilisateur (par ex : email)
+    // Génère un objet clé à partir de la chaîne secrète (pour signer les tokens)
+    private static final SecretKey KEY = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
+
+    /**
+     * Génère un token JWT contenant :
+     * - le nom d'utilisateur
+     * - le rôle (précédé de "ROLE_")
+     * - la date d'émission et d'expiration
+     */
+    public String generateToken(String username, String role) {
         return Jwts.builder()
-                .setSubject(username) // Sujet = identifiant principal dans le token
-                .setIssuedAt(new Date()) // Date de création du token
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // Date d’expiration
-                .signWith(SignatureAlgorithm.HS512, SECRET) // Signature avec clé secrète
-                .compact(); // Générer le token final
+                .setSubject(username)                               // Nom d'utilisateur
+                .claim("roles", "ROLE_" + role)                      // Rôle dans les claims
+                .setIssuedAt(new Date())                             // Date de création du token
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // Expiration
+                .signWith(KEY, SignatureAlgorithm.HS256)             // Signature avec clé + algorithme
+                .compact();                                          // Génère la chaîne JWT finale
     }
 
-    // ===============================
-    // 2️ Extraire les informations du token
-    // ===============================
-    public static Claims getClaims(String token) {
-        // Décrypter le token et récupérer son contenu
-        return Jwts.parser()
-                .setSigningKey(SECRET) // Vérifier avec la clé secrète
-                .parseClaimsJws(token)
-                .getBody(); // Retourne le "corps" du token (claims)
+    /**
+     * Récupère les informations (claims) contenues dans un token JWT.
+     * Vérifie aussi que la signature est valide grâce à la clé secrète.
+     */
+    public Claims getClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(KEY)                 // clé pour vérifier la signature
+                .build()
+                .parseClaimsJws(token)              // vérifie et décode le token
+                .getBody();                         // renvoie le contenu (claims)
     }
 
-    // ===============================
-    // 3️ Récupérer le username depuis le token
-    // ===============================
-    public static String getUsername(String token) {
-        return getClaims(token).getSubject(); // le "subject" = username
+    /**
+     * Récupère uniquement le nom d'utilisateur stocké dans le token.
+     */
+    public String getUsername(String token) {
+        return getClaims(token).getSubject();
     }
 
-    // ===============================
-    // 4️ Vérifier si un token est encore valide
-    // ===============================
-    public static boolean isTokenValid(String token) {
+    /**
+     * Vérifie si le token est encore valide (non expiré et signature correcte).
+     */
+    public boolean isTokenValid(String token) {
         try {
             Claims claims = getClaims(token);
-            Date expirationDate = claims.getExpiration();
-            return expirationDate.after(new Date()); // vrai si la date d’expiration est dans le futur
+            Date expiration = claims.getExpiration();
+            return expiration.after(new Date());  // compare la date d'expiration à maintenant
         } catch (Exception e) {
-            return false; // si une erreur arrive (token invalide, expiré, modifié)
+            return false;  // token invalide ou expiré
         }
     }
 }

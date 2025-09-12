@@ -41,7 +41,6 @@ public class LibrarianMapper {
         librarian.setPassword(dto.getPassword());
         librarian.setEmail(dto.getEmail());
         librarian.setAddress(dto.getAddress());
-        librarian.setRole(dto.getRole());
         librarian.setImageUrl(dto.getImageUrl());
         librarian.setIdNumber(dto.getIdNumber());
 

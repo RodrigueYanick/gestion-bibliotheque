@@ -14,8 +14,8 @@ public class AgentCreateDto extends UsersCreateDto {
     @NotBlank(message = "Le numéro de pièce d'identité est obligatoire")
     private String idNumber;
 
-    public AgentCreateDto(String lastName, String firstName, LocalDate birthDate, String password, String email, String address, Role role, String imageURL, String idNumber) {
-        super(lastName, firstName, birthDate, password, email, address, role, imageURL);
+    public AgentCreateDto(String lastName, String firstName, LocalDate birthDate, String password, String email, String address, String imageURL, String idNumber) {
+        super(lastName, firstName, birthDate, password, email, address, imageURL);
         this.idNumber = idNumber;
     }
 }

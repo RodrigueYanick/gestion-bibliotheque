@@ -49,7 +49,7 @@ public class ReturnedServiceImpl implements ReturnedService {
             throw new RuntimeException("Aucune copie disponible pour ce document.");
         }
 
-        availableCopy.setBorrowed(true);
+        availableCopy.setBorrowed(false);
 
         // Sauvegarder l’emprunt mis à jour
         borrowRepository.save(borrow);

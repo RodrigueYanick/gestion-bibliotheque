@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @ToString
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Users {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public abstract class Users {
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
-    @Column(name = "password", nullable = false, length = 100)
+    @Column(name = "password", nullable = false, length = 255)
     private String password;
 
     @Column(name = "email", nullable = false, length = 50, unique = true)

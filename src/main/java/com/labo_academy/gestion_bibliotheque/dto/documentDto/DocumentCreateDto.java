@@ -20,10 +20,6 @@ public class DocumentCreateDto {
     @NotBlank(message = "Le titre est obligatoire")
     @Size(max = 100, message = "La taille du titre doit être inférieure à 100 caractères")
     private String title;
-    
-    @NotBlank(message = "le numero unique du document est important")
-    @Size(max = 100, message = "La taille du numero de document doit être inférieure à 100 caractères")
-    private  String documentNumber;
 
     @NotNull(message = "La date de publication est obligatoire")
     @PastOrPresent(message = "La date de publication ne peut pas être dans le futur")

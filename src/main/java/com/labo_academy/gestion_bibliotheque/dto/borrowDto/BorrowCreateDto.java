@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BorrowCreateDto {
 
-    private String documentMatricule;   // suffisant pour identifier le document
+    private String documentNumber;   // suffisant pour identifier le document
     private String subscribersEmail;    // permet de retrouver l’abonné
 
 }

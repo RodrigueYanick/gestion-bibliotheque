@@ -54,7 +54,6 @@ public class DictionaryMapper {
 
         Dictionary dictionary = new Dictionary();
         dictionary.setTitle(dto.getTitle());
-        dictionary.setDocumentNumber(dto.getDocumentNumber());
         dictionary.setPublicationDate(dto.getPublicationDate());
         dictionary.setPublisher(dto.getPublisher());
         dictionary.setLanguage(dto.getLanguage());

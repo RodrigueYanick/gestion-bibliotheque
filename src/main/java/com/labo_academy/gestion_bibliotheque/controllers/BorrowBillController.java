@@ -1,5 +1,6 @@
 package com.labo_academy.gestion_bibliotheque.controllers;
 
+import com.labo_academy.gestion_bibliotheque.dto.borrowBillDto.BorrowedBillCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.borrowBillDto.BorrowedBillResponseDto;
 import com.labo_academy.gestion_bibliotheque.services.serviceBorrowBill.BorrowBillService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class BorrowBillController {
     private BorrowBillService borrowBillService;
 
     @PostMapping("/create")
-    public ResponseEntity<String> create(@RequestBody Long borrowId){
-        borrowBillService.create(borrowId);
+    public ResponseEntity<String> create(@RequestBody BorrowedBillCreateDto dto){
+        borrowBillService.create(dto);
         return ResponseEntity.ok(" creer avec succes");
     }
 

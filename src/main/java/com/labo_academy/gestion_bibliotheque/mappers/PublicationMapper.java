@@ -53,7 +53,6 @@ public class PublicationMapper {
 
         Publication publication = new Publication();
         publication.setTitle(dto.getTitle());
-        publication.setDocumentNumber(dto.getDocumentNumber());
         publication.setPublicationDate(dto.getPublicationDate());
         publication.setPublisher(dto.getPublisher());
         publication.setUniversity(dto.getUniversite()); // mapping FR -> EN

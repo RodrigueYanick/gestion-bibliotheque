@@ -27,7 +27,7 @@ public class BookController {
         return new ResponseEntity<>(createdBook, HttpStatus.CREATED);
     }
 
-    @GetMapping("/")
+    @GetMapping("/getAll")
     public ResponseEntity<List<BookResponseDto>> getAllBook(){
         return ResponseEntity.ok(serviceBook.getAllBookk());
     }
@@ -49,14 +49,9 @@ public class BookController {
         serviceBook.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-    @GetMapping("/search/{nameAuthor}")
-    public List<Book> findBookByAuthor(String nameAuthor){
-        return serviceBook.findBookByAuthor(nameAuthor);
-    }
-
-    @DeleteMapping("/search/categoryName")
-    public List<Book> findBookByCategory(String categoryName){
-        return serviceBook.findBookByCategory(categoryName);
+    @GetMapping("/search/{lastName}")
+    public Book findBookByAuthor(String title){
+        return serviceBook.findBookByTitle(title);
     }
 
 }

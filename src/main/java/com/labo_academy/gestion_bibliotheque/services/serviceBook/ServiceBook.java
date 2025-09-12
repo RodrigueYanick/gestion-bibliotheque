@@ -16,7 +16,6 @@ public interface ServiceBook {
     public BookResponseDto update(Long id, BookCreateDto dto);
     public boolean existsById (long id);
     public  void deleteById(long id);
-    List<Book> findBookByAuthor(String nameAuthor);
-    List<Book> findBookByCategory(String categoryName);
+    Book findBookByTitle(String title);
 
 }

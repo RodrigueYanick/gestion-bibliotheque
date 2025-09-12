@@ -1,5 +1,7 @@
 package com.labo_academy.gestion_bibliotheque.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.labo_academy.gestion_bibliotheque.entity.Borrow;
@@ -11,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface  BorrowRepository extends JpaRepository<Borrow, Long> {
 
-    Borrow findByBorrowedNumber(String matricule);
+    Optional<Borrow> findByBorrowedNumber(String borrowedNumber);
 
     Borrow findBySubscriberAndDocumentAndStatus(LibraryClient subscriber, Document document, BorrowedStatus status);
 

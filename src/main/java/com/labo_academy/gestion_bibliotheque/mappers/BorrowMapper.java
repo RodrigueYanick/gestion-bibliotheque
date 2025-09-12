@@ -11,8 +11,6 @@ import com.labo_academy.gestion_bibliotheque.repository.LibraryClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-
 @Component
 public class BorrowMapper {
 
@@ -44,9 +42,9 @@ public class BorrowMapper {
         }
 
         // Vérifier l’existence du document
-        Document document = documentRepository.findByDocumentNumber(dto.getDocumentMatricule());
+        Document document = documentRepository.findByDocumentNumber(dto.getDocumentNumber());
         if (document == null) {
-            throw new RuntimeException("Document introuvable : " + dto.getDocumentMatricule());
+            throw new RuntimeException("Document introuvable : " + dto.getDocumentNumber());
         }
 
         // Vérifier l’existence de l’abonné
@@ -62,9 +60,7 @@ public class BorrowMapper {
 
         // Valeurs par défaut
         borrow.setStatus(BorrowedStatus.IN_PROGRESS);
-        borrow.setBorrowedDate(LocalDate.now());
-        borrow.setReturnDate(LocalDate.now().plusDays(10));
-
+        
         return borrow;
     }
 

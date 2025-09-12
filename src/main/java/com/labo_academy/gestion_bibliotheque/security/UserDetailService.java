@@ -1,10 +1,8 @@
 package com.labo_academy.gestion_bibliotheque.security;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,37 +16,34 @@ import com.labo_academy.gestion_bibliotheque.repository.UsersRepository;
 public class UserDetailService implements UserDetailsService {
 
     @Autowired
-    private UsersRepository usersRepository; 
-    // On injecte le repository qui permet d’accéder aux utilisateurs dans la base de données
+    private UsersRepository usersRepository;
 
+    /**
+     * Cette méthode est appelée automatiquement lors de la tentative de connexion.
+     * Elle doit retourner les informations de l'utilisateur correspondant à l'email donné.
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Ici "username" est la valeur envoyée par l’utilisateur lors de la connexion (login)
-        // Dans ton cas, tu cherches encore avec lastName, mais on pourra changer pour email plus tard
-
+        // On récupère l'utilisateur en base à partir de son email
         Users user = usersRepository.findByEmail(username);
-        // On cherche l’utilisateur dans la base de données avec son "lastName"
 
+        // Si l'utilisateur n'existe pas, on lève une exception
         if (user == null) {
-            // Si aucun utilisateur n’est trouvé, on lève une exception
-            // Spring Security va gérer ça automatiquement et refuser l’authentification
-            throw new UsernameNotFoundException("Utilisateur non trouvé avec le nom : " + username);
+            throw new UsernameNotFoundException("Utilisateur non trouvé avec l'email : " + username);
         }
 
-        // Transformer le rôle de l’utilisateur (Enum) en autorité reconnue par Spring Security
-        // Exemple : Role.LIBRARIAN -> "LIBRARIAN"
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user.getRole().name()));
+        // Création d’une autorité (rôle) à partir de l'énum Role de l'utilisateur
+        SimpleGrantedAuthority authority =
+                new SimpleGrantedAuthority("ROLE_" + user.getRole().name());
 
-        // Retourner un objet "User" de Spring Security
-        // Cet objet contient : 
-        // - l’identifiant de connexion (ici j’ai mis l’email au lieu du lastName car c’est plus logique)
-        // - le mot de passe crypté de l’utilisateur (stocké en BDD)
-        // - la liste des rôles/autorisations (authorities)
+        // On retourne un objet User de Spring Security contenant :
+        // - son email (nom d'utilisateur)
+        // - son mot de passe (déjà encodé en BDD)
+        // - sa liste d'autorités
         return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),    // identifiant de connexion (login)
-                user.getPassword(), // mot de passe crypté
-                authorities         // liste des rôles associés
+                user.getEmail(),
+                user.getPassword(),   
+                Collections.singletonList(authority)
         );
     }
 }

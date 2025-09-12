@@ -10,8 +10,9 @@ public interface ServiceAgent {
     // gestion de son propre compte
     public AgentResponseDto createAgent(AgentCreateDto agentCreateDto);
     public List<AgentResponseDto> getAllAgent();
-    public AgentResponseDto getAgentById(Long id);
+    public AgentResponseDto getAgentById(long id);
     public AgentResponseDto update(Long id, AgentCreateDto dto);
-    public void deleteById(Long id);
+    public boolean existsById (long id);
+    public void deleteById(long id);
 
 }

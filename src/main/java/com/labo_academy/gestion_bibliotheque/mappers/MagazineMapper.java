@@ -54,7 +54,6 @@ public class MagazineMapper {
 
         Magazine magazine = new Magazine();
         magazine.setTitle(dto.getTitle());
-        magazine.setDocumentNumber(dto.getDocumentNumber());
         magazine.setPublicationDate(dto.getPublicationDate());
         magazine.setPublisher(dto.getPublisher());
         magazine.setIssn(dto.getIssn());

@@ -6,55 +6,87 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+@Component
+public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
-    private final String SECRET = "SecretKey123"; // meme cle que dans AuthenticationFilter
+    // Clé secrète utilisée pour vérifier la signature du token JWT
+    // Elle doit être identique à celle utilisée pour signer les tokens
+    private final String secret = "MaCleSuperSecreteDe32CaracteresMin123456";
 
-    public JWTAuthorizationFilter(org.springframework.security.authentication.AuthenticationManager authenticationManager) {
-        super(authenticationManager);
-    }
-
+    /**
+     * Cette méthode est appelée à chaque requête HTTP entrante.
+     * Elle vérifie si un token JWT est présent dans l'en-tête "Authorization"
+     * et configure l'utilisateur authentifié dans le contexte de sécurité si le token est valide.
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
-                                    FilterChain chain) throws IOException, ServletException {
-        // 1. Récupérer le header "Authorization"
+                                    FilterChain chain) throws ServletException, IOException {
+
+        // Récupère le contenu de l'en-tête "Authorization"
         String header = request.getHeader("Authorization");
 
-        // 2. Vérifier si le header est présent et commence par "Bearer"
+        // Si aucun header ou qu'il ne commence pas par "Bearer ", on continue sans authentification
         if (header == null || !header.startsWith("Bearer ")) {
-            chain.doFilter(request, response); // si pas de token, on continue sans rien faire
+            chain.doFilter(request, response);
             return;
         }
 
-        // 3. Extraire le token sans le mot "Bearer"
+        // Récupère uniquement le token (en retirant "Bearer ")
         String token = header.replace("Bearer ", "");
 
-        // 4. Vérifier le token et récupérer les infos dedans
-        Claims claims = Jwts.parser()
-                .setSigningKey(SECRET)
-                .parseClaimsJws(token)
-                .getBody();
+        try {
+            // Analyse et vérifie le token grâce à la clé secrète
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(secret.getBytes(StandardCharsets.UTF_8))  // clé pour vérifier la signature
+                    .build()
+                    .parseClaimsJws(token)  // décode et valide le token
+                    .getBody();              // récupère les données contenues dans le token (claims)
 
-        String username = claims.getSubject(); // ici c’est l’email mis dans le subject
+            // Récupère le nom d'utilisateur et les rôles depuis les claims
+            String username = claims.getSubject();
+            String roles = (String) claims.get("roles");
 
-        if (username != null) {
-            // 5. Créer une authentification pour Spring Security
-            UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
+            // Si on a bien trouvé un utilisateur et des rôles dans le token
+            if (username != null && roles != null) {
 
-            // 6. Dire à Spring Security "cet utilisateur est connecté"
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+                // Transformation des rôles (séparés par des virgules) en objets SimpleGrantedAuthority
+                List<SimpleGrantedAuthority> authorities = Arrays.stream(roles.split(","))
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
+
+                // Création d'un objet d'authentification avec les infos de l'utilisateur
+                UsernamePasswordAuthenticationToken auth =
+                        new UsernamePasswordAuthenticationToken(username, null, authorities);
+
+                // Ajoute les détails de la requête dans l'objet d'authentification
+                auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+                // Enregistre l'utilisateur authentifié dans le contexte de sécurité de Spring
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            }
+
+        } catch (Exception e) {
+            // En cas d'erreur (token invalide ou expiré), on vide le contexte de sécurité
+            SecurityContextHolder.clearContext();
         }
 
-        // 7. Continuer le filtre
+        // Continue le traitement de la requête dans la chaîne de filtres
         chain.doFilter(request, response);
     }
 }

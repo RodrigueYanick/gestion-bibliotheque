@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.labo_academy.gestion_bibliotheque.dto.borrowBillDto.BorrowedBillCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.borrowBillDto.BorrowedBillResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Borrow;
 import com.labo_academy.gestion_bibliotheque.entity.BorrowedBill;
@@ -24,18 +25,13 @@ public class BorrowBillServiceImpl implements BorrowBillService {
     private final BorrowBillMapper borrowBillMapper;
 
     @Override
-    public BorrowedBillResponseDto create(Long borrowId) {
+    public BorrowedBillResponseDto create(BorrowedBillCreateDto dto) {
         // Vérifier l’existence de l'emprunt
-        Borrow borrow = borrowRepository.findById(borrowId)
-                .orElseThrow(() -> new RuntimeException("Emprunt non trouvé avec l'ID : " + borrowId));
-
-        // Vérifier si une facture existe déjà pour cet emprunt
-        if (borrow.getFacture() != null) {
-            throw new RuntimeException("Une facture existe déjà pour cet emprunt.");
-        }
+        Borrow borrow = borrowRepository.findByBorrowedNumber(dto.getBorrowedNumber()).orElseThrow(() -> new RuntimeException("Emprunt non trouvé avec l'ID : " + dto.getBorrowedNumber()));
 
         // Créer une nouvelle facture
         BorrowedBill bill = new BorrowedBill();
+        bill.setBillNumber("BILL-"+System.currentTimeMillis());
         bill.setBorrow(borrow);
 
         // Sauvegarder la facture

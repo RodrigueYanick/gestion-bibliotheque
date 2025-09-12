@@ -1,6 +1,7 @@
 package com.labo_academy.gestion_bibliotheque.entity;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -70,10 +72,13 @@ public class Borrow {
     // --- Méthodes utilitaires ---
 
     // Méthode appelée avant l'insertion pour définir les dates par défaut
-    public void PrePersist(){
-        borrowedDate = LocalDate.now();       // Date d’emprunt = aujourd’hui
-        returnDate = borrowedDate.plusDays(10); // Retour prévu = +10 jours
+    @PrePersist
+    public void prePersist() {
+        this.borrowedDate = LocalDate.now();
+        this.returnDate = borrowedDate.plusDays(10);
+        this.borrowedNumber = "BORR-" + System.currentTimeMillis();
     }
+
 
     // --- Constructeurs ---
     public Borrow() {}

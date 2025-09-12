@@ -35,10 +35,10 @@ public class UsersCreateDto {
 
     private String address;
 
-    @NotNull(message = "Le rôle est obligatoire")
-    private Role role;
+    // @NotNull(message = "Le rôle est obligatoire")
+    // private Role role;
 
     
-    // URL de l'image de profil (optionnelle).
+    // URL de l'image de profil.
     private String imageUrl;
 }
