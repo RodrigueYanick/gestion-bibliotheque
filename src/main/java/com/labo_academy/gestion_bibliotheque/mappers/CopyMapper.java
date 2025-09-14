@@ -33,13 +33,13 @@ public class CopyMapper {
         if (dto == null) {
             return null;
         }
-        Document document = documentRepository.findById(dto.getDocumentId())
+        Document document = documentRepository.findByDocumentNumber(dto.getDocumentNumber())
                 .orElseThrow(() -> new RuntimeException(
-                        "Document introuvable avec id : " + dto.getDocumentId()
+                        "Document introuvable avec id : " + dto.getDocumentNumber()
                 ));
 
         Copy copy = new Copy();
-        copy.setBorrowed(dto.getIsBorrowed());
+        copy.setBorrowed(false);
         copy.setDocument(document);
         return copy;
     }

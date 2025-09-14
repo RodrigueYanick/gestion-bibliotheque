@@ -8,6 +8,7 @@ import com.labo_academy.gestion_bibliotheque.entity.Role;
 import com.labo_academy.gestion_bibliotheque.mappers.DirectorMapper;
 import com.labo_academy.gestion_bibliotheque.repository.DirectorRepository;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service                       // Indique à Spring que cette classe est un service
-@RequiredArgsConstructor        // Génère automatiquement un constructeur avec les attributs "final"
+@AllArgsConstructor        // Génère automatiquement un constructeur avec les attributs "final"
 public class ServiceDirectorImpl implements ServiceDirector {
 
     @Autowired

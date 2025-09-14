@@ -63,7 +63,7 @@ public class Borrow {
     @ManyToOne
     @JoinColumn(name = "suscriber_id", nullable = false)
     // Plusieurs emprunts peuvent appartenir à un même abonné
-    private LibraryClient subscriber;
+    private Users subscriber;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "borrow")
     // Relation 1:1 entre un emprunt et un retour

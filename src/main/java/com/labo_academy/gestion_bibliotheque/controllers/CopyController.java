@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/copies")
+@RequestMapping("/api/copy")
 @RequiredArgsConstructor
 public class CopyController {
 

@@ -5,10 +5,15 @@ import com.labo_academy.gestion_bibliotheque.dto.dictionaryDto.DictionaryRespons
 import com.labo_academy.gestion_bibliotheque.entity.Dictionary;
 import com.labo_academy.gestion_bibliotheque.mappers.DictionaryMapper;
 import com.labo_academy.gestion_bibliotheque.repository.DictionaryRepository;
+
+import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+@AllArgsConstructor
 @Service
 
 public class ServiceDictionaryImpl implements ServiceDictionary{

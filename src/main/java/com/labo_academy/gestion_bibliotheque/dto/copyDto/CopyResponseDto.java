@@ -12,6 +12,6 @@ import lombok.Setter;
 public class CopyResponseDto {
     private Long id;
     private Boolean isBorrowed;
-    private String documentMatricule;
+    private String documentNumber;
     private String documentTitle;
 }

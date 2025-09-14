@@ -6,7 +6,10 @@ import com.labo_academy.gestion_bibliotheque.dto.categoryDto.CategoryCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.categoryDto.CategoryResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Category;
 
+import lombok.AllArgsConstructor;
+
 @Component
+@AllArgsConstructor
 public class CategoryMapper {
 
     // Convertir Entity → ResponseDto
@@ -24,7 +27,7 @@ public class CategoryMapper {
     // Convertir CreateDto → Entity
     public Category toEntity(CategoryCreateDto dto) {
         if (dto == null) {
-            return null;
+            throw new RuntimeException("la categorie entre ne contient auccune valeur");
         }
         Category category = new Category();
         category.setName(dto.getName());
