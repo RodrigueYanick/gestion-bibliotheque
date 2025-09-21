@@ -70,7 +70,7 @@ public class BookMapper {
 
         // relations avec la BD
         Category category = categoryRepository.findByName(dto.getCategoryName());
-        Author author = authorRepository.findByLastName(dto.getAuthorName());
+        Author author = authorRepository.findByImmatriculation(dto.getImmatriculation());
         book.setCategory(category);
         book.setAuthor(author);
 

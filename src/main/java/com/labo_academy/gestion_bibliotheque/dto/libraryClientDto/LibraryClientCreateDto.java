@@ -9,11 +9,11 @@ import com.labo_academy.gestion_bibliotheque.dto.usersDto.UsersCreateDto;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+// @NoArgsConstructor
+// @AllArgsConstructor
 public class LibraryClientCreateDto extends UsersCreateDto {
 
     // Champs spécifiques au VISITOR par defaut actif dès la creation
-    private Boolean visitorStatus = true;
+    // private Boolean visitorStatus = true;
 
 }

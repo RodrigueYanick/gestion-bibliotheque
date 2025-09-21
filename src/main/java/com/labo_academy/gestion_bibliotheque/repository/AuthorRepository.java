@@ -6,5 +6,5 @@ import com.labo_academy.gestion_bibliotheque.entity.Author;
 
 public interface AuthorRepository extends JpaRepository<Author, Long> {
 
-    Author findByLastName(String authorName);
+    Author findByImmatriculation(String immatriculation);
 }

@@ -49,7 +49,7 @@ public class ReturnedMapper {
         }
 
         // On vérifie que le document existe
-        Document document = documentRepository.findByDocumentNumber(dto.getDocumentMatricule());
+        Document document = documentRepository.findByDocumentNumber(dto.getDocumentMatricule()).orElseThrow(() -> new RuntimeException("Document introuvable"));;
         if (document == null) {
             throw new RuntimeException("Document introuvable avec matricule : " + dto.getDocumentMatricule());
         }

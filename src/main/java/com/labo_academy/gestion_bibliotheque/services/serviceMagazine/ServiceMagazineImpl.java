@@ -5,10 +5,14 @@ import com.labo_academy.gestion_bibliotheque.dto.magazineDto.MagazineResponseDto
 import com.labo_academy.gestion_bibliotheque.entity.Magazine;
 import com.labo_academy.gestion_bibliotheque.mappers.MagazineMapper;
 import com.labo_academy.gestion_bibliotheque.repository.MagazineRepository;
+
+import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+@AllArgsConstructor
 @Service
 
 public class ServiceMagazineImpl implements ServiceMagazine{

@@ -17,7 +17,7 @@ public class SanctionBillMapper {
         Sanction sanction = sanctionBill.getSanction();
         Returned returned = sanction.getReturned();
         Borrow borrow = returned.getBorrow();
-        LibraryClient subscriber = borrow.getSubscriber();
+        Users subscriber = borrow.getSubscriber();
         Document document = borrow.getDocument();
 
         int dateDiff = (int) ChronoUnit.DAYS.between(

@@ -32,6 +32,6 @@ public class DocumentCreateDto {
     private String categoryName;
 
     @NotBlank(message = "L’auteur est obligatoire")
-    private String authorName;
+    private String immatriculation;
 
 }

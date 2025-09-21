@@ -62,9 +62,8 @@ public class DictionaryMapper {
         .findByName(dto.getCategoryName());
         if(category == null){ new RuntimeException("Catégorie introuvable : " + dto.getCategoryName());}
 
-        Author author = authorRepository
-        .findByLastName(dto.getAuthorName());
-        if(author == null){ new RuntimeException("Auteur introuvable : " + dto.getAuthorName());};
+        Author author = authorRepository.findByImmatriculation(dto.getImmatriculation());
+        if(author == null){ new RuntimeException("Auteur introuvable : " + dto.getImmatriculation());};
 
         dictionary.setCategory(category);
         dictionary.setAuthor(author);

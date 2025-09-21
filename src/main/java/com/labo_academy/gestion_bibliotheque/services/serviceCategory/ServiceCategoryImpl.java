@@ -5,11 +5,16 @@ import com.labo_academy.gestion_bibliotheque.dto.categoryDto.CategoryResponseDto
 import com.labo_academy.gestion_bibliotheque.entity.Category;
 import com.labo_academy.gestion_bibliotheque.mappers.CategoryMapper;
 import com.labo_academy.gestion_bibliotheque.repository.CategoryRepository;
+
+import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
+@AllArgsConstructor
 
 public class ServiceCategoryImpl implements ServiceCategory{
 

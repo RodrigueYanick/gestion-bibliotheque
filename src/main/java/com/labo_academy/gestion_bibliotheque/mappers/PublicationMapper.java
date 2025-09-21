@@ -62,9 +62,9 @@ public class PublicationMapper {
             throw new RuntimeException("Catégorie introuvable : " + dto.getCategoryName());
         }
 
-        Author author = authorRepository.findByLastName(dto.getAuthorName());
+        Author author = authorRepository.findByImmatriculation(dto.getImmatriculation());
         if (author == null) {
-            throw new RuntimeException("Auteur introuvable : " + dto.getAuthorName());
+            throw new RuntimeException("Auteur introuvable : " + dto.getImmatriculation());
         }
 
         publication.setCategory(category);
