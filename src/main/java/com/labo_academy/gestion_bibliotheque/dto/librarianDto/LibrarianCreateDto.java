@@ -2,24 +2,25 @@ package com.labo_academy.gestion_bibliotheque.dto.librarianDto;
 
 import com.labo_academy.gestion_bibliotheque.dto.usersDto.UsersCreateDto;
 
-import com.labo_academy.gestion_bibliotheque.entity.Role;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter   
 public class LibrarianCreateDto extends UsersCreateDto {
 
+    @NotBlank(message = "Le numéro de pièce d'identité est obligatoire")
     private String idNumber;
 
-    public LibrarianCreateDto(String lastName, String firstName, LocalDate birthDate, String password, String email, String address, Role role,String idNumber) {
-        super(lastName, firstName, birthDate, password, email, address, role);
+    public LibrarianCreateDto(String lastName, String firstName, LocalDate birthDate, String password, String email, String address, String imageURL, String idNumber) {
+        super(lastName, firstName, birthDate, password, email, address, imageURL);
+        this.idNumber = idNumber;
+    }
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
     }
 }

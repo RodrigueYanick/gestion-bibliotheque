@@ -1,26 +1,37 @@
 package com.labo_academy.gestion_bibliotheque.mappers;
 
+import org.springframework.stereotype.Component;
+
 import com.labo_academy.gestion_bibliotheque.dto.categoryDto.CategoryCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.categoryDto.CategoryResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Category;
-import org.springframework.stereotype.Component;
+
+import lombok.AllArgsConstructor;
 
 @Component
+@AllArgsConstructor
 public class CategoryMapper {
 
-    // Conversion Entity To Dto
-    public CategoryResponseDto fromEntityToDto(Category category){
-        return  new CategoryResponseDto(
+    // Convertir Entity → ResponseDto
+    public CategoryResponseDto toDto(Category category) {
+        if (category == null) {
+            return null;
+        }
+        return new CategoryResponseDto(
+                category.getCategoryId(),
                 category.getDescription(),
                 category.getName()
         );
     }
 
-    // conversion Dto To Entity
-    public Category fromDtoToEntity(CategoryCreateDto categoryCreateDto){
+    // Convertir CreateDto → Entity
+    public Category toEntity(CategoryCreateDto dto) {
+        if (dto == null) {
+            throw new RuntimeException("la categorie entre ne contient auccune valeur");
+        }
         Category category = new Category();
-        category.setDescription(categoryCreateDto.getDescription());
-        category.setName(categoryCreateDto.getName());
+        category.setName(dto.getName());
+        category.setDescription(dto.getDescription());
         return category;
     }
 }

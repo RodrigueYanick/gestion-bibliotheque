@@ -2,13 +2,13 @@ package com.labo_academy.gestion_bibliotheque.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
@@ -18,53 +18,40 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "rendre")
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "returned")
 @Getter
 @Setter
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class Returned {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-    private LocalDate returndeDate;
+    private Long id;
 
-    public Returned(Long id, LocalDate returndeDate) {
-        Id = id;
-        this.returndeDate = returndeDate;
-    }
+    // Date effective du retour (initialisée automatiquement)
+    @Column(nullable = false)
+    private LocalDate effectiveReturnDate;
 
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public LocalDate getReturndeDate() {
-        return returndeDate;
-    }
-
-    public void setReturndeDate(LocalDate returndeDate) {
-        this.returndeDate = returndeDate;
-    }
+    // Identifiant unique du retour (ex: code transaction)
+    @Column(name = "return_number", unique = true, nullable = false, length = 50)
+    private String returnNumber;
 
     @PrePersist
-    public void returnDate(){
-        returndeDate = LocalDate.now();
+    public void prePersist() {
+        effectiveReturnDate = LocalDate.now();
     }
 
+    // Relation avec l'emprunt (un retour correspond à un seul emprunt)
     @OneToOne
     @JoinColumn(name = "borrow_id", nullable = false)
     private Borrow borrow;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "returned")  // relation entre un emprunt et une sanction
+    // Relation avec une sanction éventuelle
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "returned")
     private Sanction sanction;
 
+    // Relation avec la facture de retour
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "returned")
     private ReturnedBill returnedBill;
-
 }

@@ -3,25 +3,71 @@ package com.labo_academy.gestion_bibliotheque.mappers;
 import com.labo_academy.gestion_bibliotheque.dto.borrowDto.BorrowCreateDto;
 import com.labo_academy.gestion_bibliotheque.dto.borrowDto.BorrowResponseDto;
 import com.labo_academy.gestion_bibliotheque.entity.Borrow;
+import com.labo_academy.gestion_bibliotheque.entity.BorrowedStatus;
+import com.labo_academy.gestion_bibliotheque.entity.Document;
+import com.labo_academy.gestion_bibliotheque.entity.LibraryClient;
+import com.labo_academy.gestion_bibliotheque.entity.Users;
+import com.labo_academy.gestion_bibliotheque.repository.DocumentRepository;
+import com.labo_academy.gestion_bibliotheque.repository.LibraryClientRepository;
+import com.labo_academy.gestion_bibliotheque.repository.UsersRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BorrowMapper {
 
-    // Conversion Entity To Dto
-    public BorrowResponseDto fromEntityToDto(Borrow borrow){
+    @Autowired
+    private DocumentRepository documentRepository;
+
+    @Autowired
+    private LibraryClientRepository subscribersRepository;
+
+    @Autowired 
+    private UsersRepository UsersRepository;
+
+    // Convertir Entity -> DTO
+    public BorrowResponseDto fromEntityToDto(Borrow borrow) {
+        if (borrow == null) {
+            return null;
+        }
         return new BorrowResponseDto(
                 borrow.getBorrowedId(),
                 borrow.getStatus(),
                 borrow.getBorrowedDate(),
-                borrow.getReturnDate()
+                borrow.getReturnDate(),
+                borrow.getDocument().getDocumentNumber(),
+                borrow.getSubscriber().getEmail()
         );
     }
 
-    // Conversion Dto To Entity
-    public Borrow fromDtoToEntity(BorrowCreateDto borrowCreateDto){
+    // Convertir DTO -> Entity
+    public Borrow fromDtoToEntity(BorrowCreateDto dto) {
+        if (dto == null) {
+            return null;
+        }
+
+        // Vérifier l’existence du document
+        Document document = documentRepository.findByDocumentNumber(dto.getDocumentNumber()).orElseThrow(() -> new RuntimeException("Document introuvable avec id : " + dto.getDocumentNumber()));
+        if (document == null) {
+            throw new RuntimeException("Document introuvable : " + dto.getDocumentNumber());
+        }
+
+        // Vérifier l’existence de l’abonné
+        Users subscriber = UsersRepository.findByEmail(dto.getSubscribersEmail());
+        if (subscriber == null) {
+            throw new RuntimeException("Utilisateur introuvable : " + dto.getSubscribersEmail());
+        }
+
+        // Création de l’objet Borrow
         Borrow borrow = new Borrow();
-        borrow.setStatus(borrowCreateDto.getStatus());
+        borrow.setDocument(document);
+        borrow.setSubscriber(subscriber);
+
+        // Valeurs par défaut
+        borrow.setStatus(BorrowedStatus.IN_PROGRESS);
+        
         return borrow;
     }
+
 }

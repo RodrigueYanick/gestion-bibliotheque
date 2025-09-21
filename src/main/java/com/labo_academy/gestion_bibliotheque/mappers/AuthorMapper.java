@@ -8,8 +8,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthorMapper {
 
-    // Conversion Entity To Dto
-    public AuthorResponseDto fromEntityToDto(Author author){
+    // Conversion Entity -> ResponseDto
+    public AuthorResponseDto fromEntityToDto(Author author) {
+        if (author == null) {
+            return null;
+        }
         return new AuthorResponseDto(
                 author.getAuthorId(),
                 author.getLastName(),
@@ -19,13 +22,16 @@ public class AuthorMapper {
         );
     }
 
-    // conversion dto To Entity
-    public Author fromDtoToEntity(AuthorCreateDto authorCreateDto){
+    // Conversion CreateDto -> Entity
+    public Author fromDtoToEntity(AuthorCreateDto dto) {
+        if (dto == null) {
+            return null;
+        }
         Author author = new Author();
-        author.setLastName(authorCreateDto.getLastName());
-        author.setFirstName(authorCreateDto.getFirstName());
-        author.setImmatriculation(authorCreateDto.getImmatriculation());
-        author.setNationality(authorCreateDto.getNationalite());
+        author.setLastName(dto.getLastName());
+        author.setFirstName(dto.getFirstName());
+        author.setImmatriculation(dto.getImmatriculation());
+        author.setNationality(dto.getNationality());
         return author;
     }
 }

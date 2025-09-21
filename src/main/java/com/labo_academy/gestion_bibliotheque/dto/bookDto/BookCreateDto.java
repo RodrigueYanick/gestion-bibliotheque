@@ -1,42 +1,24 @@
 package com.labo_academy.gestion_bibliotheque.dto.bookDto;
 
 import com.labo_academy.gestion_bibliotheque.dto.documentDto.DocumentCreateDto;
-
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookCreateDto extends DocumentCreateDto {
 
+    @NotBlank(message = "L'ISBN est obligatoire")
+    @Size(max = 50, message = "L'ISBN doit contenir au maximum 50 caractères")
     private String isbn;
+
+    @Min(value = 1, message = "Le nombre de pages doit être supérieur à 0")
     private int numberPages;
-
-    public BookCreateDto(String title, int quantity, LocalDate publicationDate, boolean isDeleted, byte[] image, String publisher, String isbn, int numberPages) {
-        super(title, quantity, publicationDate, isDeleted, image, publisher);
-        this.isbn = isbn;
-        this.numberPages = numberPages;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public int getNumberPages() {
-        return numberPages;
-    }
-
-    public void setNumberPages(int numberPages) {
-        this.numberPages = numberPages;
-    }
 }
